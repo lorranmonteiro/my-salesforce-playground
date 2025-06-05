@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>SetAccountTypeCustomerDirect</flowApiName>
+    <label>Assert if Account type changed on update</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;CleanStatus&quot;:&quot;Pending&quot;,&quot;Name&quot;:&quot;Test&quot;,&quot;OwnerId&quot;:&quot;005aj00000GifZJAAZ&quot;,&quot;Type&quot;:&quot;Prospect&quot;}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;AccountSource&quot;:&quot;Web&quot;,&quot;CleanStatus&quot;:&quot;Pending&quot;,&quot;Name&quot;:&quot;Test&quot;,&quot;OwnerId&quot;:&quot;005aj00000GifZJAAZ&quot;,&quot;Type&quot;:&quot;Prospect&quot;}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Customer - Direct</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

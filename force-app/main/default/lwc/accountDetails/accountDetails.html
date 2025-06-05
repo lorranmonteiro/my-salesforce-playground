@@ -1,0 +1,41 @@
+<template>
+    <!-- Lightning Card to display Account details -->
+    <lightning-card title="Account Details" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <!-- Display Account data if available -->
+            <template if:true={accountData}>
+                <lightning-input
+                    label="Account Name"
+                    value={accountData.Name}
+                    onchange={handleInputChange}
+                    data-field="Name">
+                </lightning-input>
+
+                <lightning-input
+                    label="Account Type"
+                    value={accountData.Type}
+                    onchange={handleInputChange}
+                    data-field="Type">
+                </lightning-input>
+
+                <lightning-input
+                    label="Created Date"
+                    value={accountData.CreatedDate}
+                    disabled>
+                </lightning-input>
+            </template>
+
+            <!-- Display error message if an error occurs -->
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+
+            <!-- Save Button to update Account details -->
+            <lightning-button
+                label="Save"
+                variant="brand"
+                onclick={handleSave}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
