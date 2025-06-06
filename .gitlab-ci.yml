@@ -22,11 +22,11 @@ default:
   image: salesforce/cli:latest-slim
   timeout: 15m
   tags:
-    - runner-docker-obs-general
+    - gitlab-org-docker
 
-deploy-to-stage:
+deploy:
   stage: deploy
-  environment: pPlayground
+  environment: Playground
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
   script:
