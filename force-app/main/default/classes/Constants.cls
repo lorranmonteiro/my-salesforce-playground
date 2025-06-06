@@ -1,14 +1,14 @@
 public with sharing class Constants {
-    public final AccountConstants ACCOUNT = new AccountConstants();
+    public static final AccountConstants ACCOUNT = new AccountConstants();
 
     public class AccountConstants {
         public AccountType TYPE = new AccountType();
 
-        public String ACCOUNT_RECORDTYPE_CUSTOMER() {
+        public String RECORDTYPE_CUSTOMER() {
             return Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Customer').getRecordTypeId(); 
         }
 
-        public String ACCOUNT_RECORDTYPE_PARTNER() {
+        public String RECORDTYPE_PARTNER() {
             return Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Partner').getRecordTypeId(); 
         }
     }
