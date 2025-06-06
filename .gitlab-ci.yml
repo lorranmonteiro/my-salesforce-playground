@@ -2,9 +2,6 @@ before_script:
  # Download secure files from repository
  - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
- # Install jq
- - apt update && apt -y install jq
-
  # Setup SFDX environment variables
  - export SF_AUTOUPDATE_DISABLE=false
  - export SF_USE_GENERIC_UNIX_KEYCHAIN=true
