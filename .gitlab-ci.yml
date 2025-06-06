@@ -1,0 +1,37 @@
+before_script:
+ # Download secure files from repository
+ - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+
+ # Install jq
+ - apt update && apt -y install jq
+
+ # Setup SFDX environment variables
+ - export SF_AUTOUPDATE_DISABLE=false
+ - export SF_USE_GENERIC_UNIX_KEYCHAIN=true
+ - export SF_DOMAIN_RETRY=300
+ - export SFDX_DISABLE_APP_HUB=true
+ - export SF_LOG_LEVEL=debug
+ - export ROOTDIR=force-app/main/default/
+ - export ORG_ALIAS=Playground
+ - export PACKAGEVERSION=""
+
+stages:
+  - deploy
+
+default:
+  image: salesforce/cli:latest-slim
+  timeout: 15m
+  tags:
+    - runner-docker-obs-general
+
+deploy-to-stage:
+  stage: deploy
+  environment: pPlayground
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'master'
+  script:
+    # Authenticate org
+    - sf org login jwt --username $SF_USERNAME --jwt-key-file .secure_files/server.key --client-id $SF_CONSUMER_KEY --instance-url https://login.salesforce.com --alias $ORG_ALIAS --set-default
+
+    # Send package to validation process. If all tests passes, the package is deployed to the stage org
+    - sf project deploy start --target-org $ORG_ALIAS --manifest manifest/package.xml --test-level RunLocalTests
