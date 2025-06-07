@@ -18,7 +18,7 @@ public class GitLabProjectInfoTest {
 
         Test.startTest();
             try {
-                GitLabProject projectDetails = GitLabProjectInfo.getProjectDetails();
+                GitLabProjectInfo.getProjectDetails();
             } catch (AuraHandledException e) {
                 Assert.isTrue(e.getMessage().contains('404 Project Not Found'), 'Expected exception message to contain "404 Project Not Found"');
             }

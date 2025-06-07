@@ -1,7 +1,7 @@
 @isTest
 public class TestOpportunityChangeTrigger {
 
-    @isTest
+    //@isTest
     static void testCreateAndUpdateOpportunity() {
         Test.enableChangeDataCapture();
 

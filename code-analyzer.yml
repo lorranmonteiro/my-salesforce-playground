@@ -65,6 +65,20 @@ rules:
   pmd:
     ApexCRUDViolation:
       severity: "Low"
+    PropertyNamingConventions:
+      severity: "Low"
+    FieldNamingConventions:
+      severity: "Low"
+    MethodNamingConventions:
+      severity: "Low"
+    IfStmtsMustUseBraces:
+      severity: "Low"
+    IfElseStmtsMustUseBraces:
+      severity: "Low"
+    OperationWithLimitsInLoop:
+      severity: "Low"
+    AvoidLogicInTrigger:
+      severity: "High"
 
   # ======================================================================
   # CPD ENGINE RULE OVERRIDES

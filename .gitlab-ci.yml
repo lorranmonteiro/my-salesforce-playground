@@ -1,7 +1,4 @@
 before_script:
- # Download secure files from repository
- - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-
  # Setup SFDX environment variables
  - export SF_AUTOUPDATE_DISABLE=false
  - export SF_USE_GENERIC_UNIX_KEYCHAIN=true
@@ -27,7 +24,7 @@ code-analysis:
   environment: Playground
   script:
     - sf plugins install code-analyzer
-    - sf code-analyzer run --rule-selector pmd:Recommended:2 --severity-threshold 2 --config-file code-analyzer.yml --view detail
+    - sf code-analyzer run --rule-selector pmd:Recommended:$PWD_THRESHOLD_LEVEL --severity-threshold $PWD_THRESHOLD_LEVEL --config-file code-analyzer.yml --view detail
 
 deploy:
   stage: deploy
@@ -35,6 +32,9 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
   script:
+    # Download secure files from repository
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+
     # Authenticate org
     - sf org login jwt --username $SF_USERNAME --jwt-key-file .secure_files/server.key --client-id $SF_CONSUMER_KEY --instance-url https://login.salesforce.com --alias $ORG_ALIAS --set-default
 
