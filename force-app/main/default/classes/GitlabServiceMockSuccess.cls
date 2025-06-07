@@ -1,27 +1,19 @@
-@IsTest
-public class GitLabProjectTest {
+@isTest
+public class GitlabServiceMockSuccess implements HttpCalloutMock {
 
-    @IsTest
-    static void testParse() {
-        String sampleJson = getGitLabProjectJsonSample();
+    public HTTPResponse respond(HTTPRequest req) {
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(200);
+        response.setHeader('Content-Type', 'application/json');
+        response.setBody(getGitLabProjectJsonSample());
 
-        GitLabProject parsedSample = GitLabProject.parse(sampleJson);
-
-        Assert.areEqual('70541783', parsedSample.Id, 'The ID should match');
-        Assert.areEqual('test', parsedSample.description, 'The description should match');
-        Assert.areEqual('Salesforce Playground', parsedSample.name, 'The name should match');
-        Assert.areEqual('master', parsedSample.default_branch, 'The branch should match');
-        Assert.areEqual('https://*.com/lorranmonteiro/salesforce-playground', parsedSample.web_url, 'The link should match');
-        Assert.areEqual(Datetime.newInstance(2025, 6, 5, 15, 31, 28), parsedSample.created_at, 'The date should match');
-
-        Assert.areEqual('Lorran Monteiro', parsedSample.owner.name, 'The name should match');
-        Assert.areEqual('lorrandec@gmail.com', parsedSample.owner.public_email, 'The email should match');
+        return response;
     }
 
     private static String getGitLabProjectJsonSample() {
         return '{\n' +
     '  "id": 70541783,\n' +
-    '  "description": "test",\n' +
+    '  "description": "",\n' +
     '  "name": "Salesforce Playground",\n' +
     '  "name_with_namespace": "Lorran Monteiro / Salesforce Playground",\n' +
     '  "path": "salesforce-playground",\n' +

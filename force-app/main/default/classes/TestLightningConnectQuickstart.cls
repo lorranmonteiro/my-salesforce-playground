@@ -1,6 +1,7 @@
 @isTest
 public class TestLightningConnectQuickstart {
-    public static testMethod void tester() {
+    @isTest
+    static void tester() {
         List<Account> accs = new List<Account>();
         for (Integer i = 0; i < 10; i++) {
             accs.add(new Account(name = 'Test '+i));

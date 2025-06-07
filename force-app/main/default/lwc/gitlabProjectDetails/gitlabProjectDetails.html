@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Project Info" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <template lwc:if={projectDetails}>
+                <p><strong>Name:</strong> {projectDetails.name}</p>
+                <p><strong>Description:</strong> {projectDetails.description}</p>
+                <p><strong>Default Branch:</strong> {projectDetails.default_branch}</p>
+                <p><strong>Web URL:</strong><a href={projectDetails.web_url} target="_blank"> {projectDetails.web_url}</a></p>
+                <p><strong>Owner Name:</strong> {projectDetails.owner.name}</p>
+                <p><strong>Owner Email:</strong> {projectDetails.owner.public_email}</p>
+
+                <p><strong>Created At: </strong>
+                    <lightning-formatted-date-time
+                        value={projectDetails.created_at}
+                        day="2-digit"
+                        month="2-digit"
+                        year="numeric"
+                    ></lightning-formatted-date-time>
+                </p>
+            </template>
+
+            <template lwc:elseif={errorMessage}>
+                <p class="slds-text-color_error">{errorMessage}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

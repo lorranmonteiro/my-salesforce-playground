@@ -1,15 +1,15 @@
 public with sharing class GitLabProject {
-    public String id;
-    public String description;
-    public String name;
-    public Datetime created_at;
-    public String default_branch;
-    public String web_url;
-    public Owner owner;
-    
+    @AuraEnabled public String id { get; set; }
+    @AuraEnabled public String description { get; set; }
+    @AuraEnabled public String name { get; set; }
+    @AuraEnabled public String default_branch { get; set; }
+    @AuraEnabled public String web_url { get; set; }
+    @AuraEnabled public Datetime created_at { get; set; }
+    @AuraEnabled public Owner owner { get; set; }
+
     public class Owner {
-        public String name;
-        public String public_email;
+        @AuraEnabled public String name { get; set; }
+        @AuraEnabled public String public_email { get; set; }
     }
     
     public static GitLabProject parse(String json) {
