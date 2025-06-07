@@ -13,6 +13,7 @@ before_script:
  - export PACKAGEVERSION=""
 
 stages:
+  - code analysis
   - deploy
 
 default:
@@ -20,6 +21,13 @@ default:
   timeout: 15m
   tags:
     - gitlab-org-docker
+
+code-analysis:
+  stage: code analysis
+  environment: Playground
+  script:
+    - sf plugins install code-analyzer
+    - sf code-analyzer run --rule-selector pmd:Recommended:2 --severity-threshold 2 --config-file code-analyzer.yml --view detail
 
 deploy:
   stage: deploy
