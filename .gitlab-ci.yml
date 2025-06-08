@@ -32,11 +32,17 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
   script:
+    # Install sf delta plugin
+    - sf plugins install sfdx-git-delta
+
     # Download secure files from repository
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
     # Authenticate org
     - sf org login jwt --username $SF_USERNAME --jwt-key-file .secure_files/server.key --client-id $SF_CONSUMER_KEY --instance-url https://login.salesforce.com --alias $ORG_ALIAS --set-default
 
+    # Create packages for deployment
+    - sf sgd source delta --to "HEAD" --from "HEAD~1" --output-dir "."
+    
     # Send package to validation process. If all tests passes, the package is deployed to the stage org
-    - sf project deploy start --target-org $ORG_ALIAS --manifest manifest/package.xml --test-level RunLocalTests
+    - sf project deploy start -o $ORG_ALIAS -l RunLocalTests -x package/package.xml --post-destructive-changes destructiveChanges/destructiveChanges.xml --ignore-warnings
