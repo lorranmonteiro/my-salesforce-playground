@@ -1,41 +1,75 @@
 <template>
-    <!-- Lightning Card to display Account details -->
     <lightning-card title="Account Details" icon-name="standard:account">
-        <div class="slds-p-around_medium">
-            <!-- Display Account data if available -->
-            <template if:true={accountData}>
-                <lightning-input
-                    label="Account Name"
-                    value={accountData.Name}
-                    onchange={handleInputChange}
-                    data-field="Name">
-                </lightning-input>
+        <div class="slds-p-horizontal_small">
+            <template lwc:if={accountData}>
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <lightning-input
+                            type="text"
+                            label="Account Name"
+                            name="accountName"
+                            value={accountData.Name}
+                            onchange={handleInputChange}
+                            data-field="Name">
+                        </lightning-input>
+                    </lightning-layout-item>
 
-                <lightning-input
-                    label="Account Type"
-                    value={accountData.Type}
-                    onchange={handleInputChange}
-                    data-field="Type">
-                </lightning-input>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <lightning-input
+                            type="text"
+                            label="Account Type"
+                            name="accountType"
+                            value={accountData.Type}
+                            onchange={handleInputChange}
+                            data-field="Type">
+                        </lightning-input>
+                    </lightning-layout-item>
 
-                <lightning-input
-                    label="Created Date"
-                    value={accountData.CreatedDate}
-                    disabled>
-                </lightning-input>
+                    <lightning-layout-item size="6" padding="horizontal-small">
+                        <lightning-input
+                            type="text"
+                            label="Account Number"
+                            name="accountNumber"
+                            value={accountData.AccountNumber}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6" padding="horizontal-small">
+                        <lightning-input
+                            label="Created Date"
+                            value={accountData.CreatedDate}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="12" padding="around-small">
+                        <lightning-input
+                            type="text"
+                            label="Account Site"
+                            name="accountSite"
+                            value={accountData.Site}
+                            onchange={handleInputChange}
+                            data-field="Site">
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <lightning-button
+                    class="slds-m-top_large"
+                    label="Save"
+                    variant="brand"
+                    onclick={handleSave}>
+                </lightning-button>
             </template>
 
-            <!-- Display error message if an error occurs -->
-            <template if:true={error}>
+            <template lwc:elseif={error}>
                 <p class="slds-text-color_error">{error}</p>
             </template>
 
-            <!-- Save Button to update Account details -->
-            <lightning-button
-                label="Save"
-                variant="brand"
-                onclick={handleSave}>
-            </lightning-button>
+            <template lwc:else>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
         </div>
     </lightning-card>
 </template>

@@ -1,31 +1,43 @@
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import getAccountByNumber from '@salesforce/apex/AccountSelector.getAccountsByAccountNumber';
 
-// Define the fields you want to fetch for the Account
-const FIELDS = ['Account.Name', 'Account.Type', 'Account.CreatedDate'];
+import { subscribe, MessageContext } from 'lightning/messageService';
+import ACCOUNT_CHANNEL from '@salesforce/messageChannel/GitlabProjectAccountDetails__c';
+
+import NAME_FIELD from '@salesforce/schema/Account.Name';
+import TYPE_FIELD from '@salesforce/schema/Account.Type';
+import CREATED_DATE_FIELD from '@salesforce/schema/Account.CreatedDate';
+import SITE_FIELD from '@salesforce/schema/Account.Site';
+import ACCOUNT_NUMBER_FIELD from '@salesforce/schema/Account.AccountNumber';
+
+const FIELDS = [NAME_FIELD, TYPE_FIELD, CREATED_DATE_FIELD, SITE_FIELD, ACCOUNT_NUMBER_FIELD];
 
 export default class AccountDetails extends LightningElement {
-    @api recordId; // The Account record ID passed to the component
-    accountData; // Holds the Account data
-    error; // Holds any error messages
-    @track updatedFields = {}; // Tracks the fields modified by the user
 
-    // Wire adapter to fetch Account details using uiRecordApi
+    @api recordId;
+
+    accountData;
+    editedFields = {};
+    accountNumber;
+    accountSite;
+    error;
+    subscription = null;
+
+    @wire(MessageContext) messageContext;
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     wiredAccount({ error, data }) {
         if (data) {
-            // Store the Account data in the component
-            this.accountData = {
-                Id: data.id,
-                Name: data.fields.Name.value,
-                Type: data.fields.Type.value,
-                CreatedDate: data.fields.CreatedDate.value
-            };
+            this.accountData = this.buildAccountData(data);
             this.error = undefined;
         } else if (error) {
-            // Handle any errors
             this.error = error;
             this.accountData = undefined;
         }
@@ -35,25 +47,20 @@ export default class AccountDetails extends LightningElement {
     handleInputChange(event) {
         const field = event.target.dataset.field;
         const value = event.target.value;
-        this.updatedFields[field] = value;
+        this.editedFields[field] = value;
     }
 
-    // Handle the Save button click
     async handleSave() {
-        // Create a new object with the updated fields
         const updatedRecord = {
             Id: this.accountData.Id,
-            ...this.updatedFields
+            ...this.editedFields
         };
 
-        // Prepare the record input for the update
         const recordInput = { fields: updatedRecord };
 
         try {
-            // Call updateRecord to save the changes
             await updateRecord(recordInput);
 
-            // Show success * message
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
@@ -62,7 +69,6 @@ export default class AccountDetails extends LightningElement {
                 })
             );
         } catch (error) {
-            // Show error * message
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error',
@@ -71,5 +77,52 @@ export default class AccountDetails extends LightningElement {
                 })
             );
         }
+    }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(
+            this.messageContext,
+            ACCOUNT_CHANNEL,
+            (message) => this.handleMessage(message)
+        );
+    }
+
+    async handleMessage(message) {
+        this.accountNumber = message.accountNumber;
+        this.accountSite = message.accountSite;
+
+        try {
+            const accounts = await getAccountByNumber({ accountNumber: this.accountNumber });
+            const account = accounts.length > 0 ? accounts[0] : null;
+
+            if (account) {
+                this.accountData = this.buildAccountData(account);
+                this.error = undefined;
+            } else {
+                this.accountData = undefined;
+                this.error = 'No account found with the provided account number.';
+            }
+        } catch (error) {
+            this.accountData = undefined;
+            this.error = error.body?.message || error.message;
+        }
+    }
+
+    buildAccountData(account) {
+        const isWireData = account.fields !== undefined;
+
+        return {
+            Id: isWireData ? account.id : account.Id,
+            Name: isWireData ? account.fields.Name.value : account.Name,
+            Type: isWireData ? account.fields.Type.value : account.Type,
+            Site: this.accountSite || (isWireData ? account.fields.Site?.value : account.Site),
+            AccountNumber: this.accountNumber || (isWireData ? account.fields.AccountNumber?.value : account.AccountNumber),
+            CreatedDate: this.getFormattedDate(isWireData ? account.fields.CreatedDate.value : account.CreatedDate)
+        };
+    }
+
+    getFormattedDate(dateString) {
+        let date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR');
     }
 }
