@@ -24,4 +24,13 @@ public class GitLabProjectInfoTest {
             }
         Test.stopTest();
     }
+
+    @isTest
+    static void shouldGetResponseFromCache() {
+        Test.startTest();
+            GitLabProject cachedProject = GitLabProjectInfo.getCachedProjectDetails();
+        Test.stopTest();
+
+        Assert.isNull(cachedProject, 'Expected null result');
+    }
 }
