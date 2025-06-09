@@ -51,8 +51,8 @@ validate:
     # Validate the package before deployment
     - |
       if grep -q "<types>" package/package.xml; then
-        sf org login jwt --username $SF_USERNAME --jwt-key-file $SERVER_KEY_FILE--client-id $SF_CONSUMER_KEY --instance-url $LOGIN_URL --alias $ORG_ALIAS --set-default
-        sf project deploy validate -o $ORG_ALIAS -x package/package.xml --post-destructive-changes destructiveChanges/destructiveChanges.xml --ignore-warnings
+        sf org login jwt --username $SF_USERNAME --jwt-key-file $SERVER_KEY_FILE --client-id $SF_CONSUMER_KEY --instance-url $LOGIN_URL --alias $ORG_ALIAS --set-default
+        sf project deploy validate -x package/package.xml --post-destructive-changes destructiveChanges/destructiveChanges.xml --ignore-warnings
       else
         echo "No components to validate. Skipping validation step."
       fi
@@ -75,8 +75,8 @@ deploy:
     # If there are components to deploy, proceed with deployment
     - |
       if grep -q "<types>" package/package.xml; then
-        sf org login jwt --username $SF_USERNAME --jwt-key-file $SERVER_KEY_FILE--client-id $SF_CONSUMER_KEY --instance-url $LOGIN_URL --alias $ORG_ALIAS --set-default
-        sf project deploy start -o Playground -x package/package.xml --post-destructive-changes destructiveChanges/destructiveChanges.xml --ignore-warnings
+        sf org login jwt --username $SF_USERNAME --jwt-key-file $SERVER_KEY_FILE --client-id $SF_CONSUMER_KEY --instance-url $LOGIN_URL --alias $ORG_ALIAS --set-default
+        sf project deploy start -x package/package.xml --post-destructive-changes destructiveChanges/destructiveChanges.xml --ignore-warnings
       else
         echo "No components to deploy. Skipping deployment step."
       fi
