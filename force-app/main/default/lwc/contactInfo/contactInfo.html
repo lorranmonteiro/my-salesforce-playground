@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title={record.Name} icon-name="standard:contact">
+        <div class="slds-p-horizontal_small slds-box">
+            <template lwc:if={isDataLoaded}>
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="12" padding="horizontal-small">
+                        <lightning-input
+                            type="email"
+                            label="Email"
+                            value={record.Email}
+                            onchange={handleInputChange}
+                            data-field="Email">
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="12" padding="around-small">
+                        <lightning-input
+                            type="text"
+                            label="Phone"
+                            value={record.Phone}
+                            onchange={handleInputChange}
+                            data-field="Phone">
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <lightning-layout class="slds-m-top_large" horizontal-align="spread">
+                    <lightning-layout-item padding="horizontal-small">
+                        <lightning-button
+                            label="Save"
+                            variant="brand"
+                            onclick={handleSave}
+                            disabled={blockSaveButton}>
+                        </lightning-button>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item padding="horizontal-small">
+                        <lightning-button
+                            label="View record"
+                            variant="neutral"
+                            onclick={handleViewRecord}>
+                        </lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template lwc:elseif={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+
+            <template lwc:else>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>

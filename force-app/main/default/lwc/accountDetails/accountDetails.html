@@ -1,7 +1,7 @@
 <template>
     <lightning-card title="Account Details" icon-name="standard:account">
         <div class="slds-p-horizontal_small">
-            <template lwc:if={accountData}>
+            <template lwc:if={isDataLoaded}>
                 <lightning-layout multiple-rows>
                     <lightning-layout-item size="6" padding="around-small">
                         <lightning-input
@@ -15,14 +15,14 @@
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6" padding="around-small">
-                        <lightning-input
-                            type="text"
+                        <lightning-combobox
                             label="Account Type"
                             name="accountType"
                             value={accountData.Type}
+                            options={accountTypes}
                             onchange={handleInputChange}
                             data-field="Type">
-                        </lightning-input>
+                        </lightning-combobox>
                     </lightning-layout-item>
 
                     <lightning-layout-item size="6" padding="horizontal-small">
@@ -55,12 +55,36 @@
                     </lightning-layout-item>
                 </lightning-layout>
 
-                <lightning-button
-                    class="slds-m-top_large"
-                    label="Save"
-                    variant="brand"
-                    onclick={handleSave}>
-                </lightning-button>
+                <lightning-layout class="slds-m-top_large" horizontal-align="spread">
+                    <lightning-layout-item padding="horizontal-small">
+                        <lightning-button
+                            label="Save"
+                            variant="brand"
+                            onclick={handleSave}
+                            disabled={blockSaveButton}>
+                        </lightning-button>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item padding="horizontal-small">
+                        <lightning-button
+                            label="View record"
+                            variant="neutral"
+                            onclick={handleViewRecord}>
+                        </lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <div class="slds-m-top_large slds-text-heading_medium slds-p-horizontal_medium">
+                    <strong>Related Contacts</strong>
+                </div>
+
+                <lightning-layout multiple-rows>
+                    <template for:each={contactRecords} for:item="contact">
+                        <lightning-layout-item size="4" padding="around-small" key={contact.Id}>
+                            <c-contact-info record={contact}></c-contact-info>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
             </template>
 
             <template lwc:elseif={error}>
@@ -68,7 +92,7 @@
             </template>
 
             <template lwc:else>
-                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
             </template>
         </div>
     </lightning-card>
