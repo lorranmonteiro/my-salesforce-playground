@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BlockChangeAccountTypeToOther</fullName>
+    <active>true</active>
+    <description>Can&apos;t change type of Account that are &quot;Other&quot;</description>
+    <errorConditionFormula>AND(
+   ISPICKVAL(PRIORVALUE(Type), &apos;Other&apos;),
+   NOT(ISPICKVAL(Type, &apos;Other&apos;))
+)</errorConditionFormula>
+    <errorDisplayField>Type</errorDisplayField>
+    <errorMessage>You can&apos;t change type of Account that are &quot;Other&quot;</errorMessage>
+</ValidationRule>
