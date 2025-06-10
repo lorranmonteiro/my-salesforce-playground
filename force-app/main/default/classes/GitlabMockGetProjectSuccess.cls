@@ -1,5 +1,5 @@
 @isTest
-public class GitlabServiceMockSuccess implements HttpCalloutMock {
+public class GitlabMockGetProjectSuccess implements HttpCalloutMock {
 
     public HTTPResponse respond(HTTPRequest req) {
         HttpResponse response = new HttpResponse();

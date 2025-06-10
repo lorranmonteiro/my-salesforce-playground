@@ -1,0 +1,51 @@
+@isTest
+public class AccountNamePostNoteQueueableTest {
+
+    @isTest
+    static void shouldEnqueueAccountNamePostNoteJob() {
+        Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
+
+        Account account = new Account(Name = 'Test Account');
+        insert account;
+
+        Test.startTest();
+            Id jobID = System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>{ account.Id }));
+        Test.stopTest();
+
+        Assert.isNotNull(jobID, 'Job ID should not be null after enqueueing the job.');
+        Assert.areEqual(1, Limits.getQueueableJobs(), 'There should be one job in the AsyncApexJob table.');
+        Assert.areEqual('Completed', [SELECT Status FROM AsyncApexJob WHERE Id = :jobID].Status, 'The job status should be Holding after enqueueing.');
+    }
+
+    @isTest
+    static void shouldEnqueueTwoAccountNamePostNoteJobs() {
+        Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
+
+        Account account1 = new Account(Name = 'Test Account');
+        Account account2 = new Account(Name = 'Test Account 2');
+        insert new List<Account>{ account1, account2 };
+
+        // Decrease the chunk size to 1 for testing purposes
+        AccountNamePostNoteQueueable.chunkSize = 1;
+
+        Test.startTest();
+            Id jobID = System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>{ account1.Id, account2.Id }));
+        Test.stopTest();
+
+        // Can't assert two jobs, because Apex Tests only allow one job to be enqueued at a time
+        Assert.isNotNull(jobID, 'Job ID should not be null after enqueueing the job.');
+        Assert.areEqual(1, Limits.getQueueableJobs(), 'There should be one job in the AsyncApexJob table.');
+    }
+
+    @isTest
+    static void shouldFallIntoExceptionWhenCalloutFails() {
+        Account account = new Account(Name = 'Test Account');
+        insert account;
+
+        Test.startTest();
+            Id jobID = System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>{ account.Id }));
+        Test.stopTest();
+
+        Assert.isNotNull(jobID, 'Job ID should not be null after enqueueing the job.');
+    }
+}

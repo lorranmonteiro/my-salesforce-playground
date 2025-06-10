@@ -4,12 +4,13 @@ import { getPicklistValues, getObjectInfo } from "lightning/uiObjectInfoApi";
 import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import getAccountByNumber from '@salesforce/apex/AccountSelector.getAccountsByAccountNumber';
+import getAccountByNumber from '@salesforce/apex/AccountDetails.getAccountsByAccountNumber';
 
 import { subscribe, MessageContext } from 'lightning/messageService';
 import ACCOUNT_CHANNEL from '@salesforce/messageChannel/GitlabProjectAccountDetails__c';
 
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
+import ID_FIELD from '@salesforce/schema/Account.Id';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 import TYPE_FIELD from '@salesforce/schema/Account.Type';
 import CREATED_DATE_FIELD from '@salesforce/schema/Account.CreatedDate';
@@ -21,7 +22,7 @@ import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
 import CONTACT_PHONE_FIELD from '@salesforce/schema/Contact.Phone';
 import CONTACT_EMAIL_FIELD from '@salesforce/schema/Contact.Email';
 
-const ACCOUNT_FIELDS = [NAME_FIELD, TYPE_FIELD, CREATED_DATE_FIELD, SITE_FIELD, NUMBER_FIELD];
+const ACCOUNT_FIELDS = [ID_FIELD, NAME_FIELD, TYPE_FIELD, CREATED_DATE_FIELD, SITE_FIELD, NUMBER_FIELD];
 const CONTACT_RELATED_LIST = 'Contacts';
 const CONTACT_FIELDS = [
     CONTACT_ID_FIELD,

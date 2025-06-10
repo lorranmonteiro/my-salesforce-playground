@@ -3,7 +3,7 @@ public class GitLabProjectInfoTest {
 
     @IsTest
     static void shouldGetProjectDetails() {
-        Test.setMock(HttpCalloutMock.class, new GitlabServiceMockSuccess());
+        Test.setMock(HttpCalloutMock.class, new GitlabMockGetProjectSuccess());
 
         Test.startTest();
             GitLabProject projectDetails = GitLabProjectInfo.getProjectDetails();
