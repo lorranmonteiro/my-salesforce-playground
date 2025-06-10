@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.FieldNamingConventions, PMD.MethodNamingConventions')
 public with sharing class Constants {
     public static final AccountConstants ACCOUNT = new AccountConstants();
     public static final ProfileConstants PROFILE = new ProfileConstants();

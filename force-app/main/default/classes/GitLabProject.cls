@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.PropertyNamingConventions')
 public with sharing class GitLabProject {
     @AuraEnabled public String id { get; set; }
     @AuraEnabled public String description { get; set; }

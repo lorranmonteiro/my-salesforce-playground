@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
 public with sharing class LightningConnectQuickstart {
     public Boolean getCustomerIDsSet(){
         List<Account> l = [SELECT Id 
