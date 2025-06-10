@@ -13,7 +13,18 @@ public class GitLabProjectInfoTest {
     }
 
     @isTest
-    static void shouldHandleGitlabException() {
+    static void shouldHandleGitlabFirstException() {
+        Test.startTest();
+            try {
+                GitLabProjectInfo.getProjectDetails();
+            } catch (AuraHandledException e) {
+                Assert.areEqual(e.getMessage(), GitLabProjectInfo.ERROR_MESSAGE, 'Expected exception message');
+            }
+        Test.stopTest();
+    }
+
+    @isTest
+    static void shouldHandleGitlabSecondException() {
         Test.setMock(HttpCalloutMock.class, new GitlabServiceMockNotFound());
 
         Test.startTest();
@@ -27,8 +38,10 @@ public class GitLabProjectInfoTest {
 
     @isTest
     static void shouldGetResponseFromCache() {
+        GitLabProjectInfo.isCacheMockedForTesting = true;
+
         Test.startTest();
-            GitLabProject cachedProject = GitLabProjectInfo.getCachedProjectDetails();
+            GitLabProject cachedProject = GitLabProjectInfo.getProjectDetails();
         Test.stopTest();
 
         Assert.isNull(cachedProject, 'Expected null result');
