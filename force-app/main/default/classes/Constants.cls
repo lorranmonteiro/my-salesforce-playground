@@ -36,6 +36,7 @@ public with sharing class Constants {
         public final Integer CREATED = 201;
         public final Integer NO_CONTENT = 204;
         public final Integer BAD_REQUEST = 400;
+        public final Integer FORBIDDEN = 403;
         public final Integer NOT_FOUND = 404;
         public final Integer INTERNAL_SERVER_ERROR = 500;
     }

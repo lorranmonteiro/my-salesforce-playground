@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.ApexCRUDViolation')
+@SuppressWarnings('PMD.ApexCRUDViolation, PMD.CognitiveComplexity')
 @RestResource(urlMapping='/v1/accounts/*')
 global with sharing class AccountAPI {
 
@@ -9,6 +9,7 @@ global with sharing class AccountAPI {
         try {
             String accountId = getParameterInURL('/');
             
+            if (!canExecuteAction()) { return; }
             if (!isRequestIdValid(accountId)) { return; }
             if (!doesAccountExist(accountId)) { return; }
 
@@ -26,6 +27,7 @@ global with sharing class AccountAPI {
         try {
             String requestBody = RestContext.request.requestBody.toString();
 
+            if (!canExecuteAction()) { return; }
             if (!isRequestBodyValid(requestBody)) { return; }
 
             AccountWithContact accountWithContact = (AccountWithContact) JSON.deserialize(
@@ -65,6 +67,7 @@ global with sharing class AccountAPI {
             String accountId = getParameterInURL('/');
             String requestBody = RestContext.request.requestBody.toString();
 
+            if (!canExecuteAction()) { return; }
             if (!isRequestIdValid(accountId)) { return; }
             if (!isRequestBodyValid(requestBody)) { return; }
             if (!doesAccountExist(accountId)) { return; }
@@ -94,6 +97,7 @@ global with sharing class AccountAPI {
         try {
             String accountId = getParameterInURL('/');
 
+            if (!canExecuteAction()) { return; }
             if (!isRequestIdValid(accountId)) { return; }
             if (!doesAccountExist(accountId)) { return; }
 
@@ -108,6 +112,29 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
+    }
+
+    private static Boolean canExecuteAction() {
+        Boolean isValid = false;
+        
+        switch on RestContext.request.httpMethod {
+            when 'GET' {
+                if (Schema.sObjectType.Account.isAccessible()) { isValid = true; }
+            }
+            when 'POST' {
+                if (Schema.sObjectType.Account.isCreateable() && Schema.sObjectType.Contact.isCreateable()) { isValid = true; }
+            }
+            when 'PATCH' {
+                if (Schema.sObjectType.Account.isUpdateable()) { isValid = true; }
+            }
+            when 'DELETE' {
+                if (Schema.sObjectType.Account.isDeletable()) { isValid = true; }
+            }
+        }
+
+        if (!isValid) { returnError(HTTP_STATUS.FORBIDDEN, 'User is not authorized to execute this action'); }
+
+        return isValid;
     }
 
     private static Boolean isRequestIdValid(String accountId) {
@@ -148,7 +175,10 @@ global with sharing class AccountAPI {
     private static void returnSuccess(Integer statusCode, String body) {
         RestContext.response.statusCode = statusCode;
         RestContext.response.responseBody = body != null ? Blob.valueOf(body) : null;
-        RestContext.response.addHeader('Content-Type', 'application/json');
+
+        if (statusCode != HTTP_STATUS.NO_CONTENT) {
+            RestContext.response.addHeader('Content-Type', 'application/json');
+        }
     }
 
     private static void returnError(Integer statusCode, String message) {

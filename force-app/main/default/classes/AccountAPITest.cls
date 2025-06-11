@@ -365,4 +365,26 @@ public class AccountAPITest {
         Assert.areEqual(HTTP_STATUS.NO_CONTENT, res.statusCode, 'Expected status code 204');
         Assert.isTrue(accounts.isEmpty(), 'Expected account to be deleted');
     }
+
+    @isTest
+    static void deleteAccountWithInvalidId() {
+        RestRequest req = new RestRequest();
+        req.requestURI = '/services/apexrest/v1/accounts/121';
+        req.httpMethod = 'DELETE';
+        RestContext.request = req;
+
+        RestResponse res = new RestResponse();
+        RestContext.response = res;
+
+        Test.startTest();
+            AccountAPI.deleteAccount();
+        Test.stopTest();
+
+        AccountAPI.ResponseWrapper responseBody =
+            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+
+        Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
+        Assert.isFalse(responseBody.success, 'Expected success to be false');
+        Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
+    }
 }
