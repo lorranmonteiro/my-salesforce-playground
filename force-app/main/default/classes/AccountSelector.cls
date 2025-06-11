@@ -8,19 +8,20 @@ public with sharing class AccountSelector {
             FROM Account 
             WHERE AccountNumber = :accountNumber
             WITH SECURITY_ENFORCED
-            LIMIT 1
         ];
     }
 
     public static Account getAccountById(Id accountId) {
         if (String.isBlank(accountId)) { return null; }
 
-        return [
+        List<Account> accounts = [
             SELECT Id, Name, LastModifiedDate
             FROM Account 
             WHERE Id = :accountId
             WITH SECURITY_ENFORCED
         ];
+
+        return accounts.isEmpty() ? null : accounts[0];
     }
 
     public static List<Account> getAccountsByIds(Set<Id> accountIds) {
