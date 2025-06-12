@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.ApexCRUDViolation, PMD.CognitiveComplexity')
+@SuppressWarnings('PMD.ApexCRUDViolation')
 @RestResource(urlMapping='/v1/accounts/*')
 global with sharing class AccountAPI {
 
@@ -7,17 +7,17 @@ global with sharing class AccountAPI {
     @HttpGet
     global static void getAccountById() {
         try {
-            String accountId = getParameterInURL('/');
+            String accountId = AccountAPIHelper.getParameterInURL('/');
             
-            if (!canExecuteAction()) { return; }
-            if (!isRequestIdValid(accountId)) { return; }
-            if (!doesAccountExist(accountId)) { return; }
+            if (!AccountAPIHelper.canExecuteAction()) { return; }
+            if (!AccountAPIHelper.isRequestIdValid(accountId)) { return; }
+            if (!AccountAPIHelper.doesAccountExist(accountId)) { return; }
 
             Account account = AccountSelector.getAccountById(accountId);
 
-            returnSuccess(HTTP_STATUS.OK, JSON.serialize(account));
+            AccountAPIHelper.returnSuccess(HTTP_STATUS.OK, JSON.serialize(account));
         } catch (Exception e) {
-            returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
+            AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
             return;
         }
     }
@@ -27,8 +27,8 @@ global with sharing class AccountAPI {
         try {
             String requestBody = RestContext.request.requestBody.toString();
 
-            if (!canExecuteAction()) { return; }
-            if (!isRequestBodyValid(requestBody)) { return; }
+            if (!AccountAPIHelper.canExecuteAction()) { return; }
+            if (!AccountAPIHelper.isRequestBodyValid(requestBody)) { return; }
 
             AccountWithContact accountWithContact = (AccountWithContact) JSON.deserialize(
                 requestBody,
@@ -36,41 +36,30 @@ global with sharing class AccountAPI {
             );
 
             if (accountWithContact == null || accountWithContact.account == null || accountWithContact.contact == null) {
-                returnError(HTTP_STATUS.BAD_REQUEST, 'Invalid payload. Must include Account and Contact.');
+                AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, 'Invalid payload. Must include Account and Contact.');
                 return;
             }
 
-            try {
-                insert accountWithContact.account;
-            } catch (DmlException e) {
-                throw new AccountWithContactDMLException('Failed to create Account: ' + e.getMessage());
-            }
+            insertAccountAndContact(accountWithContact);
 
-            try {
-                accountWithContact.contact.AccountId = accountWithContact.account.Id;
-                insert accountWithContact.contact;
-            } catch (DmlException e) {
-                throw new AccountWithContactDMLException('Failed to create Contact: ' + e.getMessage());
-            }
-
-            returnSuccess(HTTP_STATUS.CREATED, JSON.serialize(accountWithContact));
+            AccountAPIHelper.returnSuccess(HTTP_STATUS.CREATED, JSON.serialize(accountWithContact));
         } catch (AccountWithContactDMLException e) {
-            returnError(HTTP_STATUS.BAD_REQUEST, e.getMessage());
+            AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, e.getMessage());
         } catch (Exception e) {
-            returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
+            AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
     }
 
     @HttpPatch
     global static void updateAccount() {
         try {
-            String accountId = getParameterInURL('/');
+            String accountId = AccountAPIHelper.getParameterInURL('/');
             String requestBody = RestContext.request.requestBody.toString();
 
-            if (!canExecuteAction()) { return; }
-            if (!isRequestIdValid(accountId)) { return; }
-            if (!isRequestBodyValid(requestBody)) { return; }
-            if (!doesAccountExist(accountId)) { return; }
+            if (!AccountAPIHelper.canExecuteAction()) { return; }
+            if (!AccountAPIHelper.isRequestIdValid(accountId)) { return; }
+            if (!AccountAPIHelper.isRequestBodyValid(requestBody)) { return; }
+            if (!AccountAPIHelper.doesAccountExist(accountId)) { return; }
 
             Account account = (Account) JSON.deserialize(
                 requestBody,
@@ -82,109 +71,51 @@ global with sharing class AccountAPI {
             try {
                 update account;
             } catch (DmlException e) {
-                returnError(HTTP_STATUS.BAD_REQUEST, 'Failed to update Account: ' + e.getMessage());
+                AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, 'Failed to update Account: ' + e.getMessage());
                 return;
             }
 
-            returnSuccess(HTTP_STATUS.OK, JSON.serialize(account));
+            AccountAPIHelper.returnSuccess(HTTP_STATUS.OK, JSON.serialize(account));
         } catch (Exception e) {
-            returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
+            AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
     }
 
     @HttpDelete
     global static void deleteAccount() {
         try {
-            String accountId = getParameterInURL('/');
+            String accountId = AccountAPIHelper.getParameterInURL('/');
 
-            if (!canExecuteAction()) { return; }
-            if (!isRequestIdValid(accountId)) { return; }
-            if (!doesAccountExist(accountId)) { return; }
+            if (!AccountAPIHelper.canExecuteAction()) { return; }
+            if (!AccountAPIHelper.isRequestIdValid(accountId)) { return; }
+            if (!AccountAPIHelper.doesAccountExist(accountId)) { return; }
 
             try {
                 delete new Account(Id = accountId);
             } catch (DmlException e) {
-                returnError(HTTP_STATUS.BAD_REQUEST, 'Failed to delete Account: ' + e.getMessage());
+                AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, 'Failed to delete Account: ' + e.getMessage());
                 return;
             }
 
-            returnSuccess(HTTP_STATUS.NO_CONTENT, null);
+            AccountAPIHelper.returnSuccess(HTTP_STATUS.NO_CONTENT, null);
         } catch (Exception e) {
-            returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
+            AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
     }
 
-    private static Boolean canExecuteAction() {
-        Boolean isValid = false;
-        
-        switch on RestContext.request.httpMethod {
-            when 'GET' {
-                if (Schema.sObjectType.Account.isAccessible()) { isValid = true; }
-            }
-            when 'POST' {
-                if (Schema.sObjectType.Account.isCreateable() && Schema.sObjectType.Contact.isCreateable()) { isValid = true; }
-            }
-            when 'PATCH' {
-                if (Schema.sObjectType.Account.isUpdateable()) { isValid = true; }
-            }
-            when 'DELETE' {
-                if (Schema.sObjectType.Account.isDeletable()) { isValid = true; }
-            }
+    private static void insertAccountAndContact(AccountWithContact accountWithContact) {
+        try {
+            insert accountWithContact.account;
+        } catch (DmlException e) {
+            throw new AccountWithContactDMLException('Failed to create Account: ' + e.getMessage());
         }
 
-        if (!isValid) { returnError(HTTP_STATUS.FORBIDDEN, 'User is not authorized to execute this action'); }
-
-        return isValid;
-    }
-
-    private static Boolean isRequestIdValid(String accountId) {
-        if (!String.isBlank(accountId)) {
-            return true;
+        try {
+            accountWithContact.contact.AccountId = accountWithContact.account.Id;
+            insert accountWithContact.contact;
+        } catch (DmlException e) {
+            throw new AccountWithContactDMLException('Failed to create Contact: ' + e.getMessage());
         }
-
-        returnError(HTTP_STATUS.BAD_REQUEST, 'Missing Account ID in URL');
-        return false;
-    }
-
-    private static Boolean isRequestBodyValid(String requestBody) {
-        if (!String.isBlank(requestBody)) {
-            return true;
-        }
-
-        returnError(HTTP_STATUS.BAD_REQUEST, 'Request body is empty');
-        return false;
-    } 
-
-    private static Boolean doesAccountExist(String accountId) {
-        Account account = AccountSelector.getAccountById(accountId);
-        
-        if (account == null) {
-            returnError(HTTP_STATUS.NOT_FOUND, 'Account not found');
-            return false;
-        }
-
-        return true;
-    }
-
-    private static String getParameterInURL(String delimiter) {
-        String uri = RestContext.request.requestURI;
-        Integer idx = uri.lastIndexOf(delimiter);
-        return (idx != -1 && idx < uri.length() - 1) ? uri.substring(idx + 1) : null;
-    }
-
-    private static void returnSuccess(Integer statusCode, String body) {
-        RestContext.response.statusCode = statusCode;
-        RestContext.response.responseBody = body != null ? Blob.valueOf(body) : null;
-
-        if (statusCode != HTTP_STATUS.NO_CONTENT) {
-            RestContext.response.addHeader('Content-Type', 'application/json');
-        }
-    }
-
-    private static void returnError(Integer statusCode, String message) {
-        RestContext.response.statusCode = statusCode;
-        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new ResponseWrapper(false, message)));
-        RestContext.response.addHeader('Content-Type', 'application/json');
     }
 
     public class AccountWithContact {
@@ -194,16 +125,6 @@ global with sharing class AccountAPI {
         public AccountWithContact(Account account, Contact contact) {
             this.account = account;
             this.contact = contact;
-        }
-    }
-
-    public class ResponseWrapper {
-        public Boolean success;
-        public String message;
-
-        public ResponseWrapper(Boolean success, String message) {
-            this.success = success;
-            this.message = message;
         }
     }
 

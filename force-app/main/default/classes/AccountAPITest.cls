@@ -43,8 +43,8 @@ public class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -65,8 +65,8 @@ public class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(404, res.statusCode, 'Expected status code 404');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -87,8 +87,8 @@ public class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -148,8 +148,8 @@ public class AccountAPITest {
             AccountAPI.updateAccount();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -176,8 +176,8 @@ public class AccountAPITest {
             AccountAPI.updateAccount();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -229,8 +229,8 @@ public class AccountAPITest {
             AccountAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -252,8 +252,8 @@ public class AccountAPITest {
             AccountAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -279,8 +279,8 @@ public class AccountAPITest {
             AccountAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -307,8 +307,8 @@ public class AccountAPITest {
             AccountAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -335,8 +335,8 @@ public class AccountAPITest {
             AccountAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
@@ -380,8 +380,8 @@ public class AccountAPITest {
             AccountAPI.deleteAccount();
         Test.stopTest();
 
-        AccountAPI.ResponseWrapper responseBody =
-            (AccountAPI.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPI.ResponseWrapper.class);
+        AccountAPIHelper.ResponseWrapper responseBody =
+            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
         Assert.isFalse(responseBody.success, 'Expected success to be false');
