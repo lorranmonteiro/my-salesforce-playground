@@ -2,6 +2,7 @@
 public with sharing class Constants {
     public static final AccountConstants ACCOUNT = new AccountConstants();
     public static final ProfileConstants PROFILE = new ProfileConstants();
+    public static final HttpStatus HTTP_STATUS = new HttpStatus();
 
     public class AccountConstants {
         public AccountType TYPE = new AccountType();
@@ -29,4 +30,14 @@ public with sharing class Constants {
             TECHNOLOGY_PARTNER = 'Technology Partner',
             OTHER = 'Other';
 	}
+
+    public class HttpStatus {
+        public final Integer OK = 200;
+        public final Integer CREATED = 201;
+        public final Integer NO_CONTENT = 204;
+        public final Integer BAD_REQUEST = 400;
+        public final Integer FORBIDDEN = 403;
+        public final Integer NOT_FOUND = 404;
+        public final Integer INTERNAL_SERVER_ERROR = 500;
+    }
 }
