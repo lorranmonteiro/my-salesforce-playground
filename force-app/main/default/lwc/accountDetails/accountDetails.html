@@ -78,10 +78,16 @@
                     <strong>Related Contacts</strong>
                 </div>
 
+                <template lwc:if={isNumberOfUpdatedContactsPositive}>
+                    <p class="slds-text-body_regular slds-m-top_small">
+                        {numberOfUpdatedContacts} contact(s) were updated.
+                    </p>
+                </template>
+
                 <lightning-layout multiple-rows>
                     <template for:each={contactRecords} for:item="contact">
                         <lightning-layout-item size="4" padding="around-small" key={contact.Id}>
-                            <c-contact-info record={contact}></c-contact-info>
+                            <c-contact-info record={contact} oncontactupdated={handleContactUpdate}></c-contact-info>
                         </lightning-layout-item>
                     </template>
                 </lightning-layout>
