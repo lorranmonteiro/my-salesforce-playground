@@ -1,4 +1,4 @@
-public with sharing class GitlabService {
+public virtual with sharing class GitlabService {
 
     private static final String GITLAB_API = 'GitlabAPI';
     private static final String GITLAB_PROJECT_ID = 'GitlabProjectId';
@@ -6,7 +6,7 @@ public with sharing class GitlabService {
     private static final String GITLAB_PROJECT_DETAILS = 'GitlabProjectDetails';
     private static final String GITLAB_CREATE_NOTE_ON_MERGE_REQUEST = 'GitlabCreateNoteOnMergeRequest';
 
-    public static HttpResponse requestProjectDetails() {
+    public virtual HttpResponse requestProjectDetails() {
         IntegrationEndpoint__mdt projectDetailEndpoint = IntegrationEndpoint__mdt.getInstance(GITLAB_PROJECT_DETAILS);
         String projectId = IntegrationSetting__mdt.getInstance(GITLAB_PROJECT_ID).Id__c;
 
@@ -18,7 +18,7 @@ public with sharing class GitlabService {
         return new Http().send(request);
     }
 
-    public static HttpResponse postNoteIntoMergeRequest(GitlabMergeRequestNote noteRequest) {
+    public virtual HttpResponse postNoteIntoMergeRequest(GitlabMergeRequestNote noteRequest) {
         if (String.isBlank(noteRequest?.body)) {
             throw new GitlabServiceMissingParametersException('Note request body cannot be null or empty.');
         }

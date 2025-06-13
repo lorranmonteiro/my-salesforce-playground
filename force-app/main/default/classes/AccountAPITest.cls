@@ -28,9 +28,6 @@ public class AccountAPITest {
 
     @isTest
     static void getAccountRequestWithoutId() {
-        Account account = new Account(Name = 'Test Account');
-        insert account;
-
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/'; // No ID in the URI
         req.httpMethod = 'GET';
@@ -158,9 +155,6 @@ public class AccountAPITest {
 
     @isTest
     static void updateAccountWithInvalidId() {
-        Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
-        insert account;
-
         String payload = JSON.serialize(new Account(Name = null, AccountNumber = '67890'));
 
         RestRequest req = new RestRequest();

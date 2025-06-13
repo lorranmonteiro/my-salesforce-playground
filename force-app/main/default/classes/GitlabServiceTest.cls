@@ -6,7 +6,10 @@ public class GitlabServiceTest {
         Test.setMock(HttpCalloutMock.class, new GitlabMockGetProjectSuccess());
 
         Test.startTest();
-            HttpResponse response = GitlabService.requestProjectDetails();
+            GitlabServiceFactory.setMock(new GitlabService());
+            GitlabService gitlabService = GitlabServiceFactory.getInstance();
+
+            HttpResponse response = gitlabService.requestProjectDetails();
         Test.stopTest();
 
         Assert.areEqual(200, response.getStatusCode(), 'Expected status code 200');
@@ -19,7 +22,10 @@ public class GitlabServiceTest {
         GitlabMergeRequestNote noteRequest = new GitlabMergeRequestNote('This is a test note', false);
 
         Test.startTest();
-            HttpResponse response = GitlabService.postNoteIntoMergeRequest(noteRequest);
+            GitlabServiceFactory.setMock(new GitlabService());
+            GitlabService gitlabService = GitlabServiceFactory.getInstance();
+
+            HttpResponse response = gitlabService.postNoteIntoMergeRequest(noteRequest);
         Test.stopTest();
 
         Assert.areEqual(200, response.getStatusCode(), 'Expected status code 200');
@@ -31,7 +37,10 @@ public class GitlabServiceTest {
 
         Test.startTest();
             try {
-                GitlabService.postNoteIntoMergeRequest(noteRequest);
+                GitlabServiceFactory.setMock(new GitlabService());
+                GitlabService gitlabService = GitlabServiceFactory.getInstance();
+
+                gitlabService.postNoteIntoMergeRequest(noteRequest);
             } catch (GitlabService.GitlabServiceMissingParametersException e) {
                 Assert.areEqual(e.getMessage(), 'Note request body cannot be null or empty.', 'Expected exception message');
             }
