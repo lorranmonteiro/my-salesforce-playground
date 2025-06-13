@@ -17,7 +17,8 @@ public with sharing class GitLabProjectInfo {
 
         HttpResponse response;
         try {
-            response = GitlabService.requestProjectDetails();
+            GitlabService gitlabService = GitlabServiceFactory.getInstance();
+            response = gitlabService.requestProjectDetails();
         } catch (Exception e) {
             throwAuraException(e.getMessage());
         }

@@ -8,11 +8,8 @@
     <testClassName>AccountTypeUpdateBatchSchedulerTest</testClassName>
     <testClassName>AccountTypeUpdateBatchTest</testClassName>
     <testClassName>ConstantsTest</testClassName>
-    <testClassName>GitlabMockGetProjectSuccess</testClassName>
-    <testClassName>GitlabMockPostNoteOnMergeRequestSuccess</testClassName>
     <testClassName>GitLabProjectInfoTest</testClassName>
     <testClassName>GitLabProjectTest</testClassName>
-    <testClassName>GitlabServiceMockNotFound</testClassName>
     <testClassName>GitlabServiceTest</testClassName>
     <testClassName>TestLightningConnectQuickstart</testClassName>
     <testClassName>TriggerHandler_Test</testClassName>
