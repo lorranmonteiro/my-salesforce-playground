@@ -26,13 +26,6 @@ export default class NotificationConsole extends LightningElement {
             -1,
             (event) => this.handleNotificationEvent(event)
         );
-
-        this.dispatchEvent(
-            new ShowToastEvent({
-                variant: "success",
-                title: "Ready to receive notifications"
-            })
-        );
     }
 
     disconnectedCallback() {
