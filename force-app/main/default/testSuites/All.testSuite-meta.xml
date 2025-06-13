@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <testClassName>AccountAPITest</testClassName>
     <testClassName>AccountDetailsTest</testClassName>
     <testClassName>AccountNamePostNoteQueueableTest</testClassName>
     <testClassName>AccountSelectorTest</testClassName>
@@ -14,6 +15,5 @@
     <testClassName>GitlabServiceMockNotFound</testClassName>
     <testClassName>GitlabServiceTest</testClassName>
     <testClassName>TestLightningConnectQuickstart</testClassName>
-    <testClassName>TestOpportunityChangeTrigger</testClassName>
     <testClassName>TriggerHandler_Test</testClassName>
 </ApexTestSuite>

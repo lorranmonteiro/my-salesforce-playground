@@ -2,7 +2,7 @@
 public class AccountServiceTest {
 
     @isTest
-    static void testPostNoteOnMergeRequestWhenNameChanges() {
+    static void postNoteOnMergeRequestWhenNameChanges() {
         Account oldAccount = new Account(Name = 'Old Name');
         insert oldAccount;
         Map<Id, Account> oldAccounts = new Map<Id, Account>{ oldAccount.Id => oldAccount};
@@ -14,7 +14,23 @@ public class AccountServiceTest {
             AccountService.postNoteOnMergeRequestWhenNameChanges(oldAccounts, newAccounts);
         Test.stopTest();
 
-        Integer jobsCreated = Limits.getQueueableJobs();
-        Assert.areEqual(1, jobsCreated, 'One queueable job should be enqueued.');
+        Assert.areEqual(1, Limits.getQueueableJobs(), 'One queueable job should be enqueued.');
+    }
+
+    @isTest
+    static void postNoteOnMergeRequestWhenAccountNumberChanges() {
+        Account account = new Account(Name = 'Old Name', AccountNumber = '12345');
+        insert account;
+
+        Test.getEventBus().deliver();
+
+        Test.startTest();
+            account.AccountNumber = '67890';
+            update account;
+        Test.stopTest();
+
+        Test.getEventBus().deliver();
+
+        Assert.areEqual(1, Limits.getQueueableJobs(), 'One queueable job should be enqueued.');
     }
 }

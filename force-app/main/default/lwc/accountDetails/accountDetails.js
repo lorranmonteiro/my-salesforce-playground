@@ -42,6 +42,8 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
     accountTypes;
 
     contactRecords;
+    numberOfUpdatedContacts = 0;
+
     editedFields = {};
     error;
 
@@ -103,6 +105,10 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
         return this.accountObjectInfo.data?.defaultRecordTypeId;
     }
 
+    get isNumberOfUpdatedContactsPositive() {
+        return this.numberOfUpdatedContacts > 0;
+    }
+
     connectedCallback() {
         this.subscribeToMessageChannel();
     }
@@ -143,6 +149,10 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
                 })
             );
         }
+    }
+
+    handleContactUpdate(event) {
+        this.numberOfUpdatedContacts++;
     }
 
     subscribeToMessageChannel() {

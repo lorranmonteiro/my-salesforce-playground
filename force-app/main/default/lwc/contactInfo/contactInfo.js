@@ -69,6 +69,14 @@ export default class ContactInfo extends NavigationMixin(LightningElement) {
                     variant: 'success'
                 })
             );
+
+            this.dispatchEvent(new CustomEvent(
+                'contactupdated',
+                {
+                    detail: updatedRecord,
+                    bubbles: true
+                }
+            ));
         } catch (error) {
             this.error = error.body?.message || error.message;
 

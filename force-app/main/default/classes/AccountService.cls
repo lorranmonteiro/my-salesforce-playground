@@ -18,4 +18,23 @@ public with sharing class AccountService {
             System.enqueueJob(new AccountNamePostNoteQueueable(accountIdsToPostNote));
         }
     }
+
+    public static void postNoteOnMergeRequestWhenAccountNumberChanges(List<AccountChangeEvent> accountEvents) {
+        Set<Id> accountIdsToPostNote = new Set<Id>();
+
+        for (AccountChangeEvent accountEvent : accountEvents) {
+            EventBus.ChangeEventHeader header = accountEvent.ChangeEventHeader;
+
+            if (header.changetype == 'UPDATE' &&
+                header.changedFields.contains('AccountNumber') &&
+                accountEvent.AccountNumber != null) {
+
+                accountIdsToPostNote.add(accountEvent.Id);
+            }
+        }
+
+        if (!accountIdsToPostNote.isEmpty()) {
+            System.enqueueJob(new AccountNamePostNoteQueueable(accountIdsToPostNote));
+        }
+    }
 }
