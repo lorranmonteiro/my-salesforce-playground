@@ -1,0 +1,11 @@
+.text-success {
+    color: var(--slds-g-color-success-base-50);
+}
+
+.text-error {
+    color: var(--slds-g-color-error-base-50);
+}
+
+.text-orange {
+    color: var(--slds-g-color-palette-orange-70);
+}

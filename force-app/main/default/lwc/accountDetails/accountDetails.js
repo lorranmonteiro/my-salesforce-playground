@@ -5,8 +5,10 @@ import { getRelatedListRecords } from 'lightning/uiRelatedListApi';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getAccountByNumber from '@salesforce/apex/AccountDetails.getAccountsByAccountNumber';
+import { loadStyle } from 'lightning/platformResourceLoader';
+import globalStyles from '@salesforce/resourceUrl/GlobalCSS';
 
-import { subscribe, MessageContext } from 'lightning/messageService';
+import { subscribe, unsubscribe, MessageContext } from 'lightning/messageService';
 import ACCOUNT_CHANNEL from '@salesforce/messageChannel/GitlabProjectAccountDetails__c';
 
 import ACCOUNT_OBJECT from '@salesforce/schema/Account';
@@ -111,6 +113,12 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
 
     connectedCallback() {
         this.subscribeToMessageChannel();
+
+        loadStyle(this, globalStyles);
+    }
+
+    disconnectedCallback() {
+        unsubscribe(this.subscription);
     }
 
     handleInputChange(event) {
