@@ -22,10 +22,8 @@
                 class="slds-m-top_medium  slds-m-left_small">
             </lightning-button>
 
-            <template lwc:if={aiResponse}>
-                <div class="slds-m-top_medium">
-                    <c-lightndown string={aiResponse}></c-lightndown>
-                </div>
+            <template lwc:if={parsedResponse}>
+                <div class="slds-m-top_medium markdown-output" lwc:dom="manual"></div>
             </template>
 
             <template lwc:if={isLoading}>
