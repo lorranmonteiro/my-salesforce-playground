@@ -272,6 +272,9 @@ engines:
     custom_rulesets: []
       #- customPMDrules.xml
 
+    exclude_patterns:
+      - "**/TriggerHandler.cls"
+
   # ======================================================================
   # CPD ENGINE CONFIGURATION
   # To learn more about this configuration, visit:

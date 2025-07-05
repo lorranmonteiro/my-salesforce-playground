@@ -24,7 +24,7 @@ public class OpenAIServiceTest {
                 OpenAIService openAIService = ServiceFactory.getOpenAIService();
 
                 OpenAIRequest requestBody = new OpenAIRequest('');
-                HttpResponse response = openAIService.requestResponse(requestBody);
+                openAIService.requestResponse(requestBody);
             } catch (OpenAIService.OpenAIServiceMissingParametersException e) {
                 Assert.areEqual(e.getMessage(), OpenAIService.MISSING_PARAMETERS_MESSAGE, 'Expected exception message');
             }
