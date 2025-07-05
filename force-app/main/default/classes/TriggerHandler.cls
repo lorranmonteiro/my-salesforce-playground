@@ -1,84 +1,53 @@
-@SuppressWarnings('PMD.CognitiveComplexity, PMD.EmptyStatementBlock, PMD.CyclomaticComplexity')
 public virtual class TriggerHandler {
 
-    // static map of handlername, times run() was invoked
     private static Map<String, LoopCount> loopCountMap;
     private static Set<String> bypassedHandlers;
 
-    // the current context of the trigger, overridable in tests
     @TestVisible
     private TriggerContext context;
 
-    // the current context of the trigger, overridable in tests
     @TestVisible
     private Boolean isTriggerExecuting;
 
-    // static initialization
     static {
         loopCountMap = new Map<String, LoopCount>();
         bypassedHandlers = new Set<String>();
     }
     
-    // constructor
     public TriggerHandler() {
         this.setTriggerContext();
     }
 
-    /***************************************
-     * public instance methods
-     ***************************************/
-
-    // main method that will be called during execution
     public void run() {
-
-        if(!validateRun()) {
-        return;
-        }
+        if (!validateRun()) { return; }
 
         addToLoopCount();
 
-        // dispatch to the correct handler method
         switch on this.context {
-        when BEFORE_INSERT {
-            this.beforeInsert();
-        }
-        when BEFORE_UPDATE {
-            this.beforeUpdate();
-        }
-        when BEFORE_DELETE {
-            this.beforeDelete();
-        }
-        when AFTER_INSERT {
-            this.afterInsert();
-        }
-        when AFTER_UPDATE {
-            this.afterUpdate();
-        }
-        when AFTER_DELETE {
-            this.afterDelete();
-        }
-        when AFTER_UNDELETE {
-            this.afterUndelete();
-        }
+            when BEFORE_INSERT { this.beforeInsert(); }
+            when BEFORE_UPDATE { this.beforeUpdate(); }
+            when BEFORE_DELETE { this.beforeDelete(); }
+            when AFTER_INSERT { this.afterInsert(); }
+            when AFTER_UPDATE { this.afterUpdate(); }
+            when AFTER_DELETE { this.afterDelete(); }
+            when AFTER_UNDELETE { this.afterUndelete(); }
         }
     }
 
     public void setMaxLoopCount(Integer max) {
         String handlerName = getHandlerName();
-        if(!TriggerHandler.loopCountMap.containsKey(handlerName)) {
-        TriggerHandler.loopCountMap.put(handlerName, new LoopCount(max));
-        } else {
-        TriggerHandler.loopCountMap.get(handlerName).setMax(max);
+
+        if (!TriggerHandler.loopCountMap.containsKey(handlerName)) {
+            TriggerHandler.loopCountMap.put(handlerName, new LoopCount(max));
+            return;
         }
+
+        TriggerHandler.loopCountMap.get(handlerName).setMax(max);
     }
 
     public void clearMaxLoopCount() {
         this.setMaxLoopCount(-1);
     }
-
-    /***************************************
-     * public static methods
-     ***************************************/
 
     public static void bypass(String handlerName) {
         TriggerHandler.bypassedHandlers.add(handlerName);
@@ -96,10 +65,6 @@ public virtual class TriggerHandler {
         TriggerHandler.bypassedHandlers.clear();
     }
 
-    /***************************************
-     * private instancemethods
-     ***************************************/
-
     @TestVisible
     private void setTriggerContext() {
         this.setTriggerContext(null, false);
@@ -107,56 +72,71 @@ public virtual class TriggerHandler {
 
     @TestVisible
     private void setTriggerContext(String ctx, Boolean testMode) {
-        if(!Trigger.isExecuting && !testMode) {
-        this.isTriggerExecuting = false;
-        return;
-        } else {
+        if (!Trigger.isExecuting && !testMode) {
+            this.isTriggerExecuting = false;
+            return;
+        }
+
         this.isTriggerExecuting = true;
-        }
-        
-        if((Trigger.isExecuting && Trigger.isBefore && Trigger.isInsert) ||
-            (ctx != null && ctx == 'before insert')) {
-        this.context = TriggerContext.BEFORE_INSERT;
-        } else if((Trigger.isExecuting && Trigger.isBefore && Trigger.isUpdate) ||
-            (ctx != null && ctx == 'before update')){
-        this.context = TriggerContext.BEFORE_UPDATE;
-        } else if((Trigger.isExecuting && Trigger.isBefore && Trigger.isDelete) ||
-            (ctx != null && ctx == 'before delete')) {
-        this.context = TriggerContext.BEFORE_DELETE;
-        } else if((Trigger.isExecuting && Trigger.isAfter && Trigger.isInsert) ||
-            (ctx != null && ctx == 'after insert')) {
-        this.context = TriggerContext.AFTER_INSERT;
-        } else if((Trigger.isExecuting && Trigger.isAfter && Trigger.isUpdate) ||
-            (ctx != null && ctx == 'after update')) {
-        this.context = TriggerContext.AFTER_UPDATE;
-        } else if((Trigger.isExecuting && Trigger.isAfter && Trigger.isDelete) ||
-            (ctx != null && ctx == 'after delete')) {
-        this.context = TriggerContext.AFTER_DELETE;
-        } else if((Trigger.isExecuting && Trigger.isAfter && Trigger.isUndelete) ||
-            (ctx != null && ctx == 'after undelete')) {
-        this.context = TriggerContext.AFTER_UNDELETE;
-        }
+        this.context = determineTriggerContext(ctx);
     }
 
-    // increment the loop count
+    private TriggerContext determineTriggerContext(String ctx) {
+        String triggerKey = Trigger.isExecuting ? getTriggerKey() : null;
+        
+        Map<String, TriggerContext> contextMap = new Map<String, TriggerContext>{
+            'before insert'  => TriggerContext.BEFORE_INSERT,
+            'before update'  => TriggerContext.BEFORE_UPDATE,
+            'before delete'  => TriggerContext.BEFORE_DELETE,
+            'after insert'   => TriggerContext.AFTER_INSERT,
+            'after update'   => TriggerContext.AFTER_UPDATE,
+            'after delete'   => TriggerContext.AFTER_DELETE,
+            'after undelete' => TriggerContext.AFTER_UNDELETE
+        };
+
+        if (ctx != null && contextMap.containsKey(ctx)) {
+            return contextMap.get(ctx);
+        }
+
+        if (contextMap.containsKey(triggerKey)) {
+            return contextMap.get(triggerKey);
+        }
+
+        return null;
+    }
+
+    private String getTriggerKey() {
+        if (Trigger.isBefore && Trigger.isInsert) { return 'before insert'; }
+        if (Trigger.isBefore && Trigger.isUpdate) { return 'before update'; }
+        if (Trigger.isBefore && Trigger.isDelete) { return 'before delete'; }
+        if (Trigger.isAfter && Trigger.isInsert) { return 'after insert'; }
+        if (Trigger.isAfter && Trigger.isUpdate) { return 'after update'; }
+        if (Trigger.isAfter && Trigger.isDelete) { return 'after delete'; }
+        if (Trigger.isAfter && Trigger.isUndelete) { return 'after undelete'; }
+
+        return null;
+    }
+
     @TestVisible
     private void addToLoopCount() {
         String handlerName = getHandlerName();
-        if(TriggerHandler.loopCountMap.containsKey(handlerName)) {
-        Boolean exceeded = TriggerHandler.loopCountMap.get(handlerName).increment();
-        if(exceeded) {
-            Integer max = TriggerHandler.loopCountMap.get(handlerName).max;
-            throw new TriggerHandlerException('Maximum loop count of ' + String.valueOf(max) + ' reached in ' + handlerName);
-        }
+    
+        if (TriggerHandler.loopCountMap.containsKey(handlerName)) {
+            Boolean exceeded = TriggerHandler.loopCountMap.get(handlerName).increment();
+
+            if (exceeded) {
+                Integer max = TriggerHandler.loopCountMap.get(handlerName).max;
+                throw new TriggerHandlerException('Maximum loop count of ' + String.valueOf(max) + ' reached in ' + handlerName);
+            }
         }
     }
 
-    // make sure this trigger should continue to run
     @TestVisible
     private Boolean validateRun() {
-        if(!this.isTriggerExecuting || this.context == null) {
-        throw new TriggerHandlerException('Trigger handler called outside of Trigger execution');
+        if (!this.isTriggerExecuting || this.context == null) {
+            throw new TriggerHandlerException('Trigger handler called outside of Trigger execution');
         }
+
         return !TriggerHandler.bypassedHandlers.contains(getHandlerName());
     }
 
@@ -165,69 +145,57 @@ public virtual class TriggerHandler {
         return this.toString().substringBefore(':');
     }
 
-    /***************************************
-     * context methods
-     ***************************************/
 
-    // context-specific methods for override
-    @TestVisible
-    protected virtual void beforeInsert(){}
-    @TestVisible
-    protected virtual void beforeUpdate(){}
-    @TestVisible
-    protected virtual void beforeDelete(){}
-    @TestVisible
-    protected virtual void afterInsert(){}
-    @TestVisible
-    protected virtual void afterUpdate(){}
-    @TestVisible
-    protected virtual void afterDelete(){}
-    @TestVisible
-    protected virtual void afterUndelete(){}
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void beforeInsert(){}
 
-    /***************************************
-     * inner classes
-     ***************************************/
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void beforeUpdate(){}
 
-    // inner class for managing the loop count per handler
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void beforeDelete(){}
+
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void afterInsert(){}
+
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void afterUpdate(){}
+
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void afterDelete(){}
+    
+    @SuppressWarnings('PMD.EmptyStatementBlock')
+    @TestVisible protected virtual void afterUndelete(){}
+
     @TestVisible
     private class LoopCount {
         private Integer max;
         private Integer count;
 
         public LoopCount() {
-        this.max = 5;
-        this.count = 0;
+            this.max = 5;
+            this.count = 0;
         }
 
         public LoopCount(Integer max) {
-        this.max = max;
-        this.count = 0;
+            this.max = max;
+            this.count = 0;
         }
 
         public Boolean increment() {
-        this.count++;
-        return this.exceeded();
+            this.count++;
+            return this.exceeded();
         }
 
         public Boolean exceeded() {
-        return this.max >= 0 && this.count > this.max;
+            return this.max >= 0 && this.count > this.max;
         }
 
-        public Integer getMax() {
-        return this.max;
-        }
-
-        public Integer getCount() {
-        return this.count;
-        }
-
-        public void setMax(Integer max) {
-        this.max = max;
-        }
+        public Integer getMax() { return this.max; }
+        public Integer getCount() { return this.count; }
+        public void setMax(Integer max) { this.max = max; }
     }
 
-    // possible trigger contexts
     @TestVisible
     private enum TriggerContext {
         BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,
@@ -235,6 +203,5 @@ public virtual class TriggerHandler {
         AFTER_UNDELETE
     }
 
-    // exception class
     public class TriggerHandlerException extends Exception {}
 }

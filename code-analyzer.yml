@@ -77,6 +77,8 @@ rules:
       severity: "Low"
     OperationWithLimitsInLoop:
       severity: "Low"
+    EmptyStatementBlock:
+      severity: "Low"
     AvoidLogicInTrigger:
       severity: "High"
 
