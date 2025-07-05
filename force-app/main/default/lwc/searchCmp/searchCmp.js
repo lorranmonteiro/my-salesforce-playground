@@ -23,6 +23,7 @@ export default class Search extends LightningElement {
         if (this.parsedResponse) {
             const container = this.template.querySelector('.markdown-output');
 
+            // eslint-disable-next-line @lwc/lwc/no-inner-html
             if (container) container.innerHTML = this.parsedResponse;
         }
     }

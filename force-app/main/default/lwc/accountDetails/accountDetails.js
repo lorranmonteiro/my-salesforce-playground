@@ -159,7 +159,7 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
         }
     }
 
-    handleContactUpdate(event) {
+    handleContactUpdate() {
         this.numberOfUpdatedContacts++;
     }
 
@@ -218,7 +218,7 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
     }
 
     getFormattedDate(dateString) {
-        let date = new Date(dateString);
+        const date = new Date(dateString);
         return date.toLocaleDateString('pt-BR');
     }
 }

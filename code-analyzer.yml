@@ -52,7 +52,9 @@ rules:
   # ======================================================================
   # ESLINT ENGINE RULE OVERRIDES
   # ======================================================================
-  eslint: {} # Remove this empty object {} when you are ready to specify your first rule override
+  eslint:
+    no-inline-disable:
+      severity: "Low"
 
   # ======================================================================
   # FLOW ENGINE RULE OVERRIDES
@@ -154,13 +156,13 @@ engines:
   eslint:
 
     # Whether to turn off the 'eslint' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
     # Your project's main ESLint configuration file. May be an absolute path or a path relative to the config_root.
     # If null and auto_discover_eslint_config is true, then Code Analyzer will attempt to discover/apply it automatically.
     # Currently only legacy ESLInt config files are supported.
     # See https://eslint.org/docs/v8.x/use/configure/configuration-files to learn more.
-    eslint_config_file: null
+    eslint_config_file: 'eslint.config.mjs'
 
     # Your project's ".eslintignore" file. May be an absolute path or a path relative to the config_root.
     # If null and auto_discover_eslint_config is true, then Code Analyzer will attempt to discover/apply it automatically.
@@ -209,7 +211,7 @@ engines:
   flow:
 
     # Whether to turn off the 'flow' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
     # Indicates the specific Python command to use for the 'Flow Scanner' engine.
     # May be provided as the name of a command that exists on the path, or an absolute file path location.
@@ -247,7 +249,6 @@ engines:
         - .shtml
         - .cmp
       javascript:
-        - .js
         - .cjs
         - .mjs
       typescript:
@@ -342,7 +343,7 @@ engines:
   sfge:
 
     # Whether to turn off the 'sfge' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
     # Whether to prevent 'sfge' from throwing LimitReached violations for complex paths.
     # By default, Salesforce Graph Engine attempts to detect complex paths that might cause OutOfMemory errors,

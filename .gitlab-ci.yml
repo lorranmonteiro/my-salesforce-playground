@@ -31,7 +31,7 @@ code-analysis:
     - if: $CI_COMMIT_BRANCH == 'develop'
   script:
     - sf plugins install code-analyzer
-    - sf code-analyzer run --rule-selector pmd:Recommended:$PWD_THRESHOLD_LEVEL --severity-threshold $PWD_THRESHOLD_LEVEL --config-file code-analyzer.yml --view detail
+    - sf code-analyzer run --rule-selector all:Recommended:1 --rule-selector all:Recommended:2 --rule-selector all:Recommended:3 --rule-selector sfge --severity-threshold $SEVERITY_THRESHOLD_LEVEL --config-file code-analyzer.yml --view detail
 
 validate:
   stage: validate

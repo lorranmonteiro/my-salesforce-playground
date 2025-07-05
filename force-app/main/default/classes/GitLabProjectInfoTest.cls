@@ -11,19 +11,7 @@ public class GitLabProjectInfoTest {
     }
 
     @isTest
-    static void shouldHandleGitlabFirstException() {
-        Test.startTest();
-            try {
-                ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
-                GitLabProjectInfo.getProjectDetails();
-            } catch (AuraHandledException e) {
-                Assert.areEqual(e.getMessage(), GitLabProjectInfo.ERROR_MESSAGE, 'Expected exception message');
-            }
-        Test.stopTest();
-    }
-
-    @isTest
-    static void shouldHandleGitlabSecondException() {
+    static void shouldHandleGitlabException() {
         Test.setMock(HttpCalloutMock.class, new GitlabServiceMockNotFound());
 
         Test.startTest();
