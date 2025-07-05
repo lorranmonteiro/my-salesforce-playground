@@ -6,8 +6,8 @@ public class GitlabServiceTest {
         Test.setMock(HttpCalloutMock.class, new GitlabMockGetProjectSuccess());
 
         Test.startTest();
-            GitlabServiceFactory.setMock(new GitlabService());
-            GitlabService gitlabService = GitlabServiceFactory.getInstance();
+            ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
+            GitlabService gitlabService = ServiceFactory.getGitlabService();
 
             HttpResponse response = gitlabService.requestProjectDetails();
         Test.stopTest();
@@ -22,8 +22,8 @@ public class GitlabServiceTest {
         GitlabMergeRequestNote noteRequest = new GitlabMergeRequestNote('This is a test note', false);
 
         Test.startTest();
-            GitlabServiceFactory.setMock(new GitlabService());
-            GitlabService gitlabService = GitlabServiceFactory.getInstance();
+            ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
+            GitlabService gitlabService = ServiceFactory.getGitlabService();
 
             HttpResponse response = gitlabService.postNoteIntoMergeRequest(noteRequest);
         Test.stopTest();
@@ -37,12 +37,12 @@ public class GitlabServiceTest {
 
         Test.startTest();
             try {
-                GitlabServiceFactory.setMock(new GitlabService());
-                GitlabService gitlabService = GitlabServiceFactory.getInstance();
+                ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
+                GitlabService gitlabService = ServiceFactory.getGitlabService();
 
                 gitlabService.postNoteIntoMergeRequest(noteRequest);
             } catch (GitlabService.GitlabServiceMissingParametersException e) {
-                Assert.areEqual(e.getMessage(), 'Note request body cannot be null or empty.', 'Expected exception message');
+                Assert.areEqual(e.getMessage(), GitlabService.NOTE_EMPTY_MESSAGE, 'Expected exception message');
             }
         Test.stopTest();
     }
