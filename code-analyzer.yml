@@ -108,7 +108,7 @@ engines:
   retire-js:
 
     # Whether to turn off the 'retire-js' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
   # ======================================================================
   # REGEX ENGINE CONFIGURATION
@@ -211,7 +211,7 @@ engines:
   flow:
 
     # Whether to turn off the 'flow' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
     # Indicates the specific Python command to use for the 'Flow Scanner' engine.
     # May be provided as the name of a command that exists on the path, or an absolute file path location.
