@@ -43,7 +43,7 @@ code-analysis:
       --rule-selector sfge
       --severity-threshold $SEVERITY_THRESHOLD_LEVEL
       --config-file code-analyzer.yml
-      --view json > code-analysis-results.json
+      --view detail
 
 validate:
   stage: validate
