@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Search with AI" icon-name="utility:search">
+        <div class="slds-p-around_medium">
+
+            <lightning-textarea
+                label="Type your search"
+                value={userInput}
+                onchange={handleInputChange}
+                class="slds-m-bottom_medium">
+            </lightning-textarea>
+
+            <lightning-button
+                label="Search with AI"
+                onclick={handleSearch}
+                class="slds-m-top_medium">
+            </lightning-button>
+
+            <lightning-button
+                label="Clear response"
+                onclick={handleClear}
+                disabled={isIAResponseEmpty}
+                class="slds-m-top_medium  slds-m-left_small">
+            </lightning-button>
+
+            <template lwc:if={aiResponse}>
+                <div class="slds-m-top_medium">
+                    <c-lightndown string={aiResponse}></c-lightndown>
+                </div>
+            </template>
+
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:elseif={errorMessage}>
+                <div class="slds-m-top_medium">
+                    <p class="slds-text-color_error">{errorMessage}</p>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

@@ -14,7 +14,7 @@ public class GitLabProjectInfoTest {
     static void shouldHandleGitlabFirstException() {
         Test.startTest();
             try {
-                GitlabServiceFactory.setMock(new GitlabService());
+                ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
                 GitLabProjectInfo.getProjectDetails();
             } catch (AuraHandledException e) {
                 Assert.areEqual(e.getMessage(), GitLabProjectInfo.ERROR_MESSAGE, 'Expected exception message');
@@ -28,7 +28,7 @@ public class GitLabProjectInfoTest {
 
         Test.startTest();
             try {
-                GitlabServiceFactory.setMock(new GitlabService());
+                ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
                 GitLabProjectInfo.getProjectDetails();
             } catch (AuraHandledException e) {
                 Assert.isTrue(e.getMessage().contains('404 Project Not Found'), 'Expected exception message to contain "404 Project Not Found"');

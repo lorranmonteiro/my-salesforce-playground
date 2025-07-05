@@ -11,6 +11,10 @@
     <testClassName>GitLabProjectInfoTest</testClassName>
     <testClassName>GitLabProjectTest</testClassName>
     <testClassName>GitlabServiceTest</testClassName>
+    <testClassName>OpenAIRequestTest</testClassName>
+    <testClassName>OpenAIResponseTest</testClassName>
+    <testClassName>OpenAIServiceTest</testClassName>
+    <testClassName>SearchCmpTest</testClassName>
     <testClassName>TestLightningConnectQuickstart</testClassName>
     <testClassName>TriggerHandler_Test</testClassName>
 </ApexTestSuite>

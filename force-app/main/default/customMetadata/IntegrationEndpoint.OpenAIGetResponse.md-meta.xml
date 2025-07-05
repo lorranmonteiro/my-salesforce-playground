@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Gitlab Project Details</label>
+    <label>OpenAI Get Response</label>
     <protected>false</protected>
     <values>
         <field>Accept__c</field>
-        <value xsi:type="xsd:string">application/json</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Active__c</field>
@@ -16,10 +16,10 @@
     </values>
     <values>
         <field>Endpoint__c</field>
-        <value xsi:type="xsd:string">/projects/{id}</value>
+        <value xsi:type="xsd:string">/v1/responses</value>
     </values>
     <values>
         <field>Method__c</field>
-        <value xsi:type="xsd:string">GET</value>
+        <value xsi:type="xsd:string">POST</value>
     </values>
 </CustomMetadata>
