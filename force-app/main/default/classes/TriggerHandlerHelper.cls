@@ -11,8 +11,7 @@ public without sharing class TriggerHandlerHelper {
             'before delete'  => TriggerHandler.TriggerContext.BEFORE_DELETE,
             'after insert'   => TriggerHandler.TriggerContext.AFTER_INSERT,
             'after update'   => TriggerHandler.TriggerContext.AFTER_UPDATE,
-            'after delete'   => TriggerHandler.TriggerContext.AFTER_DELETE,
-            'after undelete' => TriggerHandler.TriggerContext.AFTER_UNDELETE
+            'after delete'   => TriggerHandler.TriggerContext.AFTER_DELETE
         };
 
         return contextMap.get(key);
@@ -25,7 +24,6 @@ public without sharing class TriggerHandlerHelper {
         if (Trigger.isAfter && Trigger.isInsert) { return 'after insert'; }
         if (Trigger.isAfter && Trigger.isUpdate) { return 'after update'; }
         if (Trigger.isAfter && Trigger.isDelete) { return 'after delete'; }
-        if (Trigger.isAfter && Trigger.isUndelete) { return 'after undelete'; }
 
         return null;
     }
