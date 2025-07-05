@@ -15,20 +15,20 @@ public with sharing class GitLabProjectInfo {
             return getCachedProjectDetails();
         }
 
-        HttpResponse response;
+        GitLabProject parsedResponse;
         try {
             GitlabService gitlabService = ServiceFactory.getGitlabService();
-            response = gitlabService.requestProjectDetails();
+            HttpResponse response = gitlabService.requestProjectDetails();
+
+            if (response.getStatusCode() != 200) {
+                throw new GitLabProjectInfoRequestException(response.getStatusCode() + ' - ' + response.getBody());
+            }
+
+            parsedResponse = GitLabProject.parse(response.getBody());
+            Cache.Org.put(GITLAB_PROJECT_CACHE_KEY, parsedResponse);
         } catch (Exception e) {
             throwAuraException(e.getMessage());
         }
-
-        if (response.getStatusCode() != 200) {
-            throwAuraException(response);
-        }
-
-        GitLabProject parsedResponse = GitLabProject.parse(response.getBody());
-        Cache.Org.put(GITLAB_PROJECT_CACHE_KEY, parsedResponse);
 
         return parsedResponse;
     }
@@ -37,15 +37,11 @@ public with sharing class GitLabProjectInfo {
         return (GitLabProject) Cache.Org.get(GITLAB_PROJECT_CACHE_KEY);
     }
 
-    private static void throwAuraException(HttpResponse response) {
-        AuraHandledException auraException = new AuraHandledException(ERROR_MESSAGE + response.getStatusCode() + ' ' + response.getBody());
-        auraException.setMessage(ERROR_MESSAGE + response.getStatusCode() + ' ' + response.getBody()); // used for apex tests
+    private static void throwAuraException(String errorMessage) {
+        AuraHandledException auraException = new AuraHandledException(ERROR_MESSAGE + errorMessage);
+        auraException.setMessage(ERROR_MESSAGE + errorMessage); // used for apex tests
         throw auraException;
     }
 
-    private static void throwAuraException(String errorMessage) {
-        AuraHandledException auraException = new AuraHandledException(ERROR_MESSAGE + errorMessage);
-        auraException.setMessage(ERROR_MESSAGE); // used for apex tests
-        throw auraException;
-    }
+    public class GitLabProjectInfoRequestException extends Exception {}
 }

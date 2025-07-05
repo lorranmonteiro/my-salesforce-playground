@@ -53,7 +53,7 @@ rules:
   # ESLINT ENGINE RULE OVERRIDES
   # ======================================================================
   eslint:
-    lwc/lwc-platform/no-inline-disable:
+    no-inline-disable:
       severity: "Low"
 
   # ======================================================================
@@ -108,7 +108,7 @@ engines:
   retire-js:
 
     # Whether to turn off the 'retire-js' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: false
+    disable_engine: true
 
   # ======================================================================
   # REGEX ENGINE CONFIGURATION
@@ -343,7 +343,7 @@ engines:
   sfge:
 
     # Whether to turn off the 'sfge' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: true
+    disable_engine: false
 
     # Whether to prevent 'sfge' from throwing LimitReached violations for complex paths.
     # By default, Salesforce Graph Engine attempts to detect complex paths that might cause OutOfMemory errors,

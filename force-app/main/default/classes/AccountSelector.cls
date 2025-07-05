@@ -1,7 +1,7 @@
 public with sharing class AccountSelector {
 
     public static List<Account> getAccountsByAccountNumber(String accountNumber) {
-        if (String.isBlank(accountNumber)) { return new List<Account>(); }
+        if (accountNumber == null) { return new List<Account>(); }
 
         return [
             SELECT Id, Name, Type, CreatedDate, Site, AccountNumber
