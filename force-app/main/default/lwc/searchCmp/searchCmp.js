@@ -1,15 +1,30 @@
 import { LightningElement } from 'lwc';
 import searchWithAi from '@salesforce/apex/SearchCmp.search';
+import { loadScript } from 'lightning/platformResourceLoader';
+import markdownIt from '@salesforce/resourceUrl/MarkdownIt';
 
 export default class Search extends LightningElement {
 
     userInput;
     aiResponse;
     errorMessage;
+    parsedResponse;
     isLoading = false;
 
     get isIAResponseEmpty() {
         return this.aiResponse === undefined || this.aiResponse === null || this.aiResponse.trim() === '';
+    }
+
+    connectedCallback() {
+        loadScript(this, markdownIt);
+    }
+
+    renderedCallback() {
+        if (this.parsedResponse) {
+            const container = this.template.querySelector('.markdown-output');
+
+            if (container) container.innerHTML = this.parsedResponse;
+        }
     }
 
     handleInputChange(event) {
@@ -19,6 +34,7 @@ export default class Search extends LightningElement {
     handleClear() {
         this.aiResponse = null;
         this.errorMessage = null;
+        this.parsedResponse = null;
     }
 
     async handleSearch() {
@@ -34,9 +50,13 @@ export default class Search extends LightningElement {
 
         try {
             this.aiResponse = await searchWithAi({ textInput: this.userInput });
+
+            const md = window.markdownit();
+            this.parsedResponse = md.render(this.aiResponse);
+
             this.errorMessage = undefined;
         } catch (error) {
-            this.errorMessage = error.body ? error.body.message : 'An unexpected error occurred';
+            this.errorMessage = error.body?.message || error.message;
             this.aiResponse = undefined;
         }
 
