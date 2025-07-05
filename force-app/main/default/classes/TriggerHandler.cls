@@ -1,4 +1,4 @@
-public virtual class TriggerHandler {
+public without sharing virtual class TriggerHandler {
 
     private static Map<String, LoopCount> loopCountMap;
     private static Set<String> bypassedHandlers;
@@ -72,62 +72,17 @@ public virtual class TriggerHandler {
 
     @TestVisible
     private void setTriggerContext(String ctx, Boolean testMode) {
-        if (!Trigger.isExecuting && !testMode) {
-            this.isTriggerExecuting = false;
-            return;
-        }
-
-        this.isTriggerExecuting = true;
-        this.context = determineTriggerContext(ctx);
-    }
-
-    private TriggerContext determineTriggerContext(String ctx) {
-        String triggerKey = Trigger.isExecuting ? getTriggerKey() : null;
-        
-        Map<String, TriggerContext> contextMap = new Map<String, TriggerContext>{
-            'before insert'  => TriggerContext.BEFORE_INSERT,
-            'before update'  => TriggerContext.BEFORE_UPDATE,
-            'before delete'  => TriggerContext.BEFORE_DELETE,
-            'after insert'   => TriggerContext.AFTER_INSERT,
-            'after update'   => TriggerContext.AFTER_UPDATE,
-            'after delete'   => TriggerContext.AFTER_DELETE,
-            'after undelete' => TriggerContext.AFTER_UNDELETE
-        };
-
-        if (ctx != null && contextMap.containsKey(ctx)) {
-            return contextMap.get(ctx);
-        }
-
-        if (contextMap.containsKey(triggerKey)) {
-            return contextMap.get(triggerKey);
-        }
-
-        return null;
-    }
-
-    private String getTriggerKey() {
-        if (Trigger.isBefore && Trigger.isInsert) { return 'before insert'; }
-        if (Trigger.isBefore && Trigger.isUpdate) { return 'before update'; }
-        if (Trigger.isBefore && Trigger.isDelete) { return 'before delete'; }
-        if (Trigger.isAfter && Trigger.isInsert) { return 'after insert'; }
-        if (Trigger.isAfter && Trigger.isUpdate) { return 'after update'; }
-        if (Trigger.isAfter && Trigger.isDelete) { return 'after delete'; }
-        if (Trigger.isAfter && Trigger.isUndelete) { return 'after undelete'; }
-
-        return null;
+        this.isTriggerExecuting = Trigger.isExecuting || testMode;
+        this.context = TriggerHandlerHelper.determineContext(ctx, testMode);
     }
 
     @TestVisible
     private void addToLoopCount() {
         String handlerName = getHandlerName();
-    
-        if (TriggerHandler.loopCountMap.containsKey(handlerName)) {
-            Boolean exceeded = TriggerHandler.loopCountMap.get(handlerName).increment();
 
-            if (exceeded) {
-                Integer max = TriggerHandler.loopCountMap.get(handlerName).max;
-                throw new TriggerHandlerException('Maximum loop count of ' + String.valueOf(max) + ' reached in ' + handlerName);
-            }
+        if (TriggerHandlerHelper.hasExceededLoopCount(loopCountMap, handlerName)) {
+            Integer max = loopCountMap.get(handlerName).getMax();
+            throw new TriggerHandlerException('Maximum loop count of ' + String.valueOf(max) + ' reached in ' + handlerName);
         }
     }
 
@@ -137,14 +92,13 @@ public virtual class TriggerHandler {
             throw new TriggerHandlerException('Trigger handler called outside of Trigger execution');
         }
 
-        return !TriggerHandler.bypassedHandlers.contains(getHandlerName());
+        return !TriggerHandlerHelper.isExecutionBypassed(bypassedHandlers, getHandlerName());
     }
 
     @TestVisible
     private String getHandlerName() {
         return this.toString().substringBefore(':');
     }
-
 
     @SuppressWarnings('PMD.EmptyStatementBlock')
     @TestVisible protected virtual void beforeInsert(){}
@@ -168,7 +122,7 @@ public virtual class TriggerHandler {
     @TestVisible protected virtual void afterUndelete(){}
 
     @TestVisible
-    private class LoopCount {
+    public class LoopCount {
         private Integer max;
         private Integer count;
 
@@ -197,7 +151,7 @@ public virtual class TriggerHandler {
     }
 
     @TestVisible
-    private enum TriggerContext {
+    public enum TriggerContext {
         BEFORE_INSERT, BEFORE_UPDATE, BEFORE_DELETE,
         AFTER_INSERT, AFTER_UPDATE, AFTER_DELETE,
         AFTER_UNDELETE
