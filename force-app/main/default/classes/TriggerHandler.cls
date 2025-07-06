@@ -2,6 +2,7 @@ public without sharing virtual class TriggerHandler {
 
     private static Map<String, LoopCount> loopCountMap;
     private static Set<String> bypassedHandlers;
+    public static Boolean bypassAllTriggers;
 
     @TestVisible
     private TriggerContext context;
@@ -12,6 +13,7 @@ public without sharing virtual class TriggerHandler {
     static {
         loopCountMap = new Map<String, LoopCount>();
         bypassedHandlers = new Set<String>();
+        bypassAllTriggers = false;
     }
     
     public TriggerHandler() {
@@ -88,6 +90,10 @@ public without sharing virtual class TriggerHandler {
 
     @TestVisible
     private Boolean validateRun() {
+        if (TriggerHandler.bypassAllTriggers) {
+            return false;
+        }
+
         if (!this.isTriggerExecuting || this.context == null) {
             throw new TriggerHandlerException('Trigger handler called outside of Trigger execution');
         }

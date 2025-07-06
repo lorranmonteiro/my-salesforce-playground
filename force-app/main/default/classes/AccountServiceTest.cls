@@ -3,8 +3,8 @@ public class AccountServiceTest {
 
     @isTest
     static void postNoteOnMergeRequestWhenNameChanges() {
-        Account oldAccount = new Account(Name = 'Old Name');
-        insert oldAccount;
+        TestAccountFactory.bypassTriggers = false;
+        Account oldAccount = TestAccountFactory.createAccount(true);
         Map<Id, Account> oldAccounts = new Map<Id, Account>{ oldAccount.Id => oldAccount};
 
         Account newAccount = new Account(Id = oldAccount.Id, Name = 'New Name');
@@ -19,8 +19,8 @@ public class AccountServiceTest {
 
     @isTest
     static void postNoteOnMergeRequestWhenAccountNumberChanges() {
-        Account account = new Account(Name = 'Old Name', AccountNumber = '12345');
-        insert account;
+        TestAccountFactory.bypassTriggers = false;
+        Account account = TestAccountFactory.createAccount(true);
 
         Test.getEventBus().deliver();
 

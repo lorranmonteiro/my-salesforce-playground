@@ -27,10 +27,6 @@ default:
 code-analysis:
   stage: code analysis
   environment: Playground
-  artifacts:
-    paths:
-      - code-analysis-results.json
-    expire_in: 15 days
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
   script:

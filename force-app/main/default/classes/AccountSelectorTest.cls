@@ -3,24 +3,18 @@ public class AccountSelectorTest {
 
     @IsTest
     static void getAccountsByAccountNumber() {
-        insert new Account(
-            Name = 'Test Account',
-            AccountNumber = '12345'
-        );
+        Account account = TestAccountFactory.createAccount(true);
 
         Test.startTest();
-            List<Account> accounts = AccountSelector.getAccountsByAccountNumber('12345');
+            List<Account> accounts = AccountSelector.getAccountsByAccountNumber(account.AccountNumber);
         Test.stopTest();
 
-        Assert.areEqual('Test Account', accounts[0].Name, 'Account name should match');
+        Assert.areEqual(account.Name, accounts[0].Name, 'Account name should match');
     }
 
     @IsTest
     static void getAccountsByNonExistingAccountNumber() {
-        insert new Account(
-            Name = 'Test Account',
-            AccountNumber = '12345'
-        );
+        TestAccountFactory.createAccount(true);
 
         Test.startTest();
             List<Account> accounts = AccountSelector.getAccountsByAccountNumber('99999');
@@ -31,11 +25,7 @@ public class AccountSelectorTest {
 
     @IsTest
     static void getAccountById() {
-        Account account = new Account(
-            Name = 'Test Account',
-            AccountNumber = '12345'
-        );
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         Test.startTest();
             Account createdAccount = AccountSelector.getAccountById(account.Id);
@@ -46,15 +36,8 @@ public class AccountSelectorTest {
 
     @IsTest
     static void getAccountsByIds() {
-        Account account1 = new Account(
-            Name = 'Test Account 1',
-            AccountNumber = '1234533'
-        );
-        Account account2 = new Account(
-            Name = 'Test Account 2',
-            AccountNumber = '12345'
-        );
-        insert new List<Account>{ account1, account2 };
+        Account account1 = TestAccountFactory.createAccount(true);
+        Account account2 = TestAccountFactory.createAccount(true);
 
         Test.startTest();
             List<Account> createdAccounts = AccountSelector.getAccountsByIds(new Set<Id>{ account1.Id, account2.Id });

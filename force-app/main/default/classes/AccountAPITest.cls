@@ -5,8 +5,7 @@ public class AccountAPITest {
 
     @isTest
     static void getAccount() {
-        Account account = new Account(Name = 'Test Account');
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/' + account.Id;
@@ -94,8 +93,7 @@ public class AccountAPITest {
 
     @isTest
     static void updateAccount() {
-        Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         String payload = JSON.serialize(new Account(AccountNumber = '67890'));
 
@@ -127,8 +125,7 @@ public class AccountAPITest {
 
     @isTest
     static void updateAccountWithNullName() {
-        Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         String payload = JSON.serialize(new Account(Name = null, AccountNumber = '67890'));
 
@@ -339,8 +336,7 @@ public class AccountAPITest {
 
     @isTest
     static void deleteAccount() {
-        Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/' + account.Id;

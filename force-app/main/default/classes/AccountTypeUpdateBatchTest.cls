@@ -8,10 +8,10 @@ public class AccountTypeUpdateBatchTest {
     static void accountUpdateTypesBatchWithSuccess() {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < ACCOUNTS_TO_INSERT; i++) {
-            accounts.add(new Account(
-                Name = 'Test Account ' + i,
-                Type = Constants.ACCOUNT.TYPE.PROSPECT)
-            );
+            Account account = TestAccountFactory.createAccount();
+            account.Type = Constants.ACCOUNT.TYPE.PROSPECT;
+
+            accounts.add(account);
         }
         insert accounts;
 
@@ -28,16 +28,15 @@ public class AccountTypeUpdateBatchTest {
     static void accountUpdateTypesBatchWithErrors() {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < ACCOUNTS_TO_INSERT; i++) {
-            accounts.add(new Account(
-                Name = 'Test Account ' + i,
-                Type = Constants.ACCOUNT.TYPE.PROSPECT)
-            );
+            Account account = TestAccountFactory.createAccount();
+            account.Type = Constants.ACCOUNT.TYPE.PROSPECT;
+
+            accounts.add(account);
         }
 
-        accounts.add(new Account(
-            Name = 'Account with type Other',
-            Type = Constants.ACCOUNT.TYPE.OTHER)
-        );
+        Account account = TestAccountFactory.createAccount();
+        account.Type = Constants.ACCOUNT.TYPE.OTHER;
+        accounts.add(account);
 
         insert accounts;
 

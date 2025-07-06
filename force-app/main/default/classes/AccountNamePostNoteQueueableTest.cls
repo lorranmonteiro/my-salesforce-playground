@@ -5,8 +5,8 @@ public class AccountNamePostNoteQueueableTest {
     static void shouldEnqueueAccountNamePostNoteJob() {
         Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
 
-        Account account = new Account(Name = 'Test Account');
-        insert account;
+        TestAccountFactory.bypassTriggers = false;
+        Account account = TestAccountFactory.createAccount(true);
 
         Test.startTest();
             Id jobID = System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>{ account.Id }));
@@ -21,8 +21,8 @@ public class AccountNamePostNoteQueueableTest {
     static void shouldEnqueueTwoAccountNamePostNoteJobs() {
         Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
 
-        Account account1 = new Account(Name = 'Test Account');
-        Account account2 = new Account(Name = 'Test Account 2');
+        Account account1 = TestAccountFactory.createAccount();
+        Account account2 = TestAccountFactory.createAccount();
         insert new List<Account>{ account1, account2 };
 
         // Decrease the chunk size to 1 for testing purposes
@@ -39,8 +39,7 @@ public class AccountNamePostNoteQueueableTest {
 
     @isTest
     static void shouldFallIntoExceptionWhenCalloutFails() {
-        Account account = new Account(Name = 'Test Account');
-        insert account;
+        Account account = TestAccountFactory.createAccount(true);
 
         Test.startTest();
             Id jobID = System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>{ account.Id }));
