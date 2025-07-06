@@ -4,7 +4,7 @@ public class TestLightningConnectQuickstart {
     static void tester() {
         List<Account> accs = new List<Account>();
         for (Integer i = 0; i < 10; i++) {
-            accs.add(new Account(name = 'Test '+i));
+            accs.add(TestAccountFactory.createAccount());
         }
         insert accs;
         

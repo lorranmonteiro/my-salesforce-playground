@@ -27,10 +27,6 @@ default:
 code-analysis:
   stage: code analysis
   environment: Playground
-  artifacts:
-    paths:
-      - code-analysis-results.json
-    expire_in: 15 days
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
   script:
@@ -43,7 +39,7 @@ code-analysis:
       --rule-selector sfge
       --severity-threshold $SEVERITY_THRESHOLD_LEVEL
       --config-file code-analyzer.yml
-      --view json > code-analysis-results.json
+      --view detail
 
 validate:
   stage: validate
