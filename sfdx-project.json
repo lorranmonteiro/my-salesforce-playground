@@ -5,7 +5,7 @@
       "default": true
     },
     {
-      "path": "force-app/main/apis"
+      "path": "force-app/main/accounts"
     },
     {
       "path": "force-app/main/integrations"
