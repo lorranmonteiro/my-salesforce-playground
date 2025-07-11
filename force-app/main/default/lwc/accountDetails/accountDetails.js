@@ -45,6 +45,9 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
 
     contactRecords;
     numberOfUpdatedContacts = 0;
+    contactsPerPage = 3;
+    currentPage = 1;
+    pagedContacts = [];
 
     editedFields = {};
     error;
@@ -66,6 +69,8 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
         if (data) {
             this.contactRecords = data.records;
             this.error = undefined;
+
+            this.updatePagedContacts();
         } else if (error) {
             this.error = error;
             this.contactRecords = undefined;
@@ -109,6 +114,14 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
 
     get isNumberOfUpdatedContactsPositive() {
         return this.numberOfUpdatedContacts > 0;
+    }
+
+    get hasPrevious() {
+        return this.currentPage > 1;
+    }
+
+    get hasNext() {
+        return this.contactRecords && (this.currentPage * this.contactsPerPage < this.contactRecords.length);
     }
 
     connectedCallback() {
@@ -220,5 +233,32 @@ export default class AccountDetails extends NavigationMixin(LightningElement) {
     getFormattedDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleDateString('pt-BR');
+    }
+
+    updatePagedContacts() {
+        if (this.contactRecords) {
+            const startIndex = (this.currentPage - 1) * this.contactsPerPage;
+            const endIndex = startIndex + this.contactsPerPage;
+
+            this.pagedContacts = this.contactRecords.slice(startIndex, endIndex);
+        }
+    }
+
+    handleNextPage() {
+        const totalPages = Math.ceil(this.contactRecords.length / this.contactsPerPage);
+
+        if (this.currentPage < totalPages) {
+            this.currentPage++;
+
+            this.updatePagedContacts();
+        }
+    }
+
+    handlePreviousPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+
+            this.updatePagedContacts();
+        }
     }
 }
