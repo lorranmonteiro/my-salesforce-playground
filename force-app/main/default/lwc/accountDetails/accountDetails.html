@@ -85,12 +85,21 @@
                 </template>
 
                 <lightning-layout multiple-rows>
-                    <template for:each={contactRecords} for:item="contact">
+                    <template for:each={pagedContacts} for:item="contact">
                         <lightning-layout-item size="4" padding="around-small" key={contact.Id}>
                             <c-contact-info record={contact} oncontactupdated={handleContactUpdate}></c-contact-info>
                         </lightning-layout-item>
                     </template>
                 </lightning-layout>
+
+                <c-paginator
+                    class="slds-m-top_medium"
+                    has-previous={hasPrevious}
+                    has-next={hasNext}
+                    onprevious={handlePreviousPage}
+                    onnext={handleNextPage}>
+                </c-paginator>
+
             </template>
 
             <template lwc:elseif={error}>
