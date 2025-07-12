@@ -64,6 +64,7 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
       when: always
+  coverage: '/Org Wide Coverage\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     expose_as: 'Package'
     reports:
