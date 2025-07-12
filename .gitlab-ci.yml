@@ -67,6 +67,10 @@ deploy:
   coverage: '/Org Wide Coverage\s+(\d+)%/'
   artifacts:
     expose_as: 'Package'
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura.xml
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
@@ -102,6 +106,6 @@ deploy:
 
      # Extract and print coverage for GitLab
     - |
-      COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' cobertura.xml)
+      COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' coverage/cobertura.xml)
       COVERAGE_PERCENT=$(awk "BEGIN { printf \"%.2f\", $COVERAGE * 100 }")
       echo "Org Wide Coverage ${COVERAGE_PERCENT}%"
