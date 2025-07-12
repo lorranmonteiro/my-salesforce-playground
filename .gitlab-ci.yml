@@ -32,16 +32,16 @@ code-analysis:
       when: always
   script:
     - sf plugins install code-analyzer
-    - >
-      echo "🔍 Starting code analyses..."
-      sf code-analyzer run
-        --rule-selector all:Recommended:1
-        --rule-selector all:Recommended:2
-        --rule-selector all:Recommended:3
-        --rule-selector sfge
-        --severity-threshold $SEVERITY_THRESHOLD_LEVEL
-        --config-file code-analyzer.yml
-        --view detail
+
+    - echo "🔍 Starting code analyses..."
+    - sf code-analyzer run \
+      --rule-selector all:Recommended:1 \
+      --rule-selector all:Recommended:2 \
+      --rule-selector all:Recommended:3 \
+      --rule-selector sfge \
+      --severity-threshold $SEVERITY_THRESHOLD_LEVEL \
+      --config-file code-analyzer.yml \
+      --view detail
 
 test:
   stage: test
@@ -51,6 +51,9 @@ test:
       when: always
   coverage: '/Org Wide Coverage\s+(\d+)%/'
   script:
+    # Download secure files for authentication
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+
     - echo "🔐 Authenticating with Salesforce..."
     - ./scripts/authenticateWithSalesforce.sh
 
