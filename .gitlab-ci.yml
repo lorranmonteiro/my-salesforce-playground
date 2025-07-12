@@ -15,7 +15,7 @@ variables:
 
 stages:
   - code analysis
-  - validate
+  - test
   - deploy
 
 default:
@@ -28,30 +28,50 @@ code-analysis:
   stage: code analysis
   environment: Playground
   rules:
-    - if: $CI_COMMIT_BRANCH == 'develop'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
+      when: always
   script:
     - sf plugins install code-analyzer
     - >
       echo "🔍 Starting code analyses..."
       sf code-analyzer run
-      --rule-selector all:Recommended:1
-      --rule-selector all:Recommended:2
-      --rule-selector all:Recommended:3
-      --rule-selector sfge
-      --severity-threshold $SEVERITY_THRESHOLD_LEVEL
-      --config-file code-analyzer.yml
-      --view detail
+        --rule-selector all:Recommended:1
+        --rule-selector all:Recommended:2
+        --rule-selector all:Recommended:3
+        --rule-selector sfge
+        --severity-threshold $SEVERITY_THRESHOLD_LEVEL
+        --config-file code-analyzer.yml
+        --view detail
 
-validate:
-  stage: validate
+test:
+  stage: test
   environment: Playground
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
+      when: always
+  coverage: '/Org Wide Coverage\s+(\d+)%/'
+  script:
+    - echo "🔐 Authenticating with Salesforce..."
+    - .scripts/authenticateWithSalesforce.sh
+
+    - echo "🧪 Running tests...
+    - sf apex test run \
+      --result-format human \
+      --code-coverage \
+      --synchronous
+
+
+deploy:
+  stage: deploy
+  environment: Playground
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'master'
+      when: always
   artifacts:
+    expose_as: 'code coverage'
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
-      - deploy-id.txt
       - deploy-result.json
     expire_in: 15 days
   script:
@@ -63,54 +83,20 @@ validate:
 
     # Create packages for deployment
     - sf sgd source delta --to "HEAD" --from "origin/master" --output-dir "."
-    
-    # Validate the package before deployment and save deploy ID
+
     - |
-      # Check if there are components to validate
+      # Check if there are components to deploy
       if ! grep -q "<types>" package/package.xml; then
-        echo "No components to validate. Skipping validation step."
+        echo "No components to deploy. Skipping deployment step."
         exit 0
       fi
 
-      apt update && apt install -y jq
-
       echo "🔐 Authenticating with Salesforce..."
-      ./scripts/authenticateWithSalesforce.sh
+      .scripts/authenticateWithSalesforce.sh
 
-      echo "📦 Running package validation..."
-      sf project deploy validate -x package/package.xml \
+      echo "📦 Running package deploy..."
+      sf project deploy start \
+        --manifest package/package.xml \
         --post-destructive-changes destructiveChanges/destructiveChanges.xml \
         --ignore-warnings \
         --json > deploy-result.json
-
-      echo "📦 Validation completed. Saving deploy ID..."
-      cat deploy-result.json | jq -r '.result.id' > deploy-id.txt
-
-deploy:
-  stage: deploy
-  environment: Playground
-  needs:
-    - project: $CI_PROJECT_PATH
-      job: validate
-      ref: develop
-      artifacts: true
-  artifacts:
-    paths:
-      - package/package.xml
-      - destructiveChanges/destructiveChanges.xml
-      - deploy-id.txt
-    expire_in: 15 days
-  rules:
-    - if: $CI_COMMIT_BRANCH == 'master'
-  script:
-    # Download secure files for authentication
-    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-    
-    # Deploy the validated package
-    - |
-      echo "🔐 Authenticating with Salesforce..."
-      ./scripts/authenticateWithSalesforce.sh
-
-      echo "🚀 Starting deploy..."
-      DEPLOY_ID=$(cat deploy-id.txt)
-      sf project deploy quick --job-id "$DEPLOY_ID"
