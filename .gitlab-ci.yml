@@ -85,7 +85,7 @@ deploy:
     - echo 'y' | sf plugins install sfdx-git-delta
 
     # Create packages for deployment
-    - sf sgd source delta --to "HEAD" --from "origin/master" --output-dir "."
+    - sf sgd source delta --to HEAD --from HEAD~1 --output-dir "."
 
     - |
       # Check if there are components to deploy
