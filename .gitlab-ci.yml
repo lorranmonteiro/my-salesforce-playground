@@ -52,7 +52,7 @@ test:
   coverage: '/Org Wide Coverage\s+(\d+)%/'
   script:
     - echo "🔐 Authenticating with Salesforce..."
-    - .scripts/authenticateWithSalesforce.sh
+    - ./scripts/authenticateWithSalesforce.sh
 
     - echo "🧪 Running tests...
     - sf apex test run \
@@ -92,7 +92,7 @@ deploy:
       fi
 
       echo "🔐 Authenticating with Salesforce..."
-      .scripts/authenticateWithSalesforce.sh
+      ./scripts/authenticateWithSalesforce.sh
 
       echo "📦 Running package deploy..."
       sf project deploy start \
