@@ -64,7 +64,7 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
       when: always
-  coverage: '/Org Wide Coverage\s+(\d+)%/'
+  coverage: '/Org Wide Coverage\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     expose_as: 'Package'
     reports:
@@ -74,6 +74,7 @@ deploy:
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
+      - coverage/cobertura.xml
     expire_in: 15 days
   script:
     # Download secure files for authentication
@@ -106,6 +107,6 @@ deploy:
 
      # Extract and print coverage for GitLab
     - |
-      COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' coverage/cobertura.xml)
-      COVERAGE_INT=$(awk "BEGIN { printf \"%d\", $COVERAGE * 100 }")
-      echo "Org Wide Coverage ${COVERAGE_INT}%"
+      COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' coverage/cobertura.xml | head -n 1)
+      COVERAGE_PERCENT=$(awk "BEGIN { printf \"%.2f\", $COVERAGE * 100 }")
+      echo "Org Wide Coverage: ${COVERAGE_PERCENT}%"
