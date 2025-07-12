@@ -75,7 +75,7 @@ validate:
       apt update && apt install -y jq
 
       echo "🔐 Authenticating with Salesforce..."
-      - ./scripts/authenticateWithSalesforce.sh
+      ./scripts/authenticateWithSalesforce.sh
 
       echo "📦 Running package validation..."
       sf project deploy validate -x package/package.xml \
@@ -107,7 +107,7 @@ deploy:
     # Deploy the validated package
     - |
       echo "🔐 Authenticating with Salesforce..."
-      - ./scripts/authenticateWithSalesforce.sh
+      ./scripts/authenticateWithSalesforce.sh
 
       echo "🚀 Starting deploy..."
       DEPLOY_ID=$(cat deploy-id.txt)
