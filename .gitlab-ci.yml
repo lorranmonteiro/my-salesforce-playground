@@ -31,16 +31,16 @@ code-analysis:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
       when: always
   script:
-    - sf plugins install code-analyzer
+    - sf plugins install code-analyzer@latest
 
     - echo "🔍 Starting code analyses..."
     - sf code-analyzer run \
-      --rule-selector all:Recommended:1 \
-      --rule-selector all:Recommended:2 \
-      --rule-selector all:Recommended:3 \
-      --rule-selector sfge \
-      --severity-threshold $SEVERITY_THRESHOLD_LEVEL \
-      --config-file code-analyzer.yml \
+      --rule-selector all:Recommended:1
+      --rule-selector all:Recommended:2
+      --rule-selector all:Recommended:3
+      --rule-selector sfge
+      --severity-threshold $SEVERITY_THRESHOLD_LEVEL
+      --config-file code-analyzer.yml
       --view detail
 
 test:
@@ -58,9 +58,9 @@ test:
     - ./scripts/authenticateWithSalesforce.sh
 
     - echo "🧪 Running tests...
-    - sf apex test run \
-      --result-format human \
-      --code-coverage \
+    - sf apex test run
+      --result-format human
+      --code-coverage
       --synchronous
 
 
@@ -94,12 +94,12 @@ deploy:
         exit 0
       fi
 
-      echo "🔐 Authenticating with Salesforce..."
-      ./scripts/authenticateWithSalesforce.sh
+    - echo "🔐 Authenticating with Salesforce..."
+    - ./scripts/authenticateWithSalesforce.sh
 
-      echo "📦 Running package deploy..."
-      sf project deploy start \
-        --manifest package/package.xml \
-        --post-destructive-changes destructiveChanges/destructiveChanges.xml \
-        --ignore-warnings \
+    - echo "📦 Running package deploy..."
+    - sf project deploy start
+        --manifest package/package.xml
+        --post-destructive-changes destructiveChanges/destructiveChanges.xml
+        --ignore-warnings
         --json > deploy-result.json
