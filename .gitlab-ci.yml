@@ -109,4 +109,4 @@ deploy:
     - |
       COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' coverage/cobertura.xml | head -n 1)
       COVERAGE_PERCENT=$(awk "BEGIN { printf \"%.2f\", $COVERAGE * 100 }")
-      echo "Org Wide Coverage: ${COVERAGE_PERCENT}%"
+      echo "Org Wide Coverage ${COVERAGE_PERCENT}%"
