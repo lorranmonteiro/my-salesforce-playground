@@ -1,9 +1,10 @@
-@SuppressWarnings('PMD.FieldNamingConventions, PMD.MethodNamingConventions')
+@SuppressWarnings('PMD.FieldNamingConventions')
 public with sharing class Constants {
     public static final AccountConstants ACCOUNT = new AccountConstants();
     public static final ProfileConstants PROFILE = new ProfileConstants();
     public static final HttpStatus HTTP_STATUS = new HttpStatus();
 
+    @SuppressWarnings('PMD.MethodNamingConventions')
     public class AccountConstants {
         public AccountType TYPE = new AccountType();
 
@@ -15,7 +16,7 @@ public with sharing class Constants {
             return Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Partner').getRecordTypeId(); 
         }
     }
-// for testing
+
     public class ProfileConstants {
         public final String SYSTEM_ADMINISTRATOR = 'System Administrator';
     }

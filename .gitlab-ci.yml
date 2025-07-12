@@ -10,9 +10,6 @@ before_script:
   - export SERVER_KEY_FILE=.secure_files/server.key
   - export PACKAGEVERSION=""
 
-variables:
-  GIT_DEPTH: 0
-
 stages:
   - code analysis
   - test
@@ -61,19 +58,18 @@ test:
       --code-coverage
       --synchronous
 
-
 deploy:
   stage: deploy
   environment: Playground
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
       when: always
+  coverage: '/Org Wide Coverage\s+(\d+)%/'
   artifacts:
-    expose_as: 'code coverage'
+    expose_as: 'Package'
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
-      - deploy-result.json
     expire_in: 15 days
   script:
     # Download secure files for authentication
@@ -97,7 +93,15 @@ deploy:
 
     - echo "📦 Running package deploy..."
     - sf project deploy start
-        --manifest package/package.xml
-        --post-destructive-changes destructiveChanges/destructiveChanges.xml
-        --ignore-warnings
-        --json > deploy-result.json
+      --manifest package/package.xml
+      --post-destructive-changes destructiveChanges/destructiveChanges.xml
+      --test-level RunLocalTests
+      --ignore-warnings
+      --coverage-formatters cobertura
+      --results-dir .
+
+     # Extract and print coverage for GitLab
+    - |
+      COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' cobertura.xml)
+      COVERAGE_PERCENT=$(awk "BEGIN { printf \"%.2f\", $COVERAGE * 100 }")
+      echo "Org Wide Coverage ${COVERAGE_PERCENT}%"
