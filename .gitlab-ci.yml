@@ -90,7 +90,9 @@ deploy:
   stage: deploy
   environment: Playground
   needs:
-    - job: validate
+    - project: $CI_PROJECT_PATH
+      job: validate
+      ref: develop
       artifacts: true
   artifacts:
     paths:
