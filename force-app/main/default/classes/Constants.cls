@@ -16,7 +16,7 @@ public with sharing class Constants {
             return Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Partner').getRecordTypeId(); 
         }
     }
-
+// for test
     public class ProfileConstants {
         public final String SYSTEM_ADMINISTRATOR = 'System Administrator';
     }
