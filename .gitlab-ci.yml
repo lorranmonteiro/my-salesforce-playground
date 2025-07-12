@@ -34,7 +34,7 @@ code-analysis:
     - sf plugins install code-analyzer@latest
 
     - echo "🔍 Starting code analyses..."
-    - sf code-analyzer run \
+    - sf code-analyzer run
       --rule-selector all:Recommended:1
       --rule-selector all:Recommended:2
       --rule-selector all:Recommended:3
@@ -57,7 +57,7 @@ test:
     - echo "🔐 Authenticating with Salesforce..."
     - ./scripts/authenticateWithSalesforce.sh
 
-    - echo "🧪 Running tests...
+    - echo "🧪 Running tests..."
     - sf apex test run
       --result-format human
       --code-coverage
