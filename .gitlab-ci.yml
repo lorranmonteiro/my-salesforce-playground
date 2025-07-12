@@ -26,7 +26,6 @@ default:
 
 code-analysis:
   stage: code analysis
-  environment: Playground
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
       when: always
@@ -45,7 +44,6 @@ code-analysis:
 
 test:
   stage: test
-  environment: Playground
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
       when: always
