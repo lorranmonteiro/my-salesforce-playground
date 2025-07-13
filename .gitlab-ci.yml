@@ -74,7 +74,6 @@ deploy:
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
-      - coverage/cobertura.xml
     expire_in: 15 days
   script:
     # Download secure files for authentication
