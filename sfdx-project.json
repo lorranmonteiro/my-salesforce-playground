@@ -1,15 +1,9 @@
 {
   "packageDirectories": [
-    {
-      "path": "force-app/main/default",
-      "default": true
-    },
-    {
-      "path": "force-app/main/accounts"
-    },
-    {
-      "path": "force-app/main/integrations"
-    }
+    { "path": "force-app/main/default", "default": true },
+    { "path": "force-app/main/accounts" },
+    { "path": "force-app/main/integrations" },
+    { "path": "force-app/main/frameworks" }
   ],
   "name": "master-playground",
   "namespace": "",
