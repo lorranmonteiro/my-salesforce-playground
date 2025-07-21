@@ -3,7 +3,7 @@ public with sharing class SearchCmp {
     @AuraEnabled(cacheable = true)
     public static String search(String textInput){
         OpenAIRequest requestBody = new OpenAIRequest(textInput);
-        OpenAIService openAI = ServiceFactory.getOpenAIService();
+        OpenAIService openAI = OpenAiServiceFactory.getService();
         HttpResponse response;
 
         try {

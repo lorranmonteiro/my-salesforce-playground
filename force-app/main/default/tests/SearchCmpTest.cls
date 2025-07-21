@@ -3,7 +3,7 @@ public class SearchCmpTest {
 
     @IsTest
     static void shouldExtractResponse() {
-        ServiceFactory.setMock(ServiceFactory.Service.OpenAI, new OpenAIService());
+        OpenAiServiceFactory.setMock(new OpenAIService());
         Test.setMock(HttpCalloutMock.class, new OpenAIMockResponseSuccess());
 
         Test.startTest();
@@ -15,7 +15,7 @@ public class SearchCmpTest {
 
     @IsTest
     static void shouldHandleCalloutException() {
-        ServiceFactory.setMock(ServiceFactory.Service.OpenAI, new OpenAIService());
+        OpenAiServiceFactory.setMock(new OpenAIService());
 
         Test.startTest();
             try {
@@ -28,7 +28,6 @@ public class SearchCmpTest {
 
     @IsTest
     static void shouldHandleError() {
-        ServiceFactory.setMock(ServiceFactory.Service.OpenAI, new OpenAIService());
         Test.setMock(HttpCalloutMock.class, new OpenAIMockResponseError());
 
         Test.startTest();
