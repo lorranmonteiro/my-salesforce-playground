@@ -28,6 +28,20 @@ public class SearchCmpTest {
 
     @IsTest
     static void shouldHandleError() {
+        OpenAiServiceFactory.setMock(new OpenAIService());
+        Test.setMock(HttpCalloutMock.class, new OpenAIMockResponseError());
+
+        Test.startTest();
+            try {
+                SearchCmp.search('Test');
+            } catch (AuraHandledException e) {
+                Assert.isTrue(e.getMessage().contains('Invalid API key'), 'Expected exception message');
+            }
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void shouldHandleErrorWithoutMock() {
         Test.setMock(HttpCalloutMock.class, new OpenAIMockResponseError());
 
         Test.startTest();

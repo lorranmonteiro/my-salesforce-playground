@@ -31,6 +31,7 @@ code-analysis:
 
     - echo "🔍 Starting code analyses..."
     - sf code-analyzer run
+      --workspace ./force-app/main
       --rule-selector all:Recommended:1
       --rule-selector all:Recommended:2
       --rule-selector all:Recommended:3
