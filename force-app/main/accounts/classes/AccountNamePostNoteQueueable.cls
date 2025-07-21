@@ -26,7 +26,7 @@ public with sharing class AccountNamePostNoteQueueable implements Queueable, Dat
             );
 
             try {
-                GitlabService gitlabService = ServiceFactory.getGitlabService();
+                GitlabService gitlabService = GitlabServiceFactory.getService();
                 gitlabService.postNoteIntoMergeRequest(noteRequest);
             } catch (Exception e) {
                 System.debug('Error while posting note: ' + e.getMessage());

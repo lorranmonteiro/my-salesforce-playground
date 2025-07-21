@@ -6,8 +6,8 @@ public class OpenAIServiceTest {
         Test.setMock(HttpCalloutMock.class, new OpenAIMockResponseSuccess());
 
         Test.startTest();
-            ServiceFactory.setMock(ServiceFactory.Service.OpenAI, new OpenAIService());
-            OpenAIService openAIService = ServiceFactory.getOpenAIService();
+            OpenAiServiceFactory.setMock(new OpenAIService());
+            OpenAIService openAIService = OpenAiServiceFactory.getService();
 
             OpenAIRequest requestBody = new OpenAIRequest('test input');
             HttpResponse response = openAIService.requestResponse(requestBody);
@@ -20,8 +20,8 @@ public class OpenAIServiceTest {
     static void shouldThrowMissingParameterOnRequestOpenAI() {
         Test.startTest();
             try {
-                ServiceFactory.setMock(ServiceFactory.Service.OpenAI, new OpenAIService());
-                OpenAIService openAIService = ServiceFactory.getOpenAIService();
+                OpenAiServiceFactory.setMock(new OpenAIService());
+                OpenAIService openAIService = OpenAiServiceFactory.getService();
 
                 OpenAIRequest requestBody = new OpenAIRequest('');
                 openAIService.requestResponse(requestBody);

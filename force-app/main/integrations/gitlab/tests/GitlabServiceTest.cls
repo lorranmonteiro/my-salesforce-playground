@@ -6,8 +6,8 @@ public class GitlabServiceTest {
         Test.setMock(HttpCalloutMock.class, new GitlabMockGetProjectSuccess());
 
         Test.startTest();
-            ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
-            GitlabService gitlabService = ServiceFactory.getGitlabService();
+            GitlabServiceFactory.setMock(new GitlabService());
+            GitlabService gitlabService = GitlabServiceFactory.getService();
 
             HttpResponse response = gitlabService.requestProjectDetails();
         Test.stopTest();
@@ -22,8 +22,8 @@ public class GitlabServiceTest {
         GitlabMergeRequestNote noteRequest = new GitlabMergeRequestNote('This is a test note', false);
 
         Test.startTest();
-            ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
-            GitlabService gitlabService = ServiceFactory.getGitlabService();
+            GitlabServiceFactory.setMock(new GitlabService());
+            GitlabService gitlabService = GitlabServiceFactory.getService();
 
             HttpResponse response = gitlabService.postNoteIntoMergeRequest(noteRequest);
         Test.stopTest();
@@ -37,8 +37,8 @@ public class GitlabServiceTest {
 
         Test.startTest();
             try {
-                ServiceFactory.setMock(ServiceFactory.Service.Gitlab, new GitlabService());
-                GitlabService gitlabService = ServiceFactory.getGitlabService();
+                GitlabServiceFactory.setMock(new GitlabService());
+                GitlabService gitlabService = GitlabServiceFactory.getService();
 
                 gitlabService.postNoteIntoMergeRequest(noteRequest);
             } catch (GitlabService.GitlabServiceMissingParametersException e) {

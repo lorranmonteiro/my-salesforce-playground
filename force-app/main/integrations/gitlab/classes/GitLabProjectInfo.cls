@@ -17,7 +17,7 @@ public with sharing class GitLabProjectInfo {
 
         GitLabProject parsedResponse;
         try {
-            GitlabService gitlabService = ServiceFactory.getGitlabService();
+            GitlabService gitlabService = GitlabServiceFactory.getService();
             HttpResponse response = gitlabService.requestProjectDetails();
 
             if (response.getStatusCode() != 200) {
