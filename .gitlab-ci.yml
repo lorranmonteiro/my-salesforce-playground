@@ -1,3 +1,9 @@
+default:
+  image: salesforce/cli:latest-slim
+  timeout: 15m
+  tags:
+    - gitlab-org-docker
+
 before_script:
   - export SF_AUTOUPDATE_DISABLE=false
   - export SF_USE_GENERIC_UNIX_KEYCHAIN=true
@@ -15,12 +21,6 @@ stages:
   - test
   - deploy
 
-default:
-  image: salesforce/cli:latest-slim
-  timeout: 15m
-  tags:
-    - gitlab-org-docker
-
 code-analysis:
   stage: code analysis
   rules:
@@ -31,6 +31,7 @@ code-analysis:
 
     - echo "🔍 Starting code analyses..."
     - sf code-analyzer run
+      --workspace ./force-app/main
       --rule-selector all:Recommended:1
       --rule-selector all:Recommended:2
       --rule-selector all:Recommended:3
@@ -76,14 +77,11 @@ deploy:
       - destructiveChanges/destructiveChanges.xml
     expire_in: 15 days
   script:
-    # Download secure files for authentication
-    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-
     # Install the git-delta plugin for source delta management
     - echo 'y' | sf plugins install sfdx-git-delta
 
     # Create packages for deployment
-    - sf sgd source delta --to HEAD --from HEAD~1 --output-dir "."
+    - sf sgd source delta --to HEAD --from HEAD~1 --output-dir .
 
     - |
       # Check if there are components to deploy
@@ -91,6 +89,9 @@ deploy:
         echo "No components to deploy. Skipping deployment step."
         exit 0
       fi
+
+    # Download secure files for authentication
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
     - echo "🔐 Authenticating with Salesforce..."
     - ./scripts/authenticateWithSalesforce.sh

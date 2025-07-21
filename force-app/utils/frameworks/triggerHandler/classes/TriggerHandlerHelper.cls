@@ -24,9 +24,9 @@ public without sharing class TriggerHandlerHelper {
         if (Trigger.isBefore && Trigger.isUpdate) { return 'before update'; }
         if (Trigger.isBefore && Trigger.isDelete) { return 'before delete'; }
         if (Trigger.isAfter && Trigger.isInsert) { return 'after insert'; }
-        if (Trigger.isAfter && Trigger.isUpdate) { return 'after update'; }
         if (Trigger.isAfter && Trigger.isDelete) { return 'after delete'; }
         if (Trigger.isAfter && Trigger.isUndelete) { return 'after undelete'; }
+        if (Trigger.isAfter && Trigger.isUpdate) { return 'after update'; }
 
         return null;
     }
