@@ -48,3 +48,7 @@ $RECYCLE.BIN/
 # Prettier
 .prettierrc
 .prettierignore
+
+# Salesforce DX Delta
+package/
+destructiveChanges/
