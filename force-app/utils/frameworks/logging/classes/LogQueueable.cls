@@ -7,10 +7,6 @@ public without sharing class LogQueueable implements Queueable {
     }
 
     public void execute(QueueableContext context) {
-        try {
-            insert logs;
-        } catch (Exception e) {
-            System.debug(LoggingLevel.ERROR, 'Error inserting logs: ' + e.getMessage());
-        }
+        insert logs;
     }
 }

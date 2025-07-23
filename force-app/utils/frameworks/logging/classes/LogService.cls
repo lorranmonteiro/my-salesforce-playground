@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
-public without sharing class LogHandler {
+public without sharing class LogService {
 
     public static void logIntegrationCallout(HttpRequest request, HttpResponse response) {
         Log__c log = new Log__c();
@@ -10,7 +10,7 @@ public without sharing class LogHandler {
         log.ResponseBody__c = response?.getBody();
         log.HttpStatusCode__c = response?.getStatusCode().toString();
 
-        insert log;
+        LogCollector.collect(log);
     }
 
     public static void logIntegrationAPI() {
@@ -24,7 +24,7 @@ public without sharing class LogHandler {
         log.RequestBody__c = RestContext.request?.requestBody?.toString();
         log.ResponseBody__c = RestContext.response?.responseBody?.toString();
 
-        insert log;
+        LogCollector.collect(log);
     }
 
     public static void logException(Exception e) {
@@ -43,6 +43,6 @@ public without sharing class LogHandler {
         log.ExceptionMessage__c = e.getMessage();
         log.ExceptionCodeLine__c = e.getLineNumber();
 
-        insert log;
+        LogCollector.collect(log);
     }
 }

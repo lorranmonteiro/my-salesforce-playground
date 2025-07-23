@@ -1,5 +1,5 @@
 @isTest
-private class LogHandlerTest {
+private class LogServiceTest {
 
     @IsTest
     static void testLogIntegrationCallout() {
@@ -13,7 +13,8 @@ private class LogHandlerTest {
         response.setStatusCode(200);
 
         Test.startTest();
-            LogHandler.logIntegrationCallout(request, response);
+            LogService.logIntegrationCallout(request, response);
+            LogCollector.flush();
         Test.stopTest();
 
         Log__c log = [SELECT Id, Type__c, Endpoint__c, HttpMethod__c, RequestBody__c, ResponseBody__c, HttpStatusCode__c FROM Log__c LIMIT 1];
@@ -40,7 +41,8 @@ private class LogHandlerTest {
         RestContext.response = response;
 
         Test.startTest();
-            LogHandler.logIntegrationAPI();
+            LogService.logIntegrationAPI();
+            LogCollector.flush();
         Test.stopTest();
 
         Log__c log = [SELECT Id, Type__c, Endpoint__c, HttpMethod__c, RequestBody__c, ResponseBody__c, HttpStatusCode__c FROM Log__c LIMIT 1];
@@ -60,14 +62,15 @@ private class LogHandlerTest {
                 String s = null;
                 s.toUpperCase();
             } catch (Exception e) {
-                LogHandler.logException(e);
+                LogService.logException(e);
+                LogCollector.flush();
             }
         Test.stopTest();
 
         Log__c log = [SELECT Id, Type__c, ClassName__c, MethodName__c, ExceptionType__c, ExceptionMessage__c, ExceptionCodeLine__c FROM Log__c LIMIT 1];
 
         Assert.areEqual('Exception', log.Type__c, 'Log type should be Exception');
-        Assert.areEqual('LogHandlerTest', log.ClassName__c, 'Class name should be LogHandlerTest');
+        Assert.areEqual('LogServiceTest', log.ClassName__c, 'Class name should be LogServiceTest');
         Assert.areEqual('testLogException', log.MethodName__c, 'Method name should be testLogException');
         Assert.areEqual('System.NullPointerException', log.ExceptionType__c, 'Exception type should be System.NullPointerException');
         Assert.areEqual('Attempt to de-reference a null object', log.ExceptionMessage__c, 'Exception message should be Attempt to de-reference a null object');
