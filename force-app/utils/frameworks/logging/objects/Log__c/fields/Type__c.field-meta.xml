@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Exception</fullName>
+                <default>false</default>
+                <label>Exception</label>
+            </value>
+            <value>
+                <fullName>Integration API</fullName>
+                <default>false</default>
+                <label>Integration API</label>
+            </value>
+            <value>
+                <fullName>Integration Callout</fullName>
+                <default>false</default>
+                <label>Integration Callout</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
