@@ -28,11 +28,10 @@ global without sharing class PrepareMySandbox implements SandboxPostCopy {
             metadatas.add(credential);
         }
 
-        if (metadatas.isEmpty() || Test.isRunningTest()) { return; }
-        
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
         service.SessionHeader.sessionId = UserInfo.getSessionId();
-        service.updateMetadata(metadatas);
+
+        if (!metadatas.isEmpty() && !Test.isRunningTest()) { service.updateMetadata(metadatas); }
     }
 }
