@@ -34,6 +34,8 @@ public without sharing virtual class TriggerHandler {
             when AFTER_DELETE { this.afterDelete(); }
             when AFTER_UNDELETE { this.afterUndelete(); }
         }
+
+        LogCollector.flush();
     }
 
     public void setMaxLoopCount(Integer max) {

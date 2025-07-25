@@ -19,7 +19,10 @@ public virtual with sharing class OpenAIService {
         request.setEndpoint(OPENAI_API + responseEndpoint.Endpoint__c);
         request.setBody(JSON.serialize(requestBody));
 
-        return new Http().send(request);
+        HttpResponse response = new Http().send(request);
+        LogService.logIntegrationCallout(request, response);
+
+        return response;
     }
 
     public class OpenAIServiceMissingParametersException extends Exception {}

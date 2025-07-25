@@ -19,7 +19,10 @@ public virtual with sharing class GitlabService {
         request.setHeader('Accept', projectDetailEndpoint.Accept__c);
         request.setEndpoint(GITLAB_API + projectDetailEndpoint.Endpoint__c.replace('{id}', projectId));
 
-        return new Http().send(request);
+        HttpResponse response = new Http().send(request);
+        LogService.logIntegrationCallout(request, response);
+
+        return response;
     }
 
     public virtual HttpResponse postNoteIntoMergeRequest(GitlabMergeRequestNote noteRequest) {
@@ -42,7 +45,10 @@ public virtual with sharing class GitlabService {
         request.setHeader('Accept', postNoteOnMergeRequestEndpoint.Accept__c);
         request.setEndpoint(endpoint);
 
-        return new Http().send(request);
+        HttpResponse response = new Http().send(request);
+        LogService.logIntegrationCallout(request, response);
+
+        return response;
     }
 
     public class GitlabServiceMissingParametersException extends Exception {}
