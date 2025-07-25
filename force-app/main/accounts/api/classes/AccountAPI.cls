@@ -18,8 +18,9 @@ global with sharing class AccountAPI {
             AccountAPIHelper.returnSuccess(HTTP_STATUS.OK, JSON.serialize(account));
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
-            return;
         }
+
+        LogCollector.flush();
     }
 
     @HttpPost
@@ -48,6 +49,8 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
+
+        LogCollector.flush();
     }
 
     @HttpPatch
@@ -79,6 +82,8 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
+
+        LogCollector.flush();
     }
 
     @HttpDelete
@@ -101,6 +106,8 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
+
+        LogCollector.flush();
     }
 
     private static void insertAccountAndContact(AccountWithContact accountWithContact) {
