@@ -27,9 +27,11 @@ public with sharing class GitLabProjectInfo {
             parsedResponse = GitLabProject.parse(response.getBody());
             Cache.Org.put(GITLAB_PROJECT_CACHE_KEY, parsedResponse);
         } catch (Exception e) {
+            LogService.logException(e);
             throwAuraException(e.getMessage());
         }
 
+        LogCollector.flush();
         return parsedResponse;
     }
 

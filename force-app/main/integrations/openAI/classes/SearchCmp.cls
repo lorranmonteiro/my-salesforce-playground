@@ -11,6 +11,8 @@ public with sharing class SearchCmp {
         } catch (Exception e) {
             AuraHandledException auraEx = new AuraHandledException(e.getMessage());
             auraEx.setMessage(e.getMessage());
+
+            LogService.logException(e);
             throw auraEx;
         }
 
@@ -18,6 +20,7 @@ public with sharing class SearchCmp {
             handleError(response);
         }
 
+        LogCollector.flush();
         return extractOutputText(response.getBody());
     }
 
