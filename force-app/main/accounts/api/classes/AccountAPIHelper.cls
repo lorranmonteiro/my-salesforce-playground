@@ -67,12 +67,16 @@ public with sharing class AccountAPIHelper {
         if (statusCode != HTTP_STATUS.NO_CONTENT) {
             RestContext.response.addHeader('Content-Type', 'application/json');
         }
+
+        LogService.logIntegrationAPI();
     }
 
     public static void returnError(Integer statusCode, String message) {
         RestContext.response.statusCode = statusCode;
         RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new ResponseWrapper(false, message)));
         RestContext.response.addHeader('Content-Type', 'application/json');
+
+        LogService.logIntegrationAPI();
     }
 
     public class ResponseWrapper {
