@@ -5,8 +5,8 @@ public without sharing class LogService {
         log.Type__c = 'Integration Callout';
         log.Endpoint__c = request?.getEndpoint();
         log.HttpMethod__c = request?.getMethod();
-        log.RequestBody__c = request?.getBody();
-        log.ResponseBody__c = response?.getBody();
+        log.RequestBody__c = StringUtils.truncate(request?.getBody(), 10000);
+        log.ResponseBody__c = StringUtils.truncate(response?.getBody(), 10000);
         log.HttpStatusCode__c = response?.getStatusCode()?.toString();
 
         LogCollector.collect(log);
@@ -20,8 +20,8 @@ public without sharing class LogService {
         log.Endpoint__c = RestContext.request?.requestURI;
         log.HttpMethod__c = RestContext.request?.httpMethod;
         log.HttpStatusCode__c = RestContext.response?.statusCode?.toString();
-        log.RequestBody__c = RestContext.request?.requestBody?.toString();
-        log.ResponseBody__c = RestContext.response?.responseBody?.toString();
+        log.RequestBody__c = StringUtils.truncate(RestContext.request?.requestBody?.toString(), 10000);
+        log.ResponseBody__c = StringUtils.truncate(RestContext.response?.responseBody?.toString(), 10000);
 
         LogCollector.collect(log);
     }
