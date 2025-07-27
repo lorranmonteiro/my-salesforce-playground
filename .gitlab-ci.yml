@@ -1,11 +1,17 @@
 default:
-  image: salesforce/cli:latest-slim
-  timeout: 15m
+  image: $CI_PIPELINE_IMAGE
+  timeout: 10m
   tags:
-    - gitlab-org-docker
+    - $CI_PIPELINE_TAG
 
-before_script:
-  - export SF_USE_GENERIC_UNIX_KEYCHAIN=true
+variables:
+  SF_USE_GENERIC_UNIX_KEYCHAIN: true
+  SF_IMPROVED_CODE_COVERAGE: true
+  SF_HIDE_RELEASE_NOTES: true
+  SF_DISABLE_TELEMETRY: true
+  SF_CONTAINER_MODE: true
+  SF_DISABLE_AUTOUPDATE: true
+  SF_LOG_LEVEL: warn
 
 stages:
   - code analysis
@@ -18,7 +24,11 @@ code-analysis:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
       when: always
   script:
-    - sf plugins install code-analyzer@latest
+    # Install the code-analyzer plugin
+    - |
+      if [ "$CI_PIPELINE_TAG" = "gitlab-org-docker" ]; then
+        sf plugins install code-analyzer@latest
+      fi
 
     - echo "🔍 Starting code analyses..."
     - sf code-analyzer run
@@ -68,7 +78,10 @@ deploy:
     expire_in: 15 days
   script:
     # Install the git-delta plugin for source delta management
-    - echo 'y' | sf plugins install sfdx-git-delta
+    - |
+      if [ "$CI_PIPELINE_TAG" = "gitlab-org-docker" ]; then
+        echo 'y' | sf plugins install sfdx-git-delta
+      fi
 
     # Create packages for deployment
     - sf sgd source delta --to HEAD --from HEAD~1 --output-dir .
