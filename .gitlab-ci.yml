@@ -26,7 +26,7 @@ code-analysis:
   script:
     # Install the code-analyzer plugin
     - |
-      if [ "$CI_PIPELINE_TAG" = "gitlab-org-docker" ]; then
+      if ! sf plugins | grep -q code-analyzer; then
         sf plugins install code-analyzer@latest
       fi
 
@@ -42,11 +42,9 @@ code-analysis:
       --config-file code-analyzer.yml
       --view detail
 
-test:
+run-tests:
+  when: manual
   stage: test
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
-      when: always
   coverage: '/Org Wide Coverage\s+(\d+)%/'
   script:
     # Download secure files for authentication
@@ -61,11 +59,10 @@ test:
       --code-coverage
       --synchronous
 
-deploy:
-  stage: deploy
-  environment: Playground
+validate-deploy:
+  stage: test
   rules:
-    - if: $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
       when: always
   coverage: '/Org Wide Coverage\s+(\d+(?:\.\d+)?)%/'
   artifacts:
@@ -76,11 +73,12 @@ deploy:
     paths:
       - package/package.xml
       - destructiveChanges/destructiveChanges.xml
+      - deploy-id.txt
     expire_in: 15 days
   script:
     # Install the git-delta plugin for source delta management
     - |
-      if [ "$CI_PIPELINE_TAG" = "gitlab-org-docker" ]; then
+      if ! sf plugins | grep -q sfdx-git-delta; then
         echo 'y' | sf plugins install sfdx-git-delta
       fi
 
@@ -108,9 +106,32 @@ deploy:
       --ignore-warnings
       --coverage-formatters cobertura
       --results-dir .
+      --dry-run | tee deploy-output.log
 
-     # Extract and print coverage for GitLab
+    # Save the deploy ID for later deploy
+    - DEPLOY_ID=$(grep -oP 'Deploy ID:\s+\K(\w+)' deploy-output.log | sort -u | head -n 1)
+    - echo $DEPLOY_ID > deploy-id.txt
+
+    # Extract and print coverage for GitLab
     - |
       COVERAGE=$(grep -oP 'line-rate="\K[0-9\.]+' coverage/cobertura.xml | head -n 1)
       COVERAGE_PERCENT=$(awk "BEGIN { printf \"%.2f\", $COVERAGE * 100 }")
       echo "Org Wide Coverage ${COVERAGE_PERCENT}%"
+
+deploy:
+  when: manual
+  allow_failure: false
+  needs: [validate-deploy]
+  stage: deploy
+  environment: Playground
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
+  script:
+    # Download secure files for authentication
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+
+    - echo "🔐 Authenticating with Salesforce..."
+    - ./scripts/authenticateWithSalesforce.sh
+
+    - echo "📦 Running quick deploy..."
+    - sf project deploy quick --job-id $(cat deploy-id.txt)
