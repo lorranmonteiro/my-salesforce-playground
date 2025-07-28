@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.FieldNamingConventions')
-public with sharing class Constants { 
+public with sharing class Constants {
     public static final AccountConstants ACCOUNT = new AccountConstants();
     public static final ProfileConstants PROFILE = new ProfileConstants();
     public static final HttpStatus HTTP_STATUS = new HttpStatus();
