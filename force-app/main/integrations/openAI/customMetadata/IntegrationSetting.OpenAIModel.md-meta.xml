@@ -4,6 +4,6 @@
     <protected>false</protected>
     <values>
         <field>Id__c</field>
-        <value xsi:type="xsd:string">gpt-4.1-nano-2025-04-14</value>
+        <value xsi:type="xsd:string">gpt-5-nano-2025-08-07</value>
     </values>
 </CustomMetadata>
