@@ -23,36 +23,6 @@ global with sharing class AccountAPI {
         LogCollector.flush();
     }
 
-    @HttpPost
-    global static void createAccountWithContact() {
-        try {
-            String requestBody = RestContext.request.requestBody.toString();
-
-            if (!AccountAPIHelper.canExecuteAction()) { return; }
-            if (!AccountAPIHelper.isRequestBodyValid(requestBody)) { return; }
-
-            AccountWithContact accountWithContact = (AccountWithContact) JSON.deserialize(
-                requestBody,
-                AccountWithContact.class
-            );
-
-            if (accountWithContact == null || accountWithContact.account == null || accountWithContact.contact == null) {
-                AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, 'Invalid payload. Must include Account and Contact.');
-                return;
-            }
-
-            insertAccountAndContact(accountWithContact);
-
-            AccountAPIHelper.returnSuccess(HTTP_STATUS.CREATED, JSON.serialize(accountWithContact));
-        } catch (AccountWithContactDMLException e) {
-            AccountAPIHelper.returnError(HTTP_STATUS.BAD_REQUEST, e.getMessage());
-        } catch (Exception e) {
-            AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
-        }
-
-        LogCollector.flush();
-    }
-
     @HttpPatch
     global static void updateAccount() {
         try {
@@ -109,31 +79,4 @@ global with sharing class AccountAPI {
 
         LogCollector.flush();
     }
-
-    private static void insertAccountAndContact(AccountWithContact accountWithContact) {
-        try {
-            insert accountWithContact.account;
-        } catch (DmlException e) {
-            throw new AccountWithContactDMLException('Failed to create Account: ' + e.getMessage());
-        }
-
-        try {
-            accountWithContact.contact.AccountId = accountWithContact.account.Id;
-            insert accountWithContact.contact;
-        } catch (DmlException e) {
-            throw new AccountWithContactDMLException('Failed to create Contact: ' + e.getMessage());
-        }
-    }
-
-    public class AccountWithContact {
-        public Account account { get; set; }
-        public Contact contact { get; set; }
-
-        public AccountWithContact(Account account, Contact contact) {
-            this.account = account;
-            this.contact = contact;
-        }
-    }
-
-    public class AccountWithContactDMLException extends Exception {}
 }

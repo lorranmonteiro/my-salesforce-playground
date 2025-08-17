@@ -81,6 +81,8 @@ rules:
       severity: "Low"
     EmptyStatementBlock:
       severity: "Low"
+    UnusedLocalVariable:
+      severity: "Low"
     AvoidLogicInTrigger:
       severity: "High"
 

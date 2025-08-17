@@ -1,5 +1,13 @@
 public with sharing class AccountSelector {
 
+    public static List<Account> getAllAccounts() {
+        return [
+            SELECT Id, Name, Type, CreatedDate, Site, AccountNumber
+            FROM Account 
+            WITH SECURITY_ENFORCED
+        ];
+    }
+
     public static List<Account> getAccountsByAccountNumber(String accountNumber) {
         if (accountNumber == null) { return new List<Account>(); }
 
