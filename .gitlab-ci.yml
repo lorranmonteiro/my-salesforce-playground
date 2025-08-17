@@ -15,27 +15,20 @@ variables:
 
 stages:
   - code analysis
-  - test
+  - validation
   - deploy
-
-before_script:
-  # Install the git-delta plugin for source delta management
-  - |
-    if ! sf plugins | grep -q sfdx-git-delta; then
-      echo 'y' | sf plugins install sfdx-git-delta@latest
-    fi
-  
-  # Install the code-analyzer plugin
-  - |
-    if ! sf plugins | grep -q code-analyzer; then
-      sf plugins install code-analyzer@latest
-    fi
 
 code-analysis:
   stage: code analysis
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
+    # Install code-analyzer plugin
+    - |
+      if ! sf plugins | grep -q code-analyzer; then
+        sf plugins install code-analyzer@latest
+      fi
+
     - echo "🔍 Starting code analyses..."
     - sf code-analyzer run
       --workspace ./force-app/main
@@ -49,12 +42,18 @@ code-analysis:
       --view detail
 
 validate-deploy:
-  stage: test
+  stage: validation
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   variables:
     GIT_DEPTH: 0
   script:
+    # Install git-delta plugin for source delta management
+    - |
+      if ! sf plugins | grep -q sfdx-git-delta; then
+        echo y | sf plugins install sfdx-git-delta@latest
+      fi
+
     # Create packages for validation
     - sf sgd source delta --to HEAD --from origin/master --output-dir .
 
@@ -93,13 +92,19 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == 'master'
   script:
+    # Install the git-delta plugin for source delta management
+    - |
+      if ! sf plugins | grep -q sfdx-git-delta; then
+        echo y | sf plugins install sfdx-git-delta@latest
+      fi
+
     # Create packages for deployment
     - sf sgd source delta --to HEAD --from HEAD~1 --output-dir .
 
     - |
       # Check if there are components to deploy
       if ! grep -q "<types>" package/package.xml; then
-        echo "No components to deploy. Skipping validation step."
+        echo "No components to deploy. Skipping deploy step."
         exit 0
       fi
 

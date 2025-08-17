@@ -81,6 +81,10 @@ rules:
       severity: "Low"
     EmptyStatementBlock:
       severity: "Low"
+    UnusedLocalVariable:
+      severity: "Low"
+    AvoidBooleanMethodParameters:
+      severity: "Low"
     AvoidLogicInTrigger:
       severity: "High"
 

@@ -1,5 +1,5 @@
 @isTest
-public class AccountSelectorTest {
+private class AccountSelectorTest {
 
     @IsTest
     static void getAccountsByAccountNumber() {
@@ -21,6 +21,17 @@ public class AccountSelectorTest {
         Test.stopTest();
 
         Assert.isTrue(accounts.isEmpty(), 'No accounts should be returned for non-existing account number');
+    }
+
+    @IsTest
+    static void getAllAccounts() {
+        TestAccountFactory.createAccount(true);
+
+        Test.startTest();
+            List<Account> accounts = AccountSelector.getAllAccounts();
+        Test.stopTest();
+
+        Assert.isTrue(accounts.size() == 1, 'Expected exactly one account');
     }
 
     @IsTest
