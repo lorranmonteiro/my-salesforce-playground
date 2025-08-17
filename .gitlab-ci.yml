@@ -45,8 +45,6 @@ validate-deploy:
   stage: validation
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
-  variables:
-    GIT_DEPTH: 0
   script:
     # Install git-delta plugin for source delta management
     - |
@@ -54,8 +52,11 @@ validate-deploy:
         echo y | sf plugins install sfdx-git-delta@latest
       fi
 
+    # Fetch the latest changes from master
+    - git fetch origin master
+
     # Create packages for validation
-    - sf sgd source delta --to HEAD --from origin/master --output-dir .
+    - sf sgd source delta --to HEAD --from master --output-dir .
 
     - |
       # Check if there are components to validate
