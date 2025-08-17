@@ -56,7 +56,7 @@ validate-deploy:
     - git fetch origin master
 
     # Create packages for validation
-    - sf sgd source delta --to HEAD --from master --output-dir .
+    - sf sgd source delta --to HEAD --from origin/master --output-dir .
 
     - |
       # Check if there are components to validate
