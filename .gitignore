@@ -56,3 +56,4 @@ $RECYCLE.BIN/
 # Salesforce DX Delta
 package/
 destructiveChanges/
+/manifest/
