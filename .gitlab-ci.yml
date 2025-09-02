@@ -18,7 +18,7 @@ stages:
   - validation
   - deploy
 
-code-analysis:
+code analysis:
   stage: code analysis
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
@@ -41,7 +41,7 @@ code-analysis:
       --config-file code-analyzer.yml
       --view detail
 
-validate-deploy:
+validate deploy:
   stage: validation
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
