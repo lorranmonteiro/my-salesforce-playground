@@ -4,7 +4,11 @@
 
 # Salesforce cache
 .sf/
-.sfdx/
+.sfdx/indexes/
+.sfdx/orgs/
+.sfdx/tools/
+.sfdx/typings/
+.sfdx/sfdx-config.json
 .vscode/
 .localdevserver/
 deploy-options.json
