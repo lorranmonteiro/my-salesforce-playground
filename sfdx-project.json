@@ -5,5 +5,5 @@
   "name": "master-playground",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "64.0"
+  "sourceApiVersion": "65.0"
 }
