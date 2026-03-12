@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "Salesforce DX": {
+      "command": "npx",
+      "args": [
+        "-y", "@salesforce/mcp@latest", 
+        "--orgs", "DEFAULT_TARGET_ORG", 
+        "--toolsets", "core, orgs, data, users, metadata, testing, code-analysis, lwc-experts, scale-products",
+        "--no-telemetry"
+      ]
+    },
+    "Salesforce Docs": {
+      "command": "node",
+      "args": ["C:\\Users\\lorra\\OneDrive\\Documentos\\salesforce-docs-mcp\\dist\\index.js"]
+    }
+  }
+}

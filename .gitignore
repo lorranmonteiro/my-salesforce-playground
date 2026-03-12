@@ -57,3 +57,6 @@ $RECYCLE.BIN/
 package/
 destructiveChanges/
 manifest/
+
+# Claude Code
+.claude/

@@ -7,6 +7,8 @@
     <testClassName>AccountServiceTest</testClassName>
     <testClassName>AccountTypeUpdateBatchSchedulerTest</testClassName>
     <testClassName>AccountTypeUpdateBatchTest</testClassName>
+    <testClassName>AccountCollectionAPITest</testClassName>
+    <testClassName>APIErrorResponseTest</testClassName>
     <testClassName>ConstantsTest</testClassName>
     <testClassName>GitLabProjectInfoTest</testClassName>
     <testClassName>GitLabProjectTest</testClassName>
@@ -15,6 +17,5 @@
     <testClassName>OpenAIResponseTest</testClassName>
     <testClassName>OpenAIServiceTest</testClassName>
     <testClassName>SearchCmpTest</testClassName>
-    <testClassName>TestLightningConnectQuickstart</testClassName>
     <testClassName>TriggerHandler_Test</testClassName>
 </ApexTestSuite>

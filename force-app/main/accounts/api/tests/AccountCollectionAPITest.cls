@@ -70,11 +70,9 @@ private class AccountCollectionAPITest {
             AccountCollectionAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about empty request body');
     }
 
@@ -93,11 +91,9 @@ private class AccountCollectionAPITest {
             AccountCollectionAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about empty request body');
     }
 
@@ -120,11 +116,9 @@ private class AccountCollectionAPITest {
             AccountCollectionAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about invalid payload');
     }
 
@@ -148,11 +142,9 @@ private class AccountCollectionAPITest {
             AccountCollectionAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about Contact Missing LastName');
     }
 
@@ -176,11 +168,9 @@ private class AccountCollectionAPITest {
             AccountCollectionAPI.createAccountWithContact();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about Contact Missing LastName');
     }
 }

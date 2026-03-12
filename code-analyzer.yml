@@ -59,7 +59,9 @@ rules:
   # ======================================================================
   # FLOW ENGINE RULE OVERRIDES
   # ======================================================================
-  flow: {} # Remove this empty object {} when you are ready to specify your first rule override
+  flow:
+    TriggerEntryCriteria:
+      severity: "Low"
 
   # ======================================================================
   # PMD ENGINE RULE OVERRIDES
@@ -96,7 +98,7 @@ rules:
   # ======================================================================
   # SFGE ENGINE RULE OVERRIDES
   # ======================================================================
-  sfge: {} # Remove this empty object {} when you are ready to specify your first rule override
+  sfge: {} # Remove this empty object {} when you are ready to specify your first rule override:
 
 # Engine specific custom configuration settings of the format engines.{engine_name}.{property_name} = {value} where:
 #   {engine_name} is the name of the engine containing the setting that you want to override.
