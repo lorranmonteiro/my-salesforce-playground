@@ -39,11 +39,9 @@ private class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about missing ID');
     }
 
@@ -61,11 +59,9 @@ private class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(404, res.statusCode, 'Expected status code 404');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about account not found');
     }
 
@@ -83,11 +79,9 @@ private class AccountAPITest {
             AccountAPI.getAccountById();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
     }
 
@@ -142,11 +136,9 @@ private class AccountAPITest {
             AccountAPI.updateAccount();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.BAD_REQUEST, res.statusCode, 'Expected status code 400');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about missing Name field');
     }
 
@@ -167,11 +159,9 @@ private class AccountAPITest {
             AccountAPI.updateAccount();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
     }
 
@@ -211,11 +201,9 @@ private class AccountAPITest {
             AccountAPI.deleteAccount();
         Test.stopTest();
 
-        AccountAPIHelper.ResponseWrapper responseBody =
-            (AccountAPIHelper.ResponseWrapper) JSON.deserialize(res.responseBody.toString(), AccountAPIHelper.ResponseWrapper.class);
+        APIErrorResponse responseBody = (APIErrorResponse) JSON.deserialize(res.responseBody.toString(), APIErrorResponse.class);
 
         Assert.areEqual(HTTP_STATUS.INTERNAL_SERVER_ERROR, res.statusCode, 'Expected status code 500');
-        Assert.isFalse(responseBody.success, 'Expected success to be false');
         Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
     }
 }

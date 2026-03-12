@@ -73,19 +73,9 @@ public with sharing class AccountAPIHelper {
 
     public static void returnError(Integer statusCode, String message) {
         RestContext.response.statusCode = statusCode;
-        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new ResponseWrapper(false, message)));
+        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new APIErrorResponse(message)));
         RestContext.response.addHeader('Content-Type', 'application/json');
 
         LogService.logIntegrationAPI();
-    }
-
-    public class ResponseWrapper {
-        public Boolean success;
-        public String message;
-
-        public ResponseWrapper(Boolean success, String message) {
-            this.success = success;
-            this.message = message;
-        }
     }
 }
