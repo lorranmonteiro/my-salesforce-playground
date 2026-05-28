@@ -8,10 +8,12 @@
 .sfdx/orgs/
 .sfdx/tools/
 .sfdx/typings/
+.sfdx/mcp-tools/
 .sfdx/sfdx-config.json
 .vscode/
 .localdevserver/
 deploy-options.json
+core.code-workspace
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
