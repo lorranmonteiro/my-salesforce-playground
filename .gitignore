@@ -10,6 +10,7 @@
 .sfdx/typings/
 .sfdx/mcp-tools/
 .sfdx/sfdx-config.json
+.sfdx/fileResponses/
 .vscode/
 .localdevserver/
 deploy-options.json

@@ -18,4 +18,6 @@
     <testClassName>OpenAIServiceTest</testClassName>
     <testClassName>SearchCmpTest</testClassName>
     <testClassName>TriggerHandler_Test</testClassName>
+    <testClassName>EmailNotificationServiceTest</testClassName>
+    <testClassName>UserSelectorTest</testClassName>
 </ApexTestSuite>

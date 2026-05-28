@@ -1,13 +1,13 @@
 public with sharing class AccountTypeUpdateBatch implements Database.Batchable<SObject>, Database.Stateful {
 
-    private static final String EMAIL_SUBJECT = 'Account Type Update Batch Results';
-    private static List<String> errors = new List<String>();
-    private static Integer updatedAccountsCount = 0;
+    private List<String> errors = new List<String>();
+    private Integer updatedAccountsCount = 0;
 
     public Database.QueryLocator start(Database.BatchableContext context) {
-        return Database.getQueryLocator([SELECT Id
-                                         FROM Account
-                                         WHERE Type IN (:Constants.ACCOUNT.TYPE.PROSPECT, :Constants.ACCOUNT.TYPE.OTHER)]);
+        return AccountSelector.getAccountsByTypesQueryLocator(new Set<String> {
+            Constants.ACCOUNT.TYPE.PROSPECT,
+            Constants.ACCOUNT.TYPE.OTHER
+        });
     }
 
     public void execute(Database.BatchableContext context, List<Account> scope) {
@@ -34,29 +34,6 @@ public with sharing class AccountTypeUpdateBatch implements Database.Batchable<S
     }
 
     public void finish(Database.BatchableContext context) {
-        List<String> emails = new List<String>();
-
-        for (User user : [SELECT Email
-                          FROM User
-                          WHERE
-                            Profile.Name = :Constants.PROFILE.SYSTEM_ADMINISTRATOR AND
-                            IsActive = true]) {
-
-            emails.add(user.Email);
-        }
-
-        Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-        email.setToAddresses(emails);
-        email.setSubject(EMAIL_SUBJECT);
-        email.setPlainTextBody(getEmailBody(context.getJobId()));
-
-        Messaging.sendEmail(new List<Messaging.SingleEmailMessage> { email });
-    }
-
-    private static String getEmailBody(String jobId) {
-        return '- JobId: ' + jobId + '\n' +
-               '- Accounts updated: ' + updatedAccountsCount + '\n' +
-               '- Total Errors: ' + errors.size() + '\n' +
-               '- Errors: ' + (errors.isEmpty() ? 'None' : String.join(errors, '\n'));
+        EmailNotificationService.sendAccountTypeUpdateBatchResults(context.getJobId(), updatedAccountsCount, errors);
     }
 }

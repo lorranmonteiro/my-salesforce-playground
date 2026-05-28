@@ -87,6 +87,8 @@ rules:
       severity: "Low"
     AvoidBooleanMethodParameters:
       severity: "Low"
+    ApexDoc:
+      severity: "Low"
     AvoidLogicInTrigger:
       severity: "High"
 

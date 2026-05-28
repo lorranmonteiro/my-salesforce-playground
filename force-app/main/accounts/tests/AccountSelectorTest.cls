@@ -35,6 +35,52 @@ private class AccountSelectorTest {
     }
 
     @IsTest
+    static void getAccountsByTypes() {
+        Account prospectAccount = TestAccountFactory.createAccount();
+        prospectAccount.Type = Constants.ACCOUNT.TYPE.PROSPECT;
+
+        Account otherAccount = TestAccountFactory.createAccount();
+        otherAccount.Type = Constants.ACCOUNT.TYPE.OTHER;
+
+        Account customerAccount = TestAccountFactory.createAccount();
+        customerAccount.Type = Constants.ACCOUNT.TYPE.CUSTOMER_DIRECT;
+
+        insert new List<Account> { prospectAccount, otherAccount, customerAccount };
+
+        Test.startTest();
+            List<Account> accounts = AccountSelector.getAccountsByTypes(new Set<String> {
+                Constants.ACCOUNT.TYPE.PROSPECT,
+                Constants.ACCOUNT.TYPE.OTHER
+            });
+        Test.stopTest();
+
+        Assert.areEqual(2, accounts.size(), 'Should return accounts matching the requested types');
+    }
+
+    @IsTest
+    static void getAccountsByTypesWithEmptyTypes() {
+        TestAccountFactory.createAccount(true);
+
+        Test.startTest();
+            List<Account> accounts = AccountSelector.getAccountsByTypes(new Set<String>());
+        Test.stopTest();
+
+        Assert.isTrue(accounts.isEmpty(), 'No accounts should be returned when no types are provided');
+    }
+
+    @IsTest
+    static void getAccountsByTypesQueryLocator() {
+        Test.startTest();
+            Database.QueryLocator queryLocator = AccountSelector.getAccountsByTypesQueryLocator(new Set<String> {
+                Constants.ACCOUNT.TYPE.PROSPECT,
+                Constants.ACCOUNT.TYPE.OTHER
+            });
+        Test.stopTest();
+
+        Assert.isNotNull(queryLocator, 'Query locator should be returned for batch processing');
+    }
+
+    @IsTest
     static void getAccountById() {
         Account account = TestAccountFactory.createAccount(true);
 
