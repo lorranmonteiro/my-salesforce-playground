@@ -7,7 +7,7 @@
     "ActionColor" : "rgb(34, 102, 20)",
     "BorderColor" : "#efefef",
     "CardBackgroundColor" : "rgba(255, 255, 255, 0)",
-    "CompanyLogo" : "/file-asset/Gemini_Generated_Image_5vt8bu5vt8bu1?v=1&height=300&width=300",
+    "CompanyLogo" : "/file-asset/Gemini_Generated_Image_5vt8bu5vt8bu1?v=1&amp;height=300&amp;width=300",
     "DetailTextColor" : "rgba(0, 0, 0, 0.6)",
     "ErrorFontColor" : "#ff9e9e",
     "HeaderFonts" : "Montserrat",

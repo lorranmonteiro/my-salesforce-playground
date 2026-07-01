@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleset
+	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	name="Custom ruleset for vscode-apex-pmd"
+	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+   <description>Custom ruleset for vscode-apex-pmd</description>
+	<exclude-pattern>.*/.sfdx/.*</exclude-pattern>
+	<exclude-pattern>.*/.sf/.*</exclude-pattern>
+
+   <!-- DESIGN COMPLEXITY -->
+	<rule ref="category/apex/design.xml/ExcessiveParameterList">
+		<priority>3</priority>
+		<properties>
+			<property name="minimum" value="4" />
+		</properties>
+	</rule>
+
+	<rule ref="category/apex/design.xml/ExcessivePublicCount">
+		<priority>3</priority>
+		<properties>
+			<property name="minimum" value="25" />
+		</properties>
+	</rule>
+	<rule ref="category/apex/design.xml/TooManyFields">
+		<priority>3</priority>
+		<properties>
+			<property name="maxfields" value="20" />
+		</properties>
+	</rule>
+	<rule ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts">
+		<priority>3</priority>
+		<properties>
+			<property name="problemDepth" value="4" />
+		</properties>
+	</rule>
+	<rule ref="category/apex/design.xml/CognitiveComplexity">
+		<priority>3</priority>
+		<properties>
+			<property name="classReportLevel" value="50" />
+			<property name="methodReportLevel" value="15" />
+		</properties>
+	</rule>
+
+	<!-- PERFORMANCE -->
+	<rule ref="category/apex/bestpractices.xml/AvoidGlobalModifier">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/AvoidDirectAccessTriggerMap">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/AvoidHardcodingId">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/AvoidNonExistentAnnotations">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/performance.xml/OperationWithLimitsInLoop">
+		<priority>3</priority>
+	</rule>
+   <rule ref="category/apex/performance.xml/OperationWithHighCostInLoop">
+		<priority>3</priority>
+	</rule>
+
+	<!-- NAMING -->
+	<rule ref="category/apex/codestyle.xml/ClassNamingConventions">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/codestyle.xml/MethodNamingConventions">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/MethodWithSameNameAsEnclosingClass">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/codestyle.xml/FieldNamingConventions">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/codestyle.xml/LocalVariableNamingConventions">
+		<priority>2</priority>
+	</rule>
+	<rule ref="category/apex/codestyle.xml/PropertyNamingConventions">
+		<priority>2</priority>
+	</rule>
+   <rule ref="category/apex/codestyle.xml/AnnotationsNamingConventions">
+		<priority>3</priority>
+	</rule>
+
+	<!-- TESTS -->
+	<rule ref="category/apex/bestpractices.xml/ApexAssertionsShouldIncludeMessage">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestMethodShouldHaveIsTestAnnotation">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/bestpractices.xml/ApexUnitTestShouldNotUseSeeAllDataTrue">
+		<priority>3</priority>
+	</rule>
+
+	<!-- SECURITY -->
+	<rule ref="category/apex/security.xml/ApexSharingViolations">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexInsecureEndpoint">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/ApexCSRF">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexOpenRedirect">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexSOQLInjection">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexXSSFromURLParam">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexXSSFromEscapeFalse">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexBadCrypto">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexDangerousMethods">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/security.xml/ApexSuggestUsingNamedCred">
+		<priority>3</priority>
+	</rule>
+
+	<!-- EMPTY -->
+	<rule ref="category/apex/errorprone.xml/EmptyCatchBlock">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/EmptyIfStmt">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/EmptyWhileStmt">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/apex/errorprone.xml/EmptyTryOrFinallyBlock">
+		<priority>3</priority>
+	</rule>
+
+	<!-- STYLE -->
+	<rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
+		<priority>2</priority>
+	</rule>
+
+   <!-- DESIGN -->
+   <rule ref="category/apex/design.xml/NcssCount" >
+      <priority>3</priority>
+      </rule>
+
+
+	<!-- Visualforce -->
+	<rule ref="category/visualforce/security.xml/VfCsrf">
+		<priority>3</priority>
+	</rule>
+	<rule ref="category/visualforce/security.xml/VfUnescapeEl">
+		<priority>3</priority>
+	</rule>
+
+</ruleset>

@@ -1,8 +1,8 @@
-public with sharing class AccountNamePostNoteQueueable implements Queueable, Database.AllowsCallouts {
+public with sharing class AccountNamePostNoteQueueable implements Queueable, Finalizer, Database.AllowsCallouts {
 
     private Set<Id> accountIds;
-    private static Set<Id> firstAccountIdsChunk = new Set<Id>();
-    private static Set<Id> secondAccountIdsChunk = new Set<Id>();
+    private Set<Id> firstAccountIdsChunk = new Set<Id>();
+    private Set<Id> secondAccountIdsChunk = new Set<Id>();
 
     @TestVisible
     private static Integer chunkSize = 100; // Salesforce only allows up to 100 callouts per transaction
@@ -11,8 +11,10 @@ public with sharing class AccountNamePostNoteQueueable implements Queueable, Dat
         this.accountIds = accountIds;
     }
 
-    public void execute(QueueableContext context) {
+    public void execute(QueueableContext queueableContext) {
         if (accountIds == null || accountIds.isEmpty()) { return; }
+
+        System.attachFinalizer(this);
 
         // Separate the first 100 and the rest for processing later
         setAccountChunks(new List<Id>(accountIds));
@@ -28,15 +30,24 @@ public with sharing class AccountNamePostNoteQueueable implements Queueable, Dat
             GitlabService gitlabService = GitlabServiceFactory.getService();
             gitlabService.postNoteIntoMergeRequest(noteRequest);
         }
+    }
 
-        // Enqueue next chunk if there are more to process
-        if (!secondAccountIdsChunk.isEmpty()) {
-            if (!Test.isRunningTest()) { System.enqueueJob(new AccountNamePostNoteQueueable(secondAccountIdsChunk)); }
+    public void execute(FinalizerContext finalizerContext) {
+        // Continue processing only when the parent queueable was successful.
+        if (
+            String.valueOf(finalizerContext.getResult()) == 'SUCCESS' &&
+            !secondAccountIdsChunk.isEmpty() &&
+            !Test.isRunningTest()) {
+
+            System.enqueueJob(new AccountNamePostNoteQueueable(new Set<Id>(secondAccountIdsChunk)));
         }
     }
 
     @TestVisible
     private void setAccountChunks(List<Id> accountIds) {
+        firstAccountIdsChunk.clear();
+        secondAccountIdsChunk.clear();
+
         for (Integer i = 0; i < accountIds.size(); i++) {
             if (i < chunkSize) {
                 firstAccountIdsChunk.add(accountIds[i]);

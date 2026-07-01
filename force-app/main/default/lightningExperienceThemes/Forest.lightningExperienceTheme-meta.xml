@@ -2,6 +2,7 @@
 <LightningExperienceTheme xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultBrandingSet>LEXTHEMINGSunSet</defaultBrandingSet>
     <designSystemVersion>SLDS_v2</designSystemVersion>
+    <isDarkModeEnabled>true</isDarkModeEnabled>
     <masterLabel>Forest</masterLabel>
     <shouldOverrideLoadingImage>false</shouldOverrideLoadingImage>
 </LightningExperienceTheme>
