@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class AccountDetailsTest {
 
     @IsTest

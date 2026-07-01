@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class OpenAIServiceMockSuccess extends OpenAIService {
 
     public override HttpResponse requestResponse(OpenAIRequest requestBody) {

@@ -1,9 +1,9 @@
-@isTest
+@IsTest
 private class AccountCollectionAPITest {
 
     private static final Constants.HttpStatus HTTP_STATUS = Constants.HTTP_STATUS;
 
-    @isTest
+    @IsTest
     static void getAccounts() {
         Account account = TestAccountFactory.createAccount(true);
 
@@ -25,7 +25,7 @@ private class AccountCollectionAPITest {
         Assert.areEqual(account.Id, responseBody[0].Id, 'Expected account ID to match');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithContact() {
         Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
         Contact contact = new Contact(FirstName = 'This is', LastName = 'a Test');
@@ -55,7 +55,7 @@ private class AccountCollectionAPITest {
         Assert.isNotNull(responseBody.contact.Id, 'Expected contact ID to be set');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithContactEmptyRequestBody() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts';
@@ -76,7 +76,7 @@ private class AccountCollectionAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about empty request body');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithContactInvalidRequestBody() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts';
@@ -97,7 +97,7 @@ private class AccountCollectionAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about empty request body');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithContactMissingContactInRequestBody() {
         Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
 
@@ -122,7 +122,7 @@ private class AccountCollectionAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about invalid payload');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithContactMissingFieldInRequestBody() {
         Account account = new Account(Name = 'Test Account', AccountNumber = '12345');
         Contact contact = new Contact(FirstName = 'This is'); // Missing LastName, should fail insertion
@@ -148,7 +148,7 @@ private class AccountCollectionAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about Contact Missing LastName');
     }
 
-    @isTest
+    @IsTest
     static void createAccountWithAccountMissingFieldInRequestBody() {
         Account account = new Account(AccountNumber = '12345'); // Missing Name, should fail insertion
         Contact contact = new Contact(FirstName = 'This is', LastName = 'a Test');

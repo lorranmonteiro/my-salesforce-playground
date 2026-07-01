@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class GitlabServiceMockNotFound implements HttpCalloutMock {
 
     public HTTPResponse respond(HTTPRequest req) {

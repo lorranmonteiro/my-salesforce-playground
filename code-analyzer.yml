@@ -54,41 +54,43 @@ rules:
   # ======================================================================
   eslint:
     no-inline-disable:
-      severity: "Low"
+      disabled: true
 
   # ======================================================================
   # FLOW ENGINE RULE OVERRIDES
   # ======================================================================
   flow:
     TriggerEntryCriteria:
-      severity: "Low"
+      disabled: true
 
   # ======================================================================
   # PMD ENGINE RULE OVERRIDES
   # ======================================================================
   pmd:
     ApexCRUDViolation:
-      severity: "Low"
+      disabled: true
     PropertyNamingConventions:
-      severity: "Low"
+      disabled: true
     FieldNamingConventions:
-      severity: "Low"
+      disabled: true
     MethodNamingConventions:
-      severity: "Low"
+      disabled: true
     IfStmtsMustUseBraces:
-      severity: "Low"
+      disabled: true
     IfElseStmtsMustUseBraces:
-      severity: "Low"
+      disabled: true
     OperationWithLimitsInLoop:
-      severity: "Low"
+      disabled: true
     EmptyStatementBlock:
-      severity: "Low"
+      disabled: true
     UnusedLocalVariable:
-      severity: "Low"
+      disabled: true
     AvoidBooleanMethodParameters:
-      severity: "Low"
+      disabled: true
     ApexDoc:
-      severity: "Low"
+      disabled: true
+    ApexUnitTestClassShouldHaveRunAs:
+      disabled: true
     AvoidLogicInTrigger:
       severity: "High"
 

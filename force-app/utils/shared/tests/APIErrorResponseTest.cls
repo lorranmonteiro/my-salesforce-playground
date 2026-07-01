@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 private class APIErrorResponseTest {
 
-    @isTest
+    @IsTest
     static void setErrorMessage() {
         String errorMessage = 'This is an error message';
 

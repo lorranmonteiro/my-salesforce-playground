@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class GitLabProjectInfoTest {
 
     @IsTest
@@ -10,7 +10,7 @@ public class GitLabProjectInfoTest {
         Assert.areEqual('Salesforce Playground', projectDetails.name, 'Expected project name to be "Salesforce Playground"');
     }
 
-    @isTest
+    @IsTest
     static void shouldHandleGitlabException() {
         Test.setMock(HttpCalloutMock.class, new GitlabServiceMockNotFound());
 
@@ -24,7 +24,7 @@ public class GitLabProjectInfoTest {
         Test.stopTest();
     }
 
-    @isTest
+    @IsTest
     static void shouldGetResponseFromCache() {
         GitLabProjectInfo.isCacheMockedForTesting = true;
 

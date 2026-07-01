@@ -1,8 +1,8 @@
-@isTest
+@IsTest
 @SuppressWarnings('PMD')
 private class PrepareMySandboxTest {
 
-    @isTest
+    @IsTest
     static void testMySandboxPrep() {
         System.Test.setMock(WebServiceMock.class, new WebServiceMockImpl());
         String orgId = UserInfo.getOrganizationId();

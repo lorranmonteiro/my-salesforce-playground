@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class GitlabMockGetProjectSuccess implements HttpCalloutMock {
 
     public HTTPResponse respond(HTTPRequest req) {

@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 public class AccountServiceTest {
 
-    @isTest
+    @IsTest
     static void postNoteOnMergeRequestWhenNameChanges() {
         TestAccountFactory.bypassTriggers = false;
         Account oldAccount = TestAccountFactory.createAccount(true);
@@ -17,7 +17,7 @@ public class AccountServiceTest {
         Assert.areEqual(1, Limits.getQueueableJobs(), 'One queueable job should be enqueued.');
     }
 
-    @isTest
+    @IsTest
     static void postNoteOnMergeRequestWhenAccountNumberChanges() {
         TestAccountFactory.bypassTriggers = false;
         Account account = TestAccountFactory.createAccount(true);

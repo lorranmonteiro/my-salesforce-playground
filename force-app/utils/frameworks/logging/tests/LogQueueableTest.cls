@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 private class LogQueueableTest {
 
-    @isTest
+    @IsTest
     static void shouldEnqueueLogQueueableJob() {
         Log__c log = new Log__c();
         log.Type__c = 'Exception';
