@@ -1,10 +1,10 @@
-@isTest
+@IsTest
 public class AccountTypeUpdateBatchTest {
 
     private static final Integer BATCH_SIZE = 200;
     private static final Integer ACCOUNTS_TO_INSERT = 5;
 
-    @isTest
+    @IsTest
     static void accountUpdateTypesBatchWithSuccess() {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < ACCOUNTS_TO_INSERT; i++) {
@@ -24,7 +24,7 @@ public class AccountTypeUpdateBatchTest {
         Assert.areEqual(Constants.ACCOUNT.TYPE.CUSTOMER_DIRECT, updatedAccountSample.Type, 'Account Type should be updated to Customer');
     }
 
-    @isTest
+    @IsTest
     static void accountUpdateTypesBatchWithErrors() {
         List<Account> accounts = new List<Account>();
         for (Integer i = 0; i < ACCOUNTS_TO_INSERT; i++) {

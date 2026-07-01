@@ -1,5 +1,5 @@
 default:
-  image: $CI_PIPELINE_IMAGE
+  image: salesforce/cli:latest-slim
   timeout: 10m
   tags:
     - $CI_PIPELINE_TAG
@@ -33,9 +33,7 @@ code analysis:
     - sf code-analyzer run
       --workspace ./force-app/main
       --workspace ./force-app/utils/shared
-      --rule-selector all:Recommended:1
-      --rule-selector all:Recommended:2
-      --rule-selector all:Recommended:3
+      --rule-selector Recommended
       --rule-selector sfge
       --severity-threshold $SEVERITY_THRESHOLD_LEVEL
       --config-file code-analyzer.yml

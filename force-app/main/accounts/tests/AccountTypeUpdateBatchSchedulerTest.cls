@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 public class AccountTypeUpdateBatchSchedulerTest {
 
-    @isTest
+    @IsTest
     static void scheduleAccountTypeUpdateBatch() {
         Test.startTest();
             String jobId = AccountTypeUpdateBatchScheduler.run();

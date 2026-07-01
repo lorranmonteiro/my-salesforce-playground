@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 private class UserSelectorTest {
 
-    @isTest
+    @IsTest
     static void getActiveAdminsEmails() {
         String adminEmail = TestHelper.generateEmail();
         User adminUser = createAdminUser(adminEmail);

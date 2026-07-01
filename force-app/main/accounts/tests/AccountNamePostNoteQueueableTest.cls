@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 public class AccountNamePostNoteQueueableTest {
 
-    @isTest
+    @IsTest
     static void shouldEnqueueAccountNamePostNoteJob() {
         Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
 
@@ -17,7 +17,7 @@ public class AccountNamePostNoteQueueableTest {
         Assert.areEqual('Completed', [SELECT Status FROM AsyncApexJob WHERE Id = :jobID].Status, 'The job status should be Holding after enqueueing.');
     }
 
-    @isTest
+    @IsTest
     static void shouldEnqueueTwoAccountNamePostNoteJobs() {
         Test.setMock(HttpCalloutMock.class, new GitlabMockPostNoteOnMergeRequestSuccess());
 
@@ -37,7 +37,7 @@ public class AccountNamePostNoteQueueableTest {
         Assert.areEqual(1, Limits.getQueueableJobs(), 'There should be one job in the AsyncApexJob table.');
     }
 
-    @isTest
+    @IsTest
     static void shouldFallIntoExceptionWhenCalloutFails() {
         Account account = TestAccountFactory.createAccount(true);
 

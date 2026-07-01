@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 private class LogServiceTest {
 
     @IsTest

@@ -24,7 +24,7 @@
 - Test classes must use PascalCase and end with `Test` (e.g., `AccountServiceTest`)
 - Test method names should describe the test scenario clearly (e.g., `testCalculateTax_WithValidInput`)
 - Ensure test methods cover bulk scenarios (e.g., handling multiple records at once), Postive and Negative scenarios, and edge cases
-- Use `@isTest` annotation for test classes and methods
+- Use `@IsTest` annotation for test classes and methods
 - Use `@TestSetup` method to create common test data for all test methods in the class
 - When writing Asserts always use System.Assert class instead of `System.assert`
 - Ensure Code Coverage is Above 75%. But also focus on asserting behavior, not just increasing coverage

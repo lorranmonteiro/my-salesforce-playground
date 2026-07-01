@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class GitlabServiceMockSuccess extends GitlabService {
 
     public override HttpResponse requestProjectDetails() {

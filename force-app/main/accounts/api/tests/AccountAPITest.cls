@@ -1,9 +1,9 @@
-@isTest
+@IsTest
 private class AccountAPITest {
 
     private static final Constants.HttpStatus HTTP_STATUS = Constants.HTTP_STATUS;
 
-    @isTest
+    @IsTest
     static void getAccount() {
         Account account = TestAccountFactory.createAccount(true);
 
@@ -25,7 +25,7 @@ private class AccountAPITest {
         Assert.areEqual(account.Id, responseBody.Id, 'Expected account ID to match');
     }
 
-    @isTest
+    @IsTest
     static void getAccountRequestWithoutId() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/'; // No ID in the URI
@@ -45,7 +45,7 @@ private class AccountAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about missing ID');
     }
 
-    @isTest
+    @IsTest
     static void getAccountNotFound() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/001aj000018x40sAAA'; // Non-existing ID
@@ -65,7 +65,7 @@ private class AccountAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about account not found');
     }
 
-    @isTest
+    @IsTest
     static void getAccountInternalError() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/123'; // Invalid ID
@@ -85,7 +85,7 @@ private class AccountAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
     }
 
-    @isTest
+    @IsTest
     static void updateAccount() {
         Account account = TestAccountFactory.createAccount(true);
 
@@ -117,7 +117,7 @@ private class AccountAPITest {
         Assert.areEqual('67890', updatedAccount.AccountNumber, 'Expected account number to be updated to 67890');
     }
 
-    @isTest
+    @IsTest
     static void updateAccountWithNullName() {
         Account account = TestAccountFactory.createAccount(true);
 
@@ -142,7 +142,7 @@ private class AccountAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about missing Name field');
     }
 
-    @isTest
+    @IsTest
     static void updateAccountWithInvalidId() {
         String payload = JSON.serialize(new Account(Name = null, AccountNumber = '67890'));
 
@@ -165,7 +165,7 @@ private class AccountAPITest {
         Assert.isNotNull(responseBody.message, 'Expected error message about internal error');
     }
 
-    @isTest
+    @IsTest
     static void deleteAccount() {
         Account account = TestAccountFactory.createAccount(true);
 
@@ -187,7 +187,7 @@ private class AccountAPITest {
         Assert.isTrue(accounts.isEmpty(), 'Expected account to be deleted');
     }
 
-    @isTest
+    @IsTest
     static void deleteAccountWithInvalidId() {
         RestRequest req = new RestRequest();
         req.requestURI = '/services/apexrest/v1/accounts/121';

@@ -1,13 +1,13 @@
-@isTest
+@IsTest
 private class EmailNotificationServiceTest {
 
-    @isTest
+    @IsTest
     static void sendAccountTypeUpdateBatchResults() {
         insert createAdminUser(TestHelper.generateEmail());
 
         Test.startTest();
             EmailNotificationService.sendAccountTypeUpdateBatchResults(
-                '707000000000001',
+                'someJobId',
                 10,
                 new List<String> { 'Sample error message' }
             );

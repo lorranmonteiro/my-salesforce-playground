@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class TestAccountFactory {
 
     public static Boolean bypassTriggers = true;

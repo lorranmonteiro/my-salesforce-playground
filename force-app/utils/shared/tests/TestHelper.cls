@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class TestHelper {
 
     private static final String ALPHA_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';

@@ -21,6 +21,7 @@ public with sharing class AccountSelector {
         ];
     }
 
+    @SuppressWarnings('PMD.AvoidNonRestrictiveQueries')
     public static List<Account> getAllAccounts() {
         return [
             SELECT Id, Name, Type, CreatedDate, Site, AccountNumber
