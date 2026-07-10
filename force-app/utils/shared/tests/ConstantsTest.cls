@@ -4,10 +4,10 @@ public class ConstantsTest {
     @IsTest
     static void testAccountRecordTypeCustomer() {
         Test.startTest();
-            Constants.AccountConstants accountConstants = Constants.ACCOUNT;
-            Constants.AccountType accountTypes = Constants.ACCOUNT.TYPE;
-            Constants.ProfileConstants profiles = Constants.PROFILE;
-            Constants.HttpStatus httpStatus = Constants.HTTP_STATUS;
+            Constants.AccountConstants accountConstants = Constants.getInstance().ACCOUNT;
+            Constants.AccountType accountTypes = Constants.getInstance().ACCOUNT.TYPE;
+            Constants.ProfileConstants profiles = Constants.getInstance().PROFILE;
+            Constants.HttpStatus httpStatus = Constants.getInstance().HTTP_STATUS;
         Test.stopTest();
 
         String expectedCustomerRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Customer').getRecordTypeId();

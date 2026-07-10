@@ -6,7 +6,7 @@ public with sharing class UserSelector {
         for (User user : [SELECT Email
                           FROM User
                           WHERE
-                            Profile.Name = :Constants.PROFILE.SYSTEM_ADMINISTRATOR AND
+                            Profile.Name = :Constants.getInstance().PROFILE.SYSTEM_ADMINISTRATOR AND
                             IsActive = true]) {
 
             emails.add(user.Email);

@@ -1,8 +1,25 @@
-@SuppressWarnings('PMD.FieldNamingConventions')
+@SuppressWarnings('PMD.FieldNamingConventions, PMD.PropertyNamingConventions')
 public with sharing class Constants {
-    public static final AccountConstants ACCOUNT = new AccountConstants();
-    public static final ProfileConstants PROFILE = new ProfileConstants();
-    public static final HttpStatus HTTP_STATUS = new HttpStatus();
+
+    private static Constants instance = null;
+
+    public AccountConstants ACCOUNT { get; private set; }
+    public ProfileConstants PROFILE { get; private set; }
+    public HttpStatus HTTP_STATUS { get; private set; }
+
+    private Constants() {
+        this.ACCOUNT = new AccountConstants();
+        this.PROFILE = new ProfileConstants();
+        this.HTTP_STATUS = new HttpStatus();
+    }
+
+    public static Constants getInstance() {
+        if (instance != null)
+            return instance;
+
+        instance = new Constants();
+        return instance;
+    }
 
     @SuppressWarnings('PMD.MethodNamingConventions')
     public class AccountConstants {
@@ -30,7 +47,7 @@ public with sharing class Constants {
             INSTALLATION_PARTNER = 'Installation Partner',
             TECHNOLOGY_PARTNER = 'Technology Partner',
             OTHER = 'Other';
-	}
+    }
 
     public class HttpStatus {
         public final Integer OK = 200;

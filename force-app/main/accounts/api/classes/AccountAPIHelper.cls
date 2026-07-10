@@ -1,6 +1,6 @@
 public with sharing class AccountAPIHelper {
 
-    private static final Constants.HttpStatus HTTP_STATUS = Constants.HTTP_STATUS;
+    private static final Constants.HttpStatus HTTP_STATUS = Constants.getInstance().HTTP_STATUS;
 
     public static Boolean canExecuteAction() {
         Boolean isValid = false;

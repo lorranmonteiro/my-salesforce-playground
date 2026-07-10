@@ -2,7 +2,7 @@
 @RestResource(urlMapping='/v1/accounts')
 global with sharing class AccountCollectionAPI {
 
-    private static final Constants.HttpStatus HTTP_STATUS = Constants.HTTP_STATUS;
+    private static final Constants.HttpStatus HTTP_STATUS = Constants.getInstance().HTTP_STATUS;
 
     @HttpGet
     global static void getAllAccounts() {
