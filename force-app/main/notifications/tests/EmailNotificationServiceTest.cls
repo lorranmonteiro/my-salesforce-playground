@@ -21,7 +21,7 @@ private class EmailNotificationServiceTest {
         Profile adminProfile = [
             SELECT Id
             FROM Profile
-            WHERE Name = :Constants.PROFILE.SYSTEM_ADMINISTRATOR
+            WHERE Name = :Constants.getInstance().PROFILE.SYSTEM_ADMINISTRATOR
             LIMIT 1
         ];
 

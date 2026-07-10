@@ -5,8 +5,8 @@ public with sharing class AccountTypeUpdateBatch implements Database.Batchable<S
 
     public Database.QueryLocator start(Database.BatchableContext context) {
         return AccountSelector.getAccountsByTypesQueryLocator(new Set<String> {
-            Constants.ACCOUNT.TYPE.PROSPECT,
-            Constants.ACCOUNT.TYPE.OTHER
+            Constants.getInstance().ACCOUNT.TYPE.PROSPECT,
+            Constants.getInstance().ACCOUNT.TYPE.OTHER
         });
     }
 
@@ -14,7 +14,7 @@ public with sharing class AccountTypeUpdateBatch implements Database.Batchable<S
         List<Account> accountsToUpdate = new List<Account>();
         
         for (Account account : scope) {
-            account.Type = Constants.ACCOUNT.TYPE.CUSTOMER_DIRECT;
+            account.Type = Constants.getInstance().ACCOUNT.TYPE.CUSTOMER_DIRECT;
             accountsToUpdate.add(account);
         }
 

@@ -37,20 +37,20 @@ private class AccountSelectorTest {
     @IsTest
     static void getAccountsByTypes() {
         Account prospectAccount = TestAccountFactory.createAccount();
-        prospectAccount.Type = Constants.ACCOUNT.TYPE.PROSPECT;
+        prospectAccount.Type = Constants.getInstance().ACCOUNT.TYPE.PROSPECT;
 
         Account otherAccount = TestAccountFactory.createAccount();
-        otherAccount.Type = Constants.ACCOUNT.TYPE.OTHER;
+        otherAccount.Type = Constants.getInstance().ACCOUNT.TYPE.OTHER;
 
         Account customerAccount = TestAccountFactory.createAccount();
-        customerAccount.Type = Constants.ACCOUNT.TYPE.CUSTOMER_DIRECT;
+        customerAccount.Type = Constants.getInstance().ACCOUNT.TYPE.CUSTOMER_DIRECT;
 
         insert new List<Account> { prospectAccount, otherAccount, customerAccount };
 
         Test.startTest();
             List<Account> accounts = AccountSelector.getAccountsByTypes(new Set<String> {
-                Constants.ACCOUNT.TYPE.PROSPECT,
-                Constants.ACCOUNT.TYPE.OTHER
+                Constants.getInstance().ACCOUNT.TYPE.PROSPECT,
+                Constants.getInstance().ACCOUNT.TYPE.OTHER
             });
         Test.stopTest();
 
@@ -72,8 +72,8 @@ private class AccountSelectorTest {
     static void getAccountsByTypesQueryLocator() {
         Test.startTest();
             Database.QueryLocator queryLocator = AccountSelector.getAccountsByTypesQueryLocator(new Set<String> {
-                Constants.ACCOUNT.TYPE.PROSPECT,
-                Constants.ACCOUNT.TYPE.OTHER
+                Constants.getInstance().ACCOUNT.TYPE.PROSPECT,
+                Constants.getInstance().ACCOUNT.TYPE.OTHER
             });
         Test.stopTest();
 

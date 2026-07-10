@@ -1,7 +1,7 @@
 @IsTest
 private class AccountCollectionAPITest {
 
-    private static final Constants.HttpStatus HTTP_STATUS = Constants.HTTP_STATUS;
+    private static final Constants.HttpStatus HTTP_STATUS = Constants.getInstance().HTTP_STATUS;
 
     @IsTest
     static void getAccounts() {
