@@ -1,56 +1,21 @@
-# CLAUDE.md
+# Salesforce Development Guidelines for Agents
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Apex Best Practices
+- Bulkification: Never perform SOQL queries or DML statements inside loops (`for`, `while`). Always use collections (Lists, Sets, Maps).
+- Triggers: There should be only one Trigger per sObject. All business logic must be delegated to Handler/Service classes (Trigger Handler Pattern).
+- No Hardcoding: Never use record IDs directly in the code (hardcoded). Use Custom Metadata Types, Custom Settings, or dynamic queries.
+- Braces: If a code block inside an `if`, `else`, or `for` statements consists of only a single short line, braces `{}` are not required. Always prioritize code readability by maintaining proper spacing.
 
-## Commands
+## Apex Unit Testing
+- Assertions: Use modern methods from the `Assert` class (e.g., `Assert.areEqual()`, `Assert.isTrue()`) instead of `System.assertEquals()`.
+- Limits: Use `Test.startTest()` and `Test.stopTest()` to reset governor limits for the execution of the primary code. Code between `startTest()` and `stopTest()` must be indented by one tab.
+- Test Coverage: Always aim for close to 100% coverage and ensure all exception scenarios are tested. Never use org data. Aim to use `@TestSetup` to create test data and `@IsTest` for test methods.
 
-### Salesforce CLI (sf)
-```bash
-# Deploy all metadata to org
-sf project deploy start --source-dir force-app
-
-# Deploy a single file
-sf project deploy start --source-file force-app/main/accounts/classes/AccountService.cls
-
-# Run all Apex tests
-sf apex run test --synchronous
-
-# Run a single Apex test class
-sf apex run test --class-names AccountServiceTest --synchronous
-
-# Run tests with code coverage
-sf apex run test --code-coverage --synchronous
-
-# Open org in browser
-sf org open
-```
-
-### JavaScript / LWC
-```bash
-# Install dependencies
-npm install
-
-# Lint LWC/Aura JS files
-npm run lint
-
-# Run LWC Jest unit tests
-npm test
-
-# Run a single LWC test file (use Jest's --testPathPattern)
-npx sfdx-lwc-jest -- --testPathPattern=searchCmp
-
-# Run LWC tests in watch mode
-npm run test:unit:watch
-
-# Run LWC tests with coverage
-npm run test:unit:coverage
-
-# Format all files with Prettier
-npm run prettier
-
-# Verify formatting without writing
-npm run prettier:verify
-```
+## Lightning Web Components (LWC)
+- Security and LDS: Always prioritize the Lightning Data Service (such as `lightning-record-form` or wire adapters from `lightning/uiRecordApi`) before resorting to imperative Apex methods.
+- Styling: Use SLDS utility classes as much as possible. Avoid inline CSS or global CSS selectors that break Shadow DOM encapsulation. Use SLDS Global Styling Hooks for style customizations.
+- Accessibility: Ensure all inputs have corresponding associated `<label>` elements and use aria-* attributes where necessary.
+- Jest Tests: When creating complex LWC components, require Cline to also generate the corresponding Jest tests in the `__tests__` folder.
 
 ## Architecture
 
@@ -61,7 +26,7 @@ npm run prettier:verify
   - `integrations/openAI/` — OpenAI API integration
   - `serviceCloud/` — Experience sites (portal, help center), Knowledge articles
   - `default/` — Shared LWC components and static resources
-- `force-app/utils/` — Reusable frameworks and utilities
+  - `force-app/utils/` — Reusable frameworks and utilities
   - `frameworks/triggerHandler/` — Base `TriggerHandler` class
   - `frameworks/logging/` — `LogCollector` / `LogService` / `LogQueueable`
   - `frameworks/featureFlags/` — `FeatureFlags` backed by `FeatureFlag__mdt`
@@ -99,4 +64,4 @@ Integration endpoints and settings are stored in Custom Metadata Types: `Integra
 `code-analyzer.yml` configures Salesforce Code Analyzer rules for Apex, JavaScript, and Visualforce. ESLint is configured via `eslint.config.mjs` using `@salesforce/eslint-config-lwc`.
 
 ### Salesforce API Version
-`sourceApiVersion: 66.0` (set in `sfdx-project.json`).
+Always use the API version specified in `sfdx-project.json`, on the `sourceApiVersion` attribute, for new development and deployments.
