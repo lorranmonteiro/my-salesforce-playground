@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>APIs</label>
+            <name>apis</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Frameworks</label>
+            <name>frameworks</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Named Credentials</label>
+            <name>named_credentials</name>
+        </dataCategory>
+        <dataCategory>
+            <label>LWC</label>
+            <name>lwc</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Apex Best Practices</label>
+            <name>apex_best_practices</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Development</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>
