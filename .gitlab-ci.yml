@@ -2,7 +2,7 @@ default:
   image: salesforce/cli:latest-slim
   timeout: 10m
   tags:
-    - $CI_PIPELINE_TAG
+    - gitlab-org-docker
 
 variables:
   SF_USE_GENERIC_UNIX_KEYCHAIN: true
@@ -29,13 +29,13 @@ code analysis:
         sf plugins install code-analyzer@latest
       fi
 
-    - echo "🔍 Starting code analyses..."
+    - echo "Starting code analyses..."
     - sf code-analyzer run
       --workspace ./force-app/main
       --workspace ./force-app/utils/shared
       --rule-selector Recommended
       --rule-selector sfge
-      --severity-threshold $SEVERITY_THRESHOLD_LEVEL
+      --severity-threshold 3
       --config-file code-analyzer.yml
       --view detail
 
@@ -44,37 +44,29 @@ validate deploy:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
-    # Install git-delta plugin for source delta management
-    - |
-      if ! sf plugins | grep -q sfdx-git-delta; then
-        echo y | sf plugins install sfdx-git-delta@latest
-      fi
-
-    # Fetch the latest changes from master
-    - git fetch origin master
-
-    # Create packages for validation
-    - sf sgd source delta --to HEAD --from origin/master --output-dir .
-
-    - |
-      # Check if there are components to validate
-      if ! grep -q "<types>" package/package.xml; then
-        echo "No components to validate. Skipping validation step."
-        exit 0
-      fi
-
     # Download secure files for authentication
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
-    - echo "🔐 Authenticating with Salesforce..."
+    - echo "Authenticating with Salesforce..."
     - ./scripts/authenticateWithSalesforce.sh
+    
+    - |
+      trap 'sf org delete scratch --target-org ScratchOrg --no-prompt || true' EXIT
 
-    - echo "📦 Running package validation..."
-    - sf project deploy validate
-      --manifest package/package.xml
-      --post-destructive-changes destructiveChanges/destructiveChanges.xml
-      --test-level RunLocalTests
-      --ignore-warnings
+      echo "Creating a scratch org for validation..."
+      sf org create scratch \
+        --definition-file config/project-scratch-def.json \
+        --alias ScratchOrg \
+        --target-dev-hub Playground \
+        --no-track-source \
+        --duration-days 1 \
+        --wait 15
+
+      echo "Deploying source code and running local tests..."
+      sf project deploy start \
+        --test-level RunLocalTests \
+        --target-org ScratchOrg \
+        --wait 30
 
 deploy:
   stage: deploy
@@ -110,10 +102,10 @@ deploy:
     # Download secure files for authentication
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
-    - echo "🔐 Authenticating with Salesforce..."
+    - echo "Authenticating with Salesforce..."
     - ./scripts/authenticateWithSalesforce.sh
 
-    - echo "📦 Running package deploy..."
+    - echo "Running package deploy..."
     - sf project deploy start
       --manifest package/package.xml
       --post-destructive-changes destructiveChanges/destructiveChanges.xml
