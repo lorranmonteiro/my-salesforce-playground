@@ -1,14 +1,31 @@
 {
-  "orgName": "Playground",
-  "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true,
-      "enableLightningPreviewPref": true
-    },
-    "mobileSettings": {
-      "enableS1EncryptedStoragePref2": false
+    "orgName": "Playground Scratch Org",
+    "edition": "Developer",
+    "language": "en_US",
+    "country": "US",
+    "features": ["Communities", "Knowledge", "RecordTypes", "EnableSetPasswordInApi"],
+    "description": "Scratch org for Playground project for validation and testing on CI/CD Pipeline.",
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
+        },
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
+        },
+        "caseSettings": {
+            "emailToCase": {
+                "enableEmailToCase": true
+            },
+            "webToCase": {
+                "enableWebToCase": true
+            }
+        },
+        "knowledgeSettings": {
+            "enableKnowledge": true,
+            "enableLightningKnowledge": true
+        }
     }
-  }
 }

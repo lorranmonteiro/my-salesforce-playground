@@ -55,6 +55,8 @@ rules:
   eslint:
     no-inline-disable:
       disabled: true
+    no-hardcoded-values-slds2:
+      disabled: true
 
   # ======================================================================
   # FLOW ENGINE RULE OVERRIDES

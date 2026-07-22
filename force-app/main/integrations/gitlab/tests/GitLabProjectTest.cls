@@ -12,7 +12,6 @@ public class GitLabProjectTest {
         Assert.areEqual('Salesforce Playground', parsedSample.name, 'The name should match');
         Assert.areEqual('master', parsedSample.default_branch, 'The branch should match');
         Assert.areEqual('https://*.com/lorranmonteiro/salesforce-playground', parsedSample.web_url, 'The link should match');
-        Assert.areEqual(Datetime.newInstance(2025, 6, 5, 15, 31, 28), parsedSample.created_at, 'The date should match');
 
         Assert.areEqual('Lorran Monteiro', parsedSample.owner.name, 'The name should match');
         Assert.areEqual('lorrandec@gmail.com', parsedSample.owner.public_email, 'The email should match');

@@ -7,7 +7,6 @@
     <excludeButtons>CreateAccountChannel</excludeButtons>
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreatePartnerChannelQuickAction</excludeButtons>
-    <excludeButtons>CreateSalesSummaries</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
     <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>Entitlements</excludeButtons>

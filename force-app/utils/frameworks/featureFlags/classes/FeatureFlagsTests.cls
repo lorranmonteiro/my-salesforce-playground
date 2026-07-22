@@ -18,9 +18,15 @@ private class FeatureFlagsTests {
     @IsTest
     static void testFeatureEnabledWithCustomMetadata() {
         FeatureFlags flags = new FeatureFlags();
+        FeatureFlags.FeatureEvaluationResult result;
+
+        User testUser = UserFactory.createUser(true);
+        UserFactory.assignPermissionSetToUser(testUser.Id, 'ViewSearchComponent');
 
         Test.startTest();
-            FeatureFlags.FeatureEvaluationResult result = flags.evaluate('canViewSearchComponent');
+            System.runAs(testUser) {
+                result = flags.evaluate('canViewSearchComponent');
+            }
         Test.stopTest();
 
         Assert.isTrue(result.isEnabled(), 'Feature should be enabled');
