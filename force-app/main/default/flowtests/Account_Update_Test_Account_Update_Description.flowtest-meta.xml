@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
     <flowApiName>Account_Update</flowApiName>
+    <flowTestFlowVersions>
+        <flowVersionNumber>2</flowVersionNumber>
+    </flowTestFlowVersions>
+    <flowTestFlowVersions>
+        <flowVersionNumber>1</flowVersionNumber>
+    </flowTestFlowVersions>
     <label>Test Account Update Description</label>
     <testPoints>
         <elementApiName>Start</elementApiName>
@@ -17,7 +23,7 @@
         <assertions>
             <conditions>
                 <leftValueReference>$Record.Description</leftValueReference>
-                <operator>IsNull</operator>
+                <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
