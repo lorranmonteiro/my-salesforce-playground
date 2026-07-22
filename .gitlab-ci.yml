@@ -36,7 +36,7 @@ code analysis:
       --rule-selector Recommended
       --rule-selector sfge
       --severity-threshold 3
-      --config-file code-analyzer.yml
+      --config-file config/code-analyzer.yml
       --view detail
 
 validate deploy:
@@ -68,7 +68,7 @@ validate deploy:
         --wait 10
 
       echo "Running apex and flow tests..."
-      sf logic run test
+      sf logic run test \
         --test-level RunLocalTests \
         --synchronous \
         --target-org ScratchOrg \
