@@ -34,8 +34,12 @@ public with sharing class Constants {
         }
     }
 
-    public class ProfileConstants {
+    public without sharing class ProfileConstants {
         public final String SYSTEM_ADMINISTRATOR = 'System Administrator';
+
+        public String getAdminProfileId() {
+            return [SELECT Id FROM Profile WHERE Name = :SYSTEM_ADMINISTRATOR LIMIT 1].Id;
+        }
     }
 
     public class AccountType {

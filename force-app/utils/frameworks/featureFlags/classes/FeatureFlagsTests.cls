@@ -16,21 +16,22 @@ private class FeatureFlagsTests {
     }
 
     @IsTest
-    @SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
     static void testFeatureEnabledWithCustomMetadata() {
         FeatureFlags flags = new FeatureFlags();
+        FeatureFlags.FeatureEvaluationResult result;
+
+        User testUser = UserFactory.createUser(true);
+        UserFactory.assignPermissionSetToUser(testUser.Id, 'ViewSearchComponent');
 
         Test.startTest();
-            FeatureFlags.FeatureEvaluationResult result = flags.evaluate('canViewSearchComponent');
+            System.runAs(testUser) {
+                result = flags.evaluate('canViewSearchComponent');
+            }
         Test.stopTest();
 
-        /*
-        TODO: Create a user with this custom permission and assign it to the test context to validate this test case.
-
-        Assert.areEqual(true, result.isEnabled(), 'Feature should be enabled');
+        Assert.isTrue(result.isEnabled(), 'Feature should be enabled');
         Assert.areEqual('canViewSearchComponent', result.getFeatureName(), 'Feature name should match');
         Assert.areEqual(FeatureFlags.FeatureReason.HAS_CUSTOM_PERMISSION, result.getReason(), 'Reason should be HAS_CUSTOM_PERMISSION');
-        */
     }
 
     @IsTest
