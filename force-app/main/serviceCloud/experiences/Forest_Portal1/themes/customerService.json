@@ -109,12 +109,23 @@
     }, {
       "components" : [ {
         "componentAttributes" : {
-          "NavigationMenuEditorRefresh" : "Default_Navigation1",
-          "hideAppLauncher" : false,
-          "hideHomeText" : false
+          "NavigationMenuEditorRefresh" : "Default_Tile_Menu",
+          "backgroundColor" : "",
+          "borderRadius" : 24,
+          "boxShadow" : true,
+          "focusBorderColor" : "",
+          "hoverBorderColor" : "",
+          "iconHeight" : 24,
+          "iconWidth" : 24,
+          "itemWidth" : 120,
+          "titleColor" : "",
+          "titleFontSize" : 14,
+          "titleHorizontalAlign" : "center",
+          "titleOnTop" : false,
+          "useThemeColor" : true
         },
-        "componentName" : "forceCommunity:globalNavigation",
-        "id" : "1eb44c1e-6cab-4e7a-9bb3-5e1906fbb97a",
+        "componentName" : "runtime_service_employee:tileMenuWrapper",
+        "id" : "36ff162e-ad7c-46d6-bbb6-f8f0297ff5fb",
         "renditionMap" : { },
         "type" : "component"
       } ],
