@@ -62,17 +62,11 @@ validate deploy:
         --duration-days 1 \
         --wait 10
 
-      echo "Deploying source code..."
+      echo "Deploying source code and running tests..."
       sf project deploy start \
         --target-org ScratchOrg \
-        --wait 10
-
-      echo "Running apex and flow tests..."
-      sf logic run test \
         --test-level RunLocalTests \
-        --synchronous \
-        --target-org ScratchOrg \
-        --wait 10
+        --wait 15
 
 deploy:
   stage: deploy
