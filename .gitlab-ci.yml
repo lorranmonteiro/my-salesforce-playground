@@ -53,20 +53,26 @@ validate deploy:
     - |
       trap 'sf org delete scratch --target-org ScratchOrg --no-prompt || true' EXIT
 
-      echo "Creating a scratch org for validation..."
+      echo "Creating a scratch org..."
       sf org create scratch \
         --definition-file config/project-scratch-def.json \
         --alias ScratchOrg \
         --target-dev-hub Playground \
         --no-track-source \
         --duration-days 1 \
-        --wait 15
+        --wait 10
 
-      echo "Deploying source code and running local tests..."
+      echo "Deploying source code..."
       sf project deploy start \
-        --test-level RunLocalTests \
         --target-org ScratchOrg \
-        --wait 30
+        --wait 10
+
+      echo "Running apex and flow tests..."
+      sf logic run test
+        --test-level RunLocalTests \
+        --synchronous \
+        --target-org ScratchOrg \
+        --wait 10
 
 deploy:
   stage: deploy
