@@ -5,6 +5,9 @@ default:
     - gitlab-org-docker
 
 variables:
+  SERVER_KEY: .secure_files/server.key
+  INSTANCE_URL: https://login.salesforce.com
+  SF_TEMP_SHOW_SECRETS: true
   SF_USE_GENERIC_UNIX_KEYCHAIN: true
   SF_IMPROVED_CODE_COVERAGE: true
   SF_HIDE_RELEASE_NOTES: true
@@ -61,7 +64,12 @@ validate deploy with scratch org:
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
     - echo "Authenticating with Salesforce..."
-    - ./scripts/authenticateWithSalesforce.sh
+    - sf org login jwt
+      --username $SF_USERNAME
+      --client-id $SF_CONSUMER_KEY
+      --jwt-key-file $SERVER_KEY
+      --instance-url $INSTANCE_URL
+      --set-default-dev-hub
     
     - |
       trap 'sf org delete scratch --target-org ScratchOrg --no-prompt || true' EXIT
@@ -70,7 +78,6 @@ validate deploy with scratch org:
       sf org create scratch \
         --definition-file config/project-scratch-def.json \
         --alias ScratchOrg \
-        --target-dev-hub Playground \
         --no-track-source \
         --duration-days 1 \
         --wait 10
@@ -115,7 +122,12 @@ deploy to playground:
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
 
     - echo "Authenticating with Salesforce..."
-    - ./scripts/authenticateWithSalesforce.sh
+    - sf org login jwt
+      --username $SF_USERNAME
+      --client-id $SF_CONSUMER_KEY
+      --jwt-key-file $SERVER_KEY
+      --instance-url $INSTANCE_URL
+      --set-default
 
     - echo "Running package deploy..."
     - sf project deploy start

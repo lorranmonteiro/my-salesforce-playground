@@ -7,6 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
+  SF_TEMP_SHOW_SECRETS: true
   SF_USE_GENERIC_UNIX_KEYCHAIN: true
   SF_IMPROVED_CODE_COVERAGE: true
   SF_HIDE_RELEASE_NOTES: true
@@ -82,8 +83,7 @@ jobs:
             --client-id ${{ secrets.SF_CONSUMER_KEY }} \
             --jwt-key-file server.key \
             --instance-url https://login.salesforce.com \
-            --alias Playground \
-            --set-default
+            --set-default-dev-hub
 
       - name: Create Scratch Org, Deploy, and Test
         run: |
@@ -92,14 +92,12 @@ jobs:
           echo "Creating a scratch org..."
           sf org create scratch \
             --definition-file config/project-scratch-def.json \
-            --alias ScratchOrg \
-            --target-dev-hub Playground \
             --no-track-source \
             --duration-days 1 \
-            --wait 10
+            --wait 10 \
+            --set-default
 
-          echo "Deploying source code and running tests..."
+          echo "Deploying source code into the scratch org and running tests..."
           sf project deploy start \
-            --target-org ScratchOrg \
             --test-level RunLocalTests \
             --wait 15
