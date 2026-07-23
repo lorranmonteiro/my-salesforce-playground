@@ -1,5 +1,5 @@
 default:
-  image: salesforce/cli:latest-slim
+  image: salesforce/cli:latest-full
   timeout: 10m
   tags:
     - gitlab-org-docker
@@ -15,10 +15,10 @@ variables:
 
 stages:
   - code analysis
-  - validation
+  - test
   - deploy
 
-code analysis:
+run code analyzer:
   stage: code analysis
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
@@ -39,8 +39,19 @@ code analysis:
       --config-file config/code-analyzer.yml
       --view detail
 
-validate deploy:
-  stage: validation
+lwc jest tests:
+  stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'pipeline-with-jest-tests'
+  script:
+    - echo "Installing npm dependencies..."
+    - npm ci
+
+    - echo "Running LWC Jest Tests..."
+    - npm run test:unit:coverage
+
+validate deploy with scratch org:
+  stage: test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
@@ -68,9 +79,8 @@ validate deploy:
         --test-level RunLocalTests \
         --wait 15
 
-deploy:
+deploy to playground:
   stage: deploy
-  environment: Playground
   coverage: '/Org Wide Coverage\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     reports:
