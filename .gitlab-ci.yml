@@ -20,6 +20,7 @@ stages:
 
 run code analyzer:
   stage: code analysis
+  image: salesforce/cli:latest-full
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
@@ -43,7 +44,7 @@ lwc jest tests:
   stage: test
   image: salesforce/cli:latest-full
   rules:
-    - if: $CI_COMMIT_BRANCH == 'pipeline-with-jest-tests'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
     - echo "Installing npm dependencies..."
     - npm ci
