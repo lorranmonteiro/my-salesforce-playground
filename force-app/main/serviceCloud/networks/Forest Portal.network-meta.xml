@@ -4,6 +4,7 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles/>
+    <disablePvtPagesForPwdResetInLWR>false</disablePvtPagesForPwdResetInLWR>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
     <emailSenderAddress>lorrandec@gmail.com</emailSenderAddress>
     <emailSenderName>Forest Portal</emailSenderName>
@@ -45,8 +46,9 @@
         <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
     </networkPageOverrides>
     <picassoSite>Forest_Portal1</picassoSite>
+    <secondaryEmailSenderEnabled>false</secondaryEmailSenderEnabled>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Forest_Portal</site>
     <siteArchiveStatus>NotArchived</siteArchiveStatus>
     <status>Live</status>

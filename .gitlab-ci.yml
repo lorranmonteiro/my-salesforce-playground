@@ -15,11 +15,12 @@ variables:
 
 stages:
   - code analysis
-  - validation
+  - test
   - deploy
 
-code analysis:
+run code analyzer:
   stage: code analysis
+  image: salesforce/cli:latest-full
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
@@ -39,8 +40,20 @@ code analysis:
       --config-file config/code-analyzer.yml
       --view detail
 
-validate deploy:
-  stage: validation
+lwc jest tests:
+  stage: test
+  image: salesforce/cli:latest-full
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
+  script:
+    - echo "Installing npm dependencies..."
+    - npm ci
+
+    - echo "Running LWC Jest Tests..."
+    - npm run test:unit:coverage
+
+validate deploy with scratch org:
+  stage: test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == 'master'
   script:
@@ -68,9 +81,8 @@ validate deploy:
         --test-level RunLocalTests \
         --wait 15
 
-deploy:
+deploy to playground:
   stage: deploy
-  environment: Playground
   coverage: '/Org Wide Coverage\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     reports:
