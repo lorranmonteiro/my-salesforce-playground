@@ -60,7 +60,6 @@ jobs:
             --client-id ${{ secrets.SF_CONSUMER_KEY }} \
             --jwt-key-file server.key \
             --instance-url https://login.salesforce.com \
-            --alias Playground \
             --set-default
 
       - name: Deploy Delta Package to Org
