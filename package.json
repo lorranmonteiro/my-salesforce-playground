@@ -16,20 +16,15 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@lwc/engine-dom": "^9.3.6",
-    "@lwc/eslint-plugin-lwc": "~3",
-    "@lwc/jest-preset": "^19.6.1",
+    "@lwc/eslint-plugin-lwc": "^3.5.0",
     "@prettier/plugin-xml": "^3.4.2",
     "@salesforce/eslint-config-lwc": "^4.1.2",
     "@salesforce/eslint-plugin-aura": "^3.0.0",
     "@salesforce/eslint-plugin-lightning": "^2.0.0",
     "@salesforce/sfdx-lwc-jest": "^7.9.0",
-    "eslint": "^9",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.15.5",
+    "eslint": "^9.0.0",
     "husky": "^9.1.7",
-    "jest": "^30.4.2",
-    "lint-staged": "^17.1.0",
+    "lint-staged": "^17.1.1",
     "prettier": "^3.9.6",
     "prettier-plugin-apex": "^2.3.0"
   },

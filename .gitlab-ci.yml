@@ -1,5 +1,5 @@
 default:
-  image: salesforce/cli:latest-full
+  image: salesforce/cli:latest-slim
   timeout: 10m
   tags:
     - gitlab-org-docker
@@ -41,6 +41,7 @@ run code analyzer:
 
 lwc jest tests:
   stage: test
+  image: salesforce/cli:latest-full
   rules:
     - if: $CI_COMMIT_BRANCH == 'pipeline-with-jest-tests'
   script:
