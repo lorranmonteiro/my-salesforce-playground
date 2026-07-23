@@ -26,6 +26,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure Git Safe Directory & Fetch Branches
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch --prune --unshallow || git fetch --all
+
       - name: Install sfdx-git-delta
         run: |
           if ! sf plugins | grep -q sfdx-git-delta; then
