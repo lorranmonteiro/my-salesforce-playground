@@ -19,8 +19,6 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
-
-        LogCollector.flush();
     }
 
     @HttpPatch
@@ -52,8 +50,6 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
-
-        LogCollector.flush();
     }
 
     @HttpDelete
@@ -76,7 +72,5 @@ global with sharing class AccountAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
-
-        LogCollector.flush();
     }
 }

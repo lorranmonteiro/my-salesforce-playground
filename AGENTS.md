@@ -28,14 +28,14 @@
   - `default/` — Shared LWC components and static resources
   - `force-app/utils/` — Reusable frameworks and utilities
   - `frameworks/triggerHandler/` — Base `TriggerHandler` class
-  - `frameworks/logging/` — `LogCollector` / `LogService` / `LogQueueable`
+  - `frameworks/logging/` — `LogService` (publishes `LogEvent__e` Platform Event) + `Log__c` custom object
   - `frameworks/featureFlags/` — `FeatureFlags` backed by `FeatureFlag__mdt`
   - `frameworks/metadataService/` — Metadata API wrappers
   - `frameworks/prepareSandbox/` — Sandbox setup utilities
   - `shared/` — `Constants`, `StringUtils`, `APIErrorResponse`
 
 ### Trigger Handler Framework
-All triggers are a single line: `new XxxTriggerHandler().run()`. Handlers extend `TriggerHandler` (in `utils/frameworks/triggerHandler/`) and override context-specific virtual methods (`afterInsert`, `afterUpdate`, etc.). `TriggerHandler.run()` calls `LogCollector.flush()` at the end of every execution.
+All triggers are a single line: `new XxxTriggerHandler().run()`. Handlers extend `TriggerHandler` (in `utils/frameworks/triggerHandler/`) and override context-specific virtual methods (`afterInsert`, `afterUpdate`, etc.).
 
 To bypass a handler in tests: `TriggerHandler.bypass('AccountTriggerHandler')` / `TriggerHandler.bypassAllTriggers = true`.
 
@@ -46,10 +46,7 @@ All SOQL lives in dedicated `*Selector` classes (e.g., `AccountSelector`). Queri
 External service classes (e.g., `GitlabService`, `OpenAIService`) are accessed through a `*ServiceFactory` implementing `IServiceFactory`. In tests, factories auto-return a mock success class if no mock is explicitly set; use `XxxServiceFactory.setMock(new MyMock())` to inject a specific mock.
 
 ### Logging Framework
-- `LogService` — Static methods to build `Log__c` records for callouts, API requests, and exceptions.
-- `LogCollector` — Accumulates `Log__c` records within a transaction.
-- `LogQueueable` — Persists collected logs asynchronously via `System.enqueueJob`.
-- Pattern: call `LogService.logXxx(...)` throughout business logic, then call `LogCollector.flush()` at transaction boundaries (done automatically by `TriggerHandler.run()` and explicitly in REST API methods).
+- ToDo
 
 ### REST API Layer
 REST endpoints live in `force-app/main/<domain>/api/`. Each `@RestResource` class delegates validation to a companion `*APIHelper` class (guards: CRUD permission check, ID/body validation, existence check) and uses `AccountSelector` for data access. Errors are serialized as `APIErrorResponse { message }`.

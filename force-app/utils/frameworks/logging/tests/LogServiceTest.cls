@@ -14,7 +14,6 @@ private class LogServiceTest {
 
         Test.startTest();
             LogService.logIntegrationCallout(request, response);
-            LogCollector.flush();
         Test.stopTest();
 
         Log__c log = [SELECT Id, Type__c, Endpoint__c, HttpMethod__c, RequestBody__c, ResponseBody__c, HttpStatusCode__c FROM Log__c LIMIT 1];
@@ -42,7 +41,6 @@ private class LogServiceTest {
 
         Test.startTest();
             LogService.logIntegrationAPI();
-            LogCollector.flush();
         Test.stopTest();
 
         Log__c log = [SELECT Id, Type__c, Endpoint__c, HttpMethod__c, RequestBody__c, ResponseBody__c, HttpStatusCode__c FROM Log__c LIMIT 1];
@@ -63,7 +61,6 @@ private class LogServiceTest {
                 s.toUpperCase();
             } catch (Exception e) {
                 LogService.logException(e);
-                LogCollector.flush();
             }
         Test.stopTest();
 

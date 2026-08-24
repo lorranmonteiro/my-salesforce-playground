@@ -20,7 +20,6 @@ public with sharing class SearchCmp {
             handleError(response);
         }
 
-        LogCollector.flush();
         return extractOutputText(response.getBody());
     }
 
