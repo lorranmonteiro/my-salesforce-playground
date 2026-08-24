@@ -31,7 +31,6 @@ public with sharing class GitLabProjectInfo {
             throwAuraException(e.getMessage());
         }
 
-        LogCollector.flush();
         return parsedResponse;
     }
 

@@ -16,8 +16,6 @@ global with sharing class AccountCollectionAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
-
-        LogCollector.flush();
     }
 
     @HttpPost
@@ -46,8 +44,6 @@ global with sharing class AccountCollectionAPI {
         } catch (Exception e) {
             AccountAPIHelper.returnError(HTTP_STATUS.INTERNAL_SERVER_ERROR, 'Internal error: ' + e.getMessage());
         }
-
-        LogCollector.flush();
     }
 
     private static void insertAccountAndContact(AccountWithContact accountWithContact) {
