@@ -50,8 +50,9 @@ public virtual with sharing class GeminiService implements IAIService {
 
             if (parsed.errors != null) {
 
-                for (GeminiResponse.Error error : parsed.errors)
+                for (GeminiResponse.Error error : parsed.errors) {
                     errorMessage += '\n Message: ' + error.message + '\n Code: ' + error.code;
+                }
             }
         } catch (Exception e) {
             errorMessage += '\n Response Body: ' + response.getBody();

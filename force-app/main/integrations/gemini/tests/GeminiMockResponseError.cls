@@ -10,19 +10,17 @@ public class GeminiMockResponseError implements HttpCalloutMock {
         return response;
     }
 
-    private static String getGeminiResponseErrorJsonSample() {
-        return '''
-        {
-            "id": "response-id",
-            "status": "failed",
-            "created": "2024-06-01T12:00:00Z",
-            "object": "response",
-            "model": "gemini-model",
-            "errors": [{
-                "code": "invalid_request",
-                "message": "The model failed to generate a valid response."
-            }]
-        }
-        ''';
+private static String getGeminiResponseErrorJsonSample() {
+        return '{' +
+            '"id": "response-id",' +
+            '"status": "failed",' +
+            '"created": "2024-06-01T12:00:00Z",' +
+            '"object": "response",' +
+            '"model": "gemini-model",' +
+            '"errors": [{' +
+                '"code": "invalid_request",' +
+                '"message": "The model failed to generate a valid response."' +
+            '}]' +
+        '}';
     }
 }
