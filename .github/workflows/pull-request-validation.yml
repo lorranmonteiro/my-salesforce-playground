@@ -94,9 +94,11 @@ jobs:
             --no-track-source \
             --duration-days 1 \
             --wait 10 \
-            --set-default
+            --set-default \
+            --alias ScratchOrg
 
           echo "Deploying source code into the scratch org and running tests..."
           sf project deploy start \
+            --target-org ScratchOrg \
             --test-level RunLocalTests \
             --wait 15

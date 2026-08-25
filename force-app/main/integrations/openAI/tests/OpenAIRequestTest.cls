@@ -1,5 +1,5 @@
 @IsTest
-public class OpenAIRequestTest {
+private class OpenAIRequestTest {
 
     @IsTest
     static void testOpenAIRequest() {
