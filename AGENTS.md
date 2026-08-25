@@ -40,7 +40,7 @@ All triggers are a single line: `new XxxTriggerHandler().run()`. Handlers extend
 To bypass a handler in tests: `TriggerHandler.bypass('AccountTriggerHandler')` / `TriggerHandler.bypassAllTriggers = true`.
 
 ### Selector Pattern
-All SOQL lives in dedicated `*Selector` classes (e.g., `AccountSelector`). Queries use `WITH SECURITY_ENFORCED`. Services and APIs never contain inline SOQL.
+All SOQL lives in dedicated `*Selector` classes (e.g., `AccountSelector`). Queries use `WITH USER_MODE`. Services and APIs never contain inline SOQL.
 
 ### Service Factory Pattern (for integrations)
 External service classes (e.g., `GitlabService`, `OpenAIService`) are accessed through a `*ServiceFactory` implementing `IServiceFactory`. In tests, factories auto-return a mock success class if no mock is explicitly set; use `XxxServiceFactory.setMock(new MyMock())` to inject a specific mock.
