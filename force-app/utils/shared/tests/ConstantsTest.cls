@@ -1,5 +1,5 @@
 @IsTest
-public class ConstantsTest {
+private class ConstantsTest {
 
     @IsTest
     static void testAccountRecordTypeCustomer() {

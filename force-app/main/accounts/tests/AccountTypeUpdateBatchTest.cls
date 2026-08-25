@@ -1,5 +1,5 @@
 @IsTest
-public class AccountTypeUpdateBatchTest {
+private class AccountTypeUpdateBatchTest {
 
     private static final Integer BATCH_SIZE = 200;
     private static final Integer ACCOUNTS_TO_INSERT = 5;

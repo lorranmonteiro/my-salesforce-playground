@@ -1,5 +1,5 @@
 @IsTest
-public class GitLabProjectTest {
+private class GitLabProjectTest {
 
     @IsTest
     static void testParse() {

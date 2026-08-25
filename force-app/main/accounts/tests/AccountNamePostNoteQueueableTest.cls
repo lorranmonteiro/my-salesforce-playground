@@ -1,5 +1,5 @@
 @IsTest
-public class AccountNamePostNoteQueueableTest {
+private class AccountNamePostNoteQueueableTest {
 
     @IsTest
     static void shouldEnqueueAccountNamePostNoteJob() {

@@ -1,5 +1,5 @@
 @IsTest
-public class AccountTypeUpdateBatchSchedulerTest {
+private class AccountTypeUpdateBatchSchedulerTest {
 
     @IsTest
     static void scheduleAccountTypeUpdateBatch() {

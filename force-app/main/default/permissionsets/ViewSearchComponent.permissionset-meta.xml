@@ -4,6 +4,18 @@
         <enabled>true</enabled>
         <name>canViewSearchComponent</name>
     </customPermissions>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>Gitlab-Credentials</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>GoogleGemini-API Key</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>OpenAI-Credentials</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>View Search Component</label>
 </PermissionSet>

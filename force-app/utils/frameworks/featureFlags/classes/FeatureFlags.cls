@@ -1,4 +1,4 @@
-public without sharing class FeatureFlags implements IFeatureFlags {
+public with sharing class FeatureFlags implements IFeatureFlags {
     
     private Map<String,FeatureFlag__mdt> features; 
     private Set<String> customPermissionNames; 

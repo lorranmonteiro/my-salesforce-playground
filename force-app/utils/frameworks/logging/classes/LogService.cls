@@ -1,4 +1,4 @@
-public without sharing class LogService {
+public with sharing class LogService {
 
     private static final String LOG_TYPE_INTEGRATION_API = 'Integration API';
     private static final String LOG_TYPE_INTEGRATION_CALLOUT= 'Integration Callout';
