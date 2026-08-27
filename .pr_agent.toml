@@ -1,0 +1,104 @@
+[config]
+model = "deepseek-v4-pro"
+fallback_models = ["deepseek-v4-flash"]
+ai_timeout = 300
+custom_model_max_tokens = 200000 # Critical! Errors without this
+response_language = "en-US"
+verbosity_level = 2
+
+[github_action_config]
+auto_review = true
+auto_improve = true
+auto_describe = true
+
+[pr_reviewer]
+# Enable deep analysis for Salesforce code
+require_score_review = true
+require_tests_review = true
+require_security_review = true
+num_thinking_tasks = 2
+
+# Comprehensive Salesforce-specific review instructions based on project AGENTS.md
+extra_instructions = """
+You are reviewing code for a Salesforce DX project (API v67.0). Apply the following rules strictly:
+
+## Apex Best Practices
+1. **Bulkification**: Never perform SOQL queries or DML statements inside loops (for, while). Always use collections (Lists, Sets, Maps) to operate on data in bulk.
+2. **Trigger Pattern**: There must be only ONE trigger per sObject. All business logic must be delegated to a handler class that extends `TriggerHandler` (from `utils/frameworks/triggerHandler/`). Trigger bodies should be one-liners: `new XxxTriggerHandler().run()`.
+3. **No Hardcoding**: Never use hardcoded record IDs. Use Custom Metadata Types (`*__mdt`), Custom Settings, or dynamic queries instead.
+4. **Selector Pattern**: All SOQL queries MUST live in dedicated `*Selector` classes (e.g., `AccountSelector`). Services and APIs must never contain inline SOQL. Queries must use `WITH USER_MODE` (preferred) or `WITH SECURITY_ENFORCED`.
+5. **Service Layer**: Business logic must live in Service classes (e.g., `AccountService`) and must not contain inline SOQL — delegate all queries to Selector classes.
+6. **Braces**: If a code block (if/else/for) consists of only a single short line, braces {} are not required. Prioritize readability with proper spacing.
+
+## Apex Unit Testing
+1. **Assertions**: Use the modern `Assert` class (`Assert.areEqual()`, `Assert.isTrue()`, `Assert.isNull()`, etc). NEVER use `System.assertEquals()` or `System.assert()`.
+2. **Governor Limits**: Use `Test.startTest()` and `Test.stopTest()` to get a fresh set of governor limits. Code between these calls must be indented by one tab.
+3. **Coverage**: Aim for close to 100% test coverage and ensure all exception scenarios are tested. Never use org data in tests.
+4. **Annotations**: Use `@TestSetup` to create test data and `@IsTest` on test methods. Use `@IsTest(SeeAllData=false)` for test classes.
+
+## Lightning Web Components (LWC)
+1. **LDS First**: Always prioritize Lightning Data Service (e.g., `lightning-record-form`, `getRecord`, `updateRecord` from `lightning/uiRecordApi`) before resorting to imperative Apex methods via `@salesforce/apex`.
+2. **Styling**: Use SLDS utility classes (e.g., `slds-m-around_medium`, `slds-text-heading_medium`) as much as possible. Avoid inline CSS and global CSS selectors that break Shadow DOM encapsulation. Use SLDS Global Styling Hooks (`--slds-*`) for customizations.
+3. **Accessibility**: Every input must have an associated `<label>` element. Use `aria-*` attributes where necessary. Ensure keyboard navigation works.
+4. **Imports**: Import specific fields using `@salesforce/schema` (e.g., `import NAME_FIELD from '@salesforce/schema/Account.Name'`). Use wire adapters with reactive variables (`$recordId`).
+
+## Security
+1. **SOQL Injection**: Validate and sanitize all dynamic query inputs. Never concatenate user input directly into SOQL strings.
+2. **CRUD/FLS**: Enforce object-level and field-level security using `Security.stripInaccessible()` or `WITH USER_MODE` on all queries.
+3. **Sharing**: All classes must explicitly declare `with sharing` (or `without sharing` when intentionally bypassing).
+4. **XSS in LWC**: Use `lightning-formatted-*` components or proper escaping for user-controlled output.
+
+## Architecture
+1. **Directory Structure**: Code must follow the project convention:
+   - `force-app/main/{domain}/classes/` — Service and selector classes
+   - `force-app/main/{domain}/tests/` — Test classes
+   - `force-app/main/{domain}/lwc/` — Lightning Web Components
+   - `force-app/main/{domain}/triggers/` — Trigger files (one-liners)
+   - `force-app/main/{domain}/api/` — REST endpoints with `*APIHelper` validators
+   - `force-app/utils/frameworks/` — Reusable frameworks
+2. **TriggerHandler Framework**: Handler classes override context-specific virtual methods: `beforeInsert`, `afterInsert`, `beforeUpdate`, `afterUpdate`, `beforeDelete`, `afterDelete`, `afterUndelete`.
+3. **Service Factory**: External service classes must be accessed through a `*ServiceFactory` implementing `IServiceFactory`.
+4. **Feature Flags**: Use `FeatureFlags` utility class backed by `FeatureFlag__mdt`.
+5. **Logging**: Use `LogService` which publishes `LogEvent__e` Platform Events.
+
+## Integration Patterns
+1. **Named Credentials**: Use Named Credentials (e.g., `callout:GitlabAPI`) for auth in HTTP callouts.
+2. **Custom Metadata**: Store integration endpoints in `IntegrationEndpoint__mdt` and settings in `IntegrationSetting__mdt`.
+3. **REST API**: Endpoints must use `@RestResource` with companion `*APIHelper` classes for validation. Errors must serialize as `APIErrorResponse { message }`.
+
+## Severity Mapping
+- **CRITICAL**: SOQL/DML in loops, SOQL injection, missing CRUD/FLS, hardcoded IDs
+- **HIGH**: Missing test coverage, wrong assertions (System.assert), missing sharing, LWC a11y
+- **MEDIUM**: Missing `WITH USER_MODE`, inline SOQL in services, missing selector pattern
+- **LOW**: Style deviations, SLDS class usage, brace conventions
+
+For every issue: provide file path, line number, severity, and a concrete fix with corrected code.
+"""
+
+[pr_description]
+extra_instructions = """
+Generate a clear and comprehensive PR description for Salesforce metadata changes.
+"""
+generate_ai_title = true
+
+[pr_code_suggestions]
+extra_instructions = """
+Provide actionable, specific code suggestions with concrete examples following Salesforce best practices. For each suggestion:
+1. Show the exact current code (file path + line numbers)
+2. Explain why it needs to change, referencing the relevant best practice
+3. Provide the corrected code as a committed suggestion
+
+Prioritize suggestions that:
+- Fix SOQL/DML in loops (bulkification)
+- Add missing `WITH USER_MODE` or `WITH SECURITY_ENFORCED`
+- Replace `System.assert*` with `Assert.*` methods
+- Add missing `Test.startTest()`/`Test.stopTest()` blocks
+- Convert imperative Apex calls to Lightning Data Service in LWC
+- Add missing accessibility attributes
+- Fix SOQL injection vulnerabilities
+- Replace hardcoded IDs with Custom Metadata lookups
+"""
+commitable_code_suggestions = true
+
+[pr_update_changelog]
+push_changelog_changes = false

@@ -18,6 +18,8 @@ jobs:
   deploy:
     name: Deploy Package Delta
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: salesforce/cli:latest-full
     steps:
