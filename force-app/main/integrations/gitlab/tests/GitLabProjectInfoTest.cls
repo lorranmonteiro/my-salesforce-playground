@@ -1,5 +1,5 @@
 @IsTest
-public class GitLabProjectInfoTest {
+private class GitLabProjectInfoTest {
 
     @IsTest
     static void shouldGetProjectDetails() {

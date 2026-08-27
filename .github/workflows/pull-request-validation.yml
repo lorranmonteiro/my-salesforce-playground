@@ -19,6 +19,8 @@ jobs:
   run-code-analyzer:
     name: Run Code Analyzer
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: salesforce/cli:latest-full
     steps:
@@ -45,6 +47,8 @@ jobs:
   lwc-jest-tests:
     name: LWC Jest Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: salesforce/cli:latest-full
     steps:
@@ -67,6 +71,8 @@ jobs:
   validate-deploy-scratch-org:
     name: Validate Deploy with Scratch Org
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     container:
       image: salesforce/cli:latest-full
     steps:

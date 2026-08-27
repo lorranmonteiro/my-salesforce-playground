@@ -1,5 +1,5 @@
 @IsTest
-public class AccountServiceTest {
+private class AccountServiceTest {
 
     @IsTest
     static void postNoteOnMergeRequestWhenNameChanges() {

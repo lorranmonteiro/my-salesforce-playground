@@ -1,4 +1,4 @@
-public without sharing virtual class TriggerHandler {
+public with sharing virtual class TriggerHandler {
 
     private static Map<String, LoopCount> loopCountMap;
     private static Set<String> bypassedHandlers;

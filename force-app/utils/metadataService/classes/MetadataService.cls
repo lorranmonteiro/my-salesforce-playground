@@ -39,7 +39,7 @@ public class MetadataService {
 
     public class MetadataPort {
         public MetadataService.SessionHeader_element SessionHeader;
-        public String endpoint_x = URL.getOrgDomainUrl().toExternalForm() + '/services/Soap/m/64.0';
+        public String endpoint_x = URL.getOrgDomainUrl().toExternalForm() + '/services/Soap/m/67.0';
 
         public MetadataService.SaveResult[] updateMetadata(MetadataService.Metadata[] metadata) {
 

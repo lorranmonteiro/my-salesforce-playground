@@ -30,8 +30,8 @@
   - `frameworks/triggerHandler/` — Base `TriggerHandler` class
   - `frameworks/logging/` — `LogService` (publishes `LogEvent__e` Platform Event) + `Log__c` custom object
   - `frameworks/featureFlags/` — `FeatureFlags` backed by `FeatureFlag__mdt`
-  - `frameworks/metadataService/` — Metadata API wrappers
-  - `frameworks/prepareSandbox/` — Sandbox setup utilities
+  - `utils/metadataService/` — Metadata API wrappers
+  - `utils/prepareSandbox/` — Sandbox setup utilities
   - `shared/` — `Constants`, `StringUtils`, `APIErrorResponse`
 
 ### Trigger Handler Framework

@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD')
-global without sharing class PrepareMySandbox implements SandboxPostCopy {
+global with sharing class PrepareMySandbox implements SandboxPostCopy {
 
     global PrepareMySandbox() {
         //Implementations of SandboxPostCopy must have a no-arg constructor.

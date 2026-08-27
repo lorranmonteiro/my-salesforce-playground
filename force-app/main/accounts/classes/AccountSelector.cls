@@ -55,7 +55,7 @@ public with sharing class AccountSelector {
     }
 
     public static List<Account> getAccountsByIds(Set<Id> accountIds) {
-        if (accountIds.isEmpty()) { return null; }
+        if (accountIds.isEmpty()) { return new List<Account>(); }
 
         return [
             SELECT Id, Name, LastModifiedDate

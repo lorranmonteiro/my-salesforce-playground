@@ -1,5 +1,5 @@
 @IsTest
-public class AccountDetailsTest {
+private class AccountDetailsTest {
 
     @IsTest
     static void getAccountsByAccountNumber() {
