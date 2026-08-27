@@ -1,8 +1,8 @@
 [config]
-model = "deepseek-v4-pro"
-fallback_models = ["deepseek-v4-flash"]
+model = "openrouter/deepseek/deepseek-v4-pro"
+fallback_models = ["openrouter/deepseek/deepseek-v4-flash"]
 ai_timeout = 300
-custom_model_max_tokens = 200000 # Critical! Errors without this
+custom_model_max_tokens = 20000
 response_language = "en-US"
 verbosity_level = 2
 

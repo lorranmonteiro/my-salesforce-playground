@@ -21,20 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: PR Agent Action
-        uses: qodo-ai/pr-agent@main
+        uses: the-pr-agent/pr-agent@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENROUTER.KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          CONFIG.MODEL: "deepseek-v4-pro"
-          CONFIG.FALLBACK_MODELS: '["deepseek-v4-flash"]'
-          CONFIG.MAX_MODEL_TOKENS: 200000
-          PR_REVIEW.REQUIRE_SCORE_REVIEW: true
-          PR_REVIEW.REQUIRE_TESTS_REVIEW: true
-          PR_REVIEW.REQUIRE_SECURITY_REVIEW: true
-          PR_REVIEW.NUM_THINKING_TASKS: 2
-          PR_REVIEW.EXTRA_INSTRUCTIONS: "Review this code against Salesforce development best practices. Key areas to check: 1) Bulkification: no SOQL queries or DML statements inside loops. 2) Trigger pattern: only one trigger per sObject delegating to a handler class extending TriggerHandler. 3) No hardcoded record IDs — use Custom Metadata Types or dynamic queries. 4) All SOQL in dedicated Selector classes using WITH USER_MODE or WITH SECURITY_ENFORCED. 5) Unit tests must use Assert class (not System.assert), Test.startTest()/Test.stopTest(), and @TestSetup/@IsTest annotations. 6) LWC must use Lightning Data Service (lightning/uiRecordApi) before imperative Apex, SLDS utility classes, and proper aria-* accessibility attributes. 7) Avoid SOQL injection — validate/sanitize all dynamic query inputs. 8) CRUD/FLS enforcement via Security.stripInaccessible() or WITH USER_MODE. 9) API version must be v67.0 (from sfdx-project.json). Flag any violation as a high-severity issue."
-          PR_CODE_SUGGESTIONS.EXTRA_INSTRUCTIONS: "Provide actionable code suggestions with examples following Salesforce best practices. Suggestions must respect: Apex bulkification patterns, trigger handler framework, selector pattern, LWC Lightning Data Service usage, and SLDS styling conventions."
-          PR_DESCRIPTION.EXTRA_INSTRUCTIONS: "Generate clear, structured PR descriptions highlighting affected Salesforce metadata types (Apex classes, triggers, LWC components, custom objects, etc). Include testing considerations and any configuration changes."
-          github_action_config.auto_review: "true"
-          github_action_config.auto_describe: "true"
-          github_action_config.auto_improve: "true"
+          OPENROUTER_KEY: ${{ secrets.OPENROUTER_API_KEY }}
