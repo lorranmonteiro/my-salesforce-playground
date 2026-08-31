@@ -2,7 +2,8 @@ export default [
   {
     ignores: [
       'jest.config.js',
-      'force-app/main/default/staticresources'
+      'force-app/main/default/staticresources',
+      'force-app/main/default/uiBundles/myReactApp'
     ]
   },
   {

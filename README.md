@@ -3,11 +3,11 @@
 A personal Salesforce development org showcasing enterprise-grade architecture, design patterns, and CI/CD practices.
 This project follows a domain-driven, layered architecture with clear separation of concerns:
 
-- **Selector pattern** — Most `SOQL` are centralized in `*Selector` classes (`AccountSelector`, `UserSelector`) using `WITH USER_MODE`, enforcing sharing and field-level security at query time.
+- **Selector pattern** — Most `SOQL` are centralized in `Selector` classes (`AccountSelector`, `UserSelector`) using `WITH USER_MODE`, enforcing sharing and field-level security at query time.
 - **Service layer** — business logic lives in Service classes (e.g., `AccountService`) with no inline SOQL.
 - **Trigger Handler framework** — triggers are one-liners (`new AccountTriggerHandler().run()`) delegating to a reusable `TriggerHandler` base class with context dispatch, recursion (loop-count) control, and a bypass mechanism (`bypass`/`bypassAllTriggers`).
 - **Service Factory** — integrations (GitLab, OpenAI, Gemini) are resolved through factories that auto-return mocks in tests and support `setMock()` injection.
-- **REST API layer** — `@RestResource` endpoints delegate validation to `*APIHelper` guards (CRUD permission checks, ID/body validation, existence) and serialize errors as `APIErrorResponse`.
+- **REST API layer** — `@RestResource` endpoints delegate validation to `APIHelper` guards (CRUD permission checks, ID/body validation, existence) and serialize errors as `APIErrorResponse`.
 
 It follows Salesforce best practices for Apex, LWC, and REST APIs, with a focus on maintainability, testability, and security. Inspired by the [Apex Well-Architected Framework](https://www.awaf.dev).
 
@@ -30,8 +30,9 @@ It follows Salesforce best practices for Apex, LWC, and REST APIs, with a focus 
 - **Platform Cache** — `Cache.Org` used to cache GitLab responses (`GitLabProjectInfo`).
 - **Metadata API + SandboxPostCopy** — `MetadataService` SOAP wrapper and `PrepareMySandbox` updating Named Credentials after sandbox refresh.
 - **LWC** — Lightning Data Service wire adapters (`getRecord`, `getObjectInfo`, `getPicklistValues`, `getRelatedListRecords`), Lightning Message Service (`GitlabProjectAccountDetails__c` channel), EMP API, Navigation, and markdown-it static resource rendering.
+- **React App** — Custom UI used on a Salesforce App
 
-## DevOps & quality
+## DevOps & Code Quality
 
 The repository includes full GitHub and GitLab CI/CD pipelines with static code analysis (Salesforce Code Analyzer + custom PMD rules), LWC Jest tests, scratch org validation deploys, and delta-based deployments using [sfdx-git-delta](https://github.com/scolladon/sfdx-git-delta). Code quality is enforced through PMD, ESLint, and Prettier. Tests use the modern `Assert` class, `@TestSetup`, and mock-based factories for full coverage of exception scenarios.
 
