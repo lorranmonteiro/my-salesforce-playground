@@ -24,4 +24,4 @@ jobs:
         uses: the-pr-agent/pr-agent@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENROUTER_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          openrouter__key: ${{ secrets.OPENROUTER_API_KEY }}

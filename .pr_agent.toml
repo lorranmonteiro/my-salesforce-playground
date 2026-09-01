@@ -2,7 +2,7 @@
 model = "openrouter/deepseek/deepseek-v4-pro"
 fallback_models = ["openrouter/deepseek/deepseek-v4-flash"]
 ai_timeout = 300
-custom_model_max_tokens = 20000
+custom_model_max_tokens = 1000000
 response_language = "en-US"
 verbosity_level = 2
 
