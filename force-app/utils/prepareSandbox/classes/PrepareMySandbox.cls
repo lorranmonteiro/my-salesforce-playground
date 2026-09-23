@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD')
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class PrepareMySandbox implements SandboxPostCopy {
 
     global PrepareMySandbox() {
@@ -13,25 +13,10 @@ global with sharing class PrepareMySandbox implements SandboxPostCopy {
     private void updateNamedCredentials() {
         List<MetadataService.Metadata> metadatas = new List<MetadataService.Metadata>();
 
-        for (NamedCredential namedCredential : [SELECT Endpoint, MasterLabel, DeveloperName FROM NamedCredential]) {
-
-            // Only works with legacy Named Credentials
-            if (namedCredential.Endpoint == null) { continue; }
-
-            MetadataService.NamedCredential credential = new MetadataService.NamedCredential();
-            credential.fullName = namedCredential.DeveloperName;
-            credential.label = namedCredential.MasterLabel;
-            credential.endpoint = namedCredential.Endpoint + '.invalid';
-            credential.principalType = 'NamedUser';
-            credential.protocol = 'NoAuthentication';
-
-            metadatas.add(credential);
-        }
-
         MetadataService.MetadataPort service = new MetadataService.MetadataPort();
         service.SessionHeader = new MetadataService.SessionHeader_element();
         service.SessionHeader.sessionId = UserInfo.getSessionId();
 
-        if (!metadatas.isEmpty() && !Test.isRunningTest()) { service.updateMetadata(metadatas); }
+        if (!metadatas.isEmpty()) service.updateMetadata(metadatas);
     }
 }
