@@ -1,3 +1,4 @@
+@IsTest
 public class FeatureFlagsMock implements IFeatureFlags {
     
     private Map<String, Boolean> featureMap;
