@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Fluxo de trabalho impulsionado por IA: Adoção pioneira de agentes autônomos de codificação com IA (Claude, Copilot, Cline) para acelerar a entrega e a qualidade do código</label>
+        <name>PortfolioAiDriven</name>
+    </customLabels>
+    <customLabels>
+        <label>Desenvolvo lógica de negócios personalizada e integrações utilizando a linguagem de programação Apex</label>
+        <name>PortfolioApex</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei pipelines de CI/CD no GitLab e GitHub para testes automatizados, deploy e controle de versão, garantindo uma entrega de software consistente e confiável</label>
+        <name>PortfolioCiCd</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei comunidades públicas e privadas para aprimorar o engajamento e o suporte ao cliente</label>
+        <name>PortfolioExperienceCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Explore o código-fonte por trás deste portfólio — tudo é público, incluindo Apex, LWCs e integrações</label>
+        <name>PortfolioGitHub</name>
+    </customLabels>
+    <customLabels>
+        <label>Entre em contato comigo pelo Gmail para qualquer dúvida ou oportunidade: lorrandec@gmail.com</label>
+        <name>PortfolioGmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Conecte-se comigo no LinkedIn e explore minha trajetória profissional e certificações</label>
+        <name>PortfolioLinkedIn</name>
+    </customLabels>
+    <customLabels>
+        <label>Utilizo os recursos low-code da Salesforce para acelerar os ciclos de desenvolvimento e criar aplicativos robustos com o mínimo de código</label>
+        <name>PortfolioLowCode</name>
+    </customLabels>
+    <customLabels>
+        <label>Crie componentes reutilizáveis ​​com padrões web modernos, aproveitando o framework LWC da Salesforce para um desenvolvimento de interface eficiente e escalável</label>
+        <name>PortfolioLwc</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei uma arquitetura orientada a eventos utilizando Platform Events  e Change Data Capture para comunicação e integração em tempo real entre sistemas</label>
+        <name>PortfolioPlatformEvents</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei REST APIs para uma integrações com sistemas e serviços externos</label>
+        <name>PortfolioRestApi</name>
+    </customLabels>
+    <customLabels>
+        <label>Baixe meu currículo em formato PDF para saber mais sobre minha experiência e qualificações</label>
+        <name>PortfolioResume</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei recursos de gestão de leads (Lead Management) para otimizar o processo de vendas</label>
+        <name>PortfolioSalesCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Salesforce Core: Nuvens de Sales, Service e Experience;
+Gerenciamento de Lead, Case e Knowledge;
+Apex, LWC, Flows, SFDX</label>
+        <name>PortfolioSalesforceCore</name>
+    </customLabels>
+    <customLabels>
+        <label>Implementei recursos de gestão de casos (Case Management) e gestão de base de conhecimento (Knowledge Management) para aprimorar o suporte ao cliente</label>
+        <name>PortfolioServiceCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Sou um Engenheiro de Software Sênior com mais de 8 anos de experiência no desenvolvimento de aplicações escaláveis, integrações complexas de REST APIs e pipelines de CI/CD. Com 4 anos dedicados ao ecossistema Salesforce e 5 certificações, combino sólidos conhecimentos de engenharia de software com práticas modernas de desenvolvimento impulsionado por IA. Estou totalmente adaptado ao trabalho com equipes globais em fusos horários da América do Norte (EST, CST e MST).</label>
+        <name>PortfolioSummary</name>
+    </customLabels>
+    <customLabels>
+        <label>Engenharia de Software: Ex-Tech Lead com sólida base full-stack, traduzindo objetivos de negócio em arquitetura robusta</label>
+        <name>PortfolioTechnicalBackground</name>
+    </customLabels>
+    <customLabels>
+        <label>Confira meu perfil no Trailblazer para ver minhas conquistas e contribuições para a comunidade Salesforce</label>
+        <name>PortfolioTrailblazer</name>
+    </customLabels>
+</Translations>

@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Summary</shortDescription>
-        <value>Senior Software Engineer with 8+ years of total experience developing scalable enterprise applications, complex REST API integrations, and CI/CD pipelines. With 4 years dedicated to the Salesforce ecosystem and 5x Salesforce Certified, I combine deep core engineering skills with modern AI-driven development. Fully adapted to working with global teams across North American time zones (EST, CST, and MST).</value>
+        <value>I&apos;m a Senior Software Engineer with 8+ years of total experience developing scalable enterprise applications, complex REST API integrations, and CI/CD pipelines. With 4 years dedicated to the Salesforce ecosystem and 5x Salesforce Certified, I combine deep core engineering skills with modern AI-driven development. Fully adapted to working with global teams across North American time zones (EST, CST, and MST).</value>
     </labels>
     <labels>
         <fullName>PortfolioSalesforceCore</fullName>
@@ -14,7 +14,9 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Salesforce Core</shortDescription>
-        <value>Salesforce Core: Sales, Service and Experience Clouds; Lead/Case/Knowledge Management; Apex, LWC, Flows, SFDX</value>
+        <value>Salesforce Core: Sales, Service and Experience Clouds;
+Lead, Case and Knowledge Management;
+Apex, LWC, Flows, SFDX</value>
     </labels>
     <labels>
         <fullName>PortfolioTechnicalBackground</fullName>
@@ -38,7 +40,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Apex</shortDescription>
-        <value>Develop custom business logic and integrations using Salesforce's Apex programming language</value>
+        <value>Develop custom business logic and integrations using Salesforce&apos;s Apex programming language</value>
     </labels>
     <labels>
         <fullName>PortfolioRestApi</fullName>
@@ -46,7 +48,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio REST APIs</shortDescription>
-        <value>Design and implement RESTful APIs for seamless integration with external systems and services</value>
+        <value>Design and implement REST APIs for seamless integration with external systems and services</value>
     </labels>
     <labels>
         <fullName>PortfolioLwc</fullName>
@@ -54,7 +56,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio LWC</shortDescription>
-        <value>Create reusable components with modern web standards, leveraging Salesforce's LWC framework for efficient and scalable UI development</value>
+        <value>Create reusable components with modern web standards, leveraging Salesforce&apos;s LWC framework for efficient and scalable UI development</value>
     </labels>
     <labels>
         <fullName>PortfolioPlatformEvents</fullName>
@@ -70,7 +72,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Low Code</shortDescription>
-        <value>Leverage Salesforce's low-code capabilities to accelerate development cycles and create robust applications with minimal custom coding</value>
+        <value>Leverage Salesforce&apos;s low-code capabilities to accelerate development cycles and create robust applications with minimal custom coding</value>
     </labels>
     <labels>
         <fullName>PortfolioCiCd</fullName>
@@ -127,5 +129,21 @@
         <protected>false</protected>
         <shortDescription>GitHub description</shortDescription>
         <value>Explore the source code behind this portfolio — everything is public, including Apex, LWCs, and integrations</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioResume</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resume description</shortDescription>
+        <value>Download my resume in PDF format to learn more about my experience and qualifications</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioTrailblazer</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trailblazer description</shortDescription>
+        <value>Take a look at my Trailblazer profile to see my achievements and contributions to the Salesforce community</value>
     </labels>
 </CustomLabels>
