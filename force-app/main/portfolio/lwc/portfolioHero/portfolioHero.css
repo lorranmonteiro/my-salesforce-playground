@@ -56,19 +56,19 @@ h1 {
 .hero-image {
     display: flex;
     justify-content: center;
+}
 
-    img {
-        width: 100%;
-        max-width: 400px;
-        border: 2px solid var(#76beda);
-        border-radius: 100%;
-        box-shadow: 0 0  3px 3px #76beda;
-    }
+.hero-image img {
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #76beda;
+    border-radius: 100%;
+    box-shadow: 0 0 3px 3px #76beda;
 }
 
 .custom-icon {
     width: 1.5rem;
-    height: 2.0rem;
+    height: 1.5rem;
     object-fit: contain;
 }
 

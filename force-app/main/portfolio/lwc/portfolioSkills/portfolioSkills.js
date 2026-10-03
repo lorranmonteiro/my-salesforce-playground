@@ -1,10 +1,10 @@
 import { LightningElement } from 'lwc';
 import SkillsTitleLabel from "@salesforce/label/c.PortfolioSkillsSectionTitle";
 import ApexLabel from "@salesforce/label/c.PortfolioApex";
-import RestApiLabel from "@salesforce/label/c.PortfolioRestApi";
 import LwcLabel from "@salesforce/label/c.PortfolioLwc";
+import RestApiLabel from "@salesforce/label/c.PortfolioRestApi";
+import DeclarativeLabel from "@salesforce/label/c.PortfolioDeclarative";
 import PlatformEventsLabel from "@salesforce/label/c.PortfolioPlatformEvents";
-import LowCodeLabel from "@salesforce/label/c.PortfolioLowCode";
 import CiCdLabel from "@salesforce/label/c.PortfolioCiCd";
 
 export default class PortfolioSkills extends LightningElement {
@@ -15,7 +15,7 @@ export default class PortfolioSkills extends LightningElement {
         {
             id: 'apex',
             iconName: 'standard:apex',
-            title: 'Apex',
+            title: 'Apex & Async Processing',
             description: ApexLabel
         },
         {
@@ -25,9 +25,15 @@ export default class PortfolioSkills extends LightningElement {
             description: LwcLabel
         },
         {
+            id: 'declarative',
+            iconName: 'standard:flow',
+            title: 'Declarative Automation (Low-Code)',
+            description: DeclarativeLabel
+        },
+        {
             id: 'rest-api',
             iconName: 'standard:data_transforms',
-            title: 'REST APIs',
+            title: 'REST API Integrations',
             description: RestApiLabel
         },
         {
@@ -35,12 +41,6 @@ export default class PortfolioSkills extends LightningElement {
             iconName: 'custom:custom30',
             title: 'Platform Events & CDC',
             description: PlatformEventsLabel
-        },
-        {
-            id: 'low-code',
-            iconName: 'standard:flow',
-            title: 'Low-Code Development',
-            description: LowCodeLabel
         },
         {
             id: 'cicd',

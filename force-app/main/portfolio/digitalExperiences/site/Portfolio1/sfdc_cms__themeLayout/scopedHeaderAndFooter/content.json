@@ -72,12 +72,61 @@
           "children" : [ {
             "children" : [ {
               "attributes" : {
-                "dxpStyle" : { },
-                "imageInfos" : "",
-                "richTextValue" : "<p style='text-align:center;font-size:0.875rem;color:var(--dxp-g-neutral-contrast);padding:1.5rem 0;font-weight: 600;'>\n    © 2026  Lorran Monteiro ‎ | ‎ Senior Salesforce Developer ‎ | ‎ lorrandec@gmail.com\n</p>"
+                "columnGutterWidth" : "",
+                "columnMinHeight" : "",
+                "columnVerticalAlign" : "center",
+                "layoutDirectionDesktop" : "row",
+                "layoutDirectionMobile" : "column",
+                "layoutDirectionTablet" : "column",
+                "sectionConfig" : "{\"UUID\":\"0cd609ab-96c8-4a97-88f3-240bbf3c0963\",\"columns\":[{\"UUID\":\"966546db-188b-4c5c-b118-357bbd452cc1\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"10\",\"seedComponents\":[]},{\"UUID\":\"1ffd0784-e6b7-47cf-ad8d-2cbf3ce20271\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"2\",\"seedComponents\":[]}]}"
               },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "d667dec7-a2f3-46ed-94c5-c6f913585688",
+              "children" : [ {
+                "children" : [ {
+                  "attributes" : {
+                    "dxpStyle" : {
+                      "margin" : {
+                        "bottom" : "",
+                        "left" : "",
+                        "right" : "",
+                        "top" : ""
+                      },
+                      "padding" : {
+                        "bottom" : "",
+                        "left" : "25%",
+                        "right" : "",
+                        "top" : ""
+                      }
+                    },
+                    "imageInfos" : "",
+                    "richTextValue" : "<p style='text-align:center;font-size:0.875rem;color:var(--dxp-g-neutral-contrast);padding:1.5rem 0;font-weight: 600;'>\n    © 2026  Lorran Monteiro ‎ | ‎ Senior Salesforce Developer ‎ | ‎ lorrandec@gmail.com\n</p>"
+                  },
+                  "definition" : "community_builder:htmlEditor",
+                  "id" : "d667dec7-a2f3-46ed-94c5-c6f913585688",
+                  "type" : "component"
+                } ],
+                "id" : "966546db-188b-4c5c-b118-357bbd452cc1",
+                "name" : "col1",
+                "title" : "Column 1",
+                "type" : "region"
+              }, {
+                "children" : [ {
+                  "attributes" : {
+                    "buttonStyle" : "primary",
+                    "menuAlignment" : "center",
+                    "menuBorderRadius" : 19,
+                    "showGlobeIcon" : true
+                  },
+                  "definition" : "dxp_base:languageSelector",
+                  "id" : "8a6b258b-ab31-4191-bf10-65ff51d45c60",
+                  "type" : "component"
+                } ],
+                "id" : "1ffd0784-e6b7-47cf-ad8d-2cbf3ce20271",
+                "name" : "col2",
+                "title" : "Column 2",
+                "type" : "region"
+              } ],
+              "definition" : "dxp_layout:columns",
+              "id" : "0cd609ab-96c8-4a97-88f3-240bbf3c0963",
               "type" : "component"
             } ],
             "id" : "c5c7c4e5-8604-4394-94cc-00e4a243d270",
