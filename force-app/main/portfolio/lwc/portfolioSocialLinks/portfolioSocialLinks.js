@@ -12,7 +12,7 @@ export default class PortfolioSocialLinks extends LightningElement {
             iconName: 'standard:email_chatter',
             title: 'Gmail',
             description: GmailLabel,
-            url: 'mailto:lorranmonteiro@gmail.com'
+            url: 'mailto:lorrandec@gmail.com'
         },
         {
             id: 'linkedin',
