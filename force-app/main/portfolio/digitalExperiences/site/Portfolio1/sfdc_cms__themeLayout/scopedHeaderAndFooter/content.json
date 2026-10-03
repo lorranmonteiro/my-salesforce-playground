@@ -14,6 +14,7 @@
             "backgroundImageConfig" : "",
             "backgroundImageOverlay" : "rgba(0,0,0,0)",
             "componentSpacerSize" : "",
+            "dxpStyle" : { },
             "layoutDirectionDesktop" : "row",
             "layoutDirectionMobile" : "column",
             "layoutDirectionTablet" : "column",
@@ -26,13 +27,16 @@
           "children" : [ {
             "children" : [ {
               "attributes" : {
-                "alignment" : "left",
-                "imageInfo" : "",
-                "imageInfoMobile" : "",
-                "logoWidth" : 250
+                "alignment" : "center",
+                "fit" : "contain",
+                "height" : 350,
+                "imageInfo" : "{\"imageInfoV1\":{\"url\":\"/sfsites/c/cms/delivery/media/MCPXB5SRRBA5FBZMXESM7325MCB4?lastModifiedDate=Sat Oct 03 01:44:32 GMT 2026\",\"altText\":\"\",\"contentKey\":\"MCPXB5SRRBA5FBZMXESM7325MCB4\",\"contentType\":null}}",
+                "overlayColor" : "",
+                "position" : "center center",
+                "width" : 100
               },
-              "definition" : "dxp_content_layout:siteLogo",
-              "id" : "4026ca2a-e0cc-4e93-a95e-55b531fece7c",
+              "definition" : "dxp_base:image",
+              "id" : "51c20e4b-ed37-42eb-afdb-b0f6ed158f85",
               "type" : "component"
             } ],
             "id" : "83f72c8f-8309-4d60-bb69-b63b4dde777d",
@@ -54,6 +58,7 @@
             "backgroundImageConfig" : "",
             "backgroundImageOverlay" : "rgba(0,0,0,0)",
             "componentSpacerSize" : "",
+            "dxpStyle" : { },
             "layoutDirectionDesktop" : "row",
             "layoutDirectionMobile" : "column",
             "layoutDirectionTablet" : "column",
@@ -64,6 +69,15 @@
             "sectionVerticalAlign" : "flex-start"
           },
           "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "imageInfos" : "",
+                "richTextValue" : "<p style='text-align:center;font-size:0.875rem;color:var(--dxp-g-neutral-contrast);padding:1.5rem 0;'>© 2026 Lorran Monteiro | Senior Salesforce Developer</p>"
+              },
+              "definition" : "community_builder:htmlEditor",
+              "id" : "d667dec7-a2f3-46ed-94c5-c6f913585688",
+              "type" : "component"
+            } ],
             "id" : "c5c7c4e5-8604-4394-94cc-00e4a243d270",
             "name" : "footerSection",
             "title" : "Theme Footer",

@@ -9,6 +9,7 @@
             "backgroundImageConfig" : "",
             "backgroundImageOverlay" : "rgba(0,0,0,0)",
             "componentSpacerSize" : "",
+            "dxpStyle" : { },
             "layoutDirectionDesktop" : "row",
             "layoutDirectionMobile" : "column",
             "layoutDirectionTablet" : "column",
@@ -20,17 +21,23 @@
           },
           "children" : [ {
             "children" : [ {
-              "attributes" : { },
+              "attributes" : {
+                "dxpStyle" : { }
+              },
               "definition" : "c:portfolioHero",
               "id" : "8f914717-91a4-4803-8c42-46885c5147a7",
               "type" : "component"
             }, {
-              "attributes" : { },
+              "attributes" : {
+                "dxpStyle" : { }
+              },
               "definition" : "c:portfolioSkills",
               "id" : "ff920268-11a7-4f7a-be46-c60d7dd38164",
               "type" : "component"
             }, {
-              "attributes" : { },
+              "attributes" : {
+                "dxpStyle" : { }
+              },
               "definition" : "c:portfolioClouds",
               "id" : "e3e50a53-24aa-40e0-9d53-9f6063a4767a",
               "type" : "component"
@@ -53,6 +60,7 @@
           "attributes" : {
             "customHeadTags" : "",
             "description" : "",
+            "dxpStyle" : { },
             "pageTitle" : "Home",
             "recordId" : "{!recordId}"
           },

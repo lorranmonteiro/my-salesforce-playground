@@ -1,48 +1,23 @@
 <template>
-    <div class="card-container">
-        <div class="card">
-            <lightning-icon icon-name="standard:apex" alternative-text="Apex" size="large" title="Apex"></lightning-icon>
-            <div class="card-text">
-                <h4>Apex</h4>
-                <p>Develop custom business logic and integrations using Salesforce's Apex programming language.</p>
-            </div>
+    <section class="skills-section" aria-labelledby="skills-heading">
+
+        <h2 class="section-title">🚀 My Skills</h2>
+        <div class="cards-grid">
+
+            <template for:each={skills} for:item="skill">
+
+                <div key={skill.id} class="skill-card" role="article">
+                    <lightning-icon
+                        icon-name={skill.iconName}
+                        size="large"
+                        alternative-text={skill.title}
+                    ></lightning-icon>
+
+                    <h3>{skill.title}</h3>
+                    <p>{skill.description}</p>
+                </div>
+
+            </template>
         </div>
-        <div class="card">
-            <lightning-icon icon-name="standard:data_transforms" alternative-text="REST API" size="large" title="REST API"></lightning-icon>
-            <div class="card-text">
-                <h4>REST APIs</h4>
-                <p>Design and implement RESTful APIs for seamless integration with external systems and services.</p>
-            </div>
-        </div>
-        <div class="card">
-            <lightning-icon icon-name="standard:lightning_component" alternative-text="LWC" size="large" title="LWC" variant="inverse"></lightning-icon>
-            <div class="card-text">
-                <h4>Lightning Web Components</h4>
-                <p>Create reusable components with modern web standards, leveraging Salesforce's LWC framework for efficient and scalable UI development.</p>
-            </div>
-        </div>
-    </div>
-    <div class="card-container">
-        <div class="card">
-            <lightning-icon icon-name="standard:events" alternative-text="Platform Events" size="large" title="Platform Events"></lightning-icon>
-            <div class="card-text">
-                <h4>Platform Events & CDC</h4>
-                <p>Implement real-time data synchronization and event-driven architectures using Salesforce's platform events and change data capture capabilities.</p>
-            </div>
-        </div>
-        <div class="card">
-            <lightning-icon icon-name="standard:flow" alternative-text="Flows" size="large" title="Flows"></lightning-icon>
-            <div class="card-text">
-                <h4>Low-Code Development</h4>
-                <p>Leverage Salesforce's low-code capabilities to accelerate development cycles and create robust applications with minimal custom coding.</p>
-            </div>
-        </div>
-        <div class="card">
-            <lightning-icon icon-name="standard:dx_pipeline" alternative-text="Salesforce DX" size="large" title="Salesforce DX"></lightning-icon>
-            <div class="card-text">
-                <h4>CI/CD Pipelines & Salesforce DX</h4>
-                <p>Implement automated build, test, and deployment processes to streamline development and ensure consistent, reliable releases.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 </template>
