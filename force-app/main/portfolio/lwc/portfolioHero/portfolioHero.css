@@ -1,0 +1,88 @@
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--slds-g-spacing-6, 2rem);
+    align-items: center;
+    padding: var(--slds-g-spacing-6, 2rem) var(--slds-g-spacing-4, 1rem);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--slds-g-spacing-5, 1.5rem);
+}
+
+h1 {
+    font-size: var(--slds-g-font-scale-7, 2.25rem);
+    font-weight: var(--slds-g-font-weight-7, 700);
+    line-height: 1.2;
+    color: var(--dxp-g-root-contrast, #1a1a1a);
+    margin: 0;
+}
+
+.hero-bio {
+    font-size: var(--slds-g-font-scale-3, 1rem);
+    line-height: 1.7;
+    color: var(--dxp-g-root-contrast, #333);
+    margin: 0;
+}
+
+.hero-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--dxp-g-root-contrast, #444);
+    padding: var(--slds-g-spacing-2, 0.5rem) 0;
+}
+
+.highlight-item lightning-icon {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid var(--dxp-g-brand, #004989);
+    border-radius: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: var(--slds-g-spacing-8, 3rem) var(--slds-g-spacing-6, 2rem);
+    }
+
+    h1 {
+        font-size: var(--slds-g-font-scale-8, 2.75rem);
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .hero-grid {
+        padding: var(--slds-g-spacing-10, 4rem) var(--slds-g-spacing-6, 2rem);
+    }
+
+    h1 {
+        font-size: var(--slds-g-font-scale-9, 3rem);
+    }
+}

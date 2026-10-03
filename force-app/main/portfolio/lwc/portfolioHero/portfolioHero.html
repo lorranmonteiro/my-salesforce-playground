@@ -1,0 +1,27 @@
+<template>
+    <div class="hero-grid">
+
+        <div class="hero-text">
+            <h1>Welcome to my Portfolio!</h1>
+            <p class="hero-bio">{labels.Summary}</p>
+            <ul class="hero-highlights">
+                <template for:each={highlights} for:item="item">
+                    <li key={item.text} class="highlight-item">
+                        <lightning-icon icon-name={item.icon} size="small"></lightning-icon>
+                        <span>{item.text}</span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src={profileImage}
+                alt="Profile Image"
+                loading="lazy"
+                decoding="async"
+            />
+        </div>              
+
+    </div>
+</template>
