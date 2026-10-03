@@ -32,6 +32,10 @@ It follows Salesforce best practices for Apex, LWC, and REST APIs, with a focus 
 - **LWC** — Lightning Data Service wire adapters (`getRecord`, `getObjectInfo`, `getPicklistValues`, `getRelatedListRecords`), Lightning Message Service (`GitlabProjectAccountDetails__c` channel), EMP API, Navigation, and markdown-it static resource rendering.
 - **React App** — Custom UI used on a Salesforce App
 
+## Portfolio Experience Site
+
+A public Experience Cloud site built on the **LWR (Build Your Own)** template to showcase professional skills, cloud experience, and contact links. The entire site lives in `force-app/main/portfolio/` and follows i18n-first design with **Custom Labels** for English (US) and Portuguese (BR) translations.
+
 ## DevOps & Code Quality
 
 The repository includes full GitHub and GitLab CI/CD pipelines with static code analysis (Salesforce Code Analyzer + custom PMD rules), LWC Jest tests, scratch org validation deploys, and delta-based deployments using [sfdx-git-delta](https://github.com/scolladon/sfdx-git-delta). Code quality is enforced through PMD, ESLint, and Prettier. Tests use the modern `Assert` class, `@TestSetup`, and mock-based factories for full coverage of exception scenarios.
