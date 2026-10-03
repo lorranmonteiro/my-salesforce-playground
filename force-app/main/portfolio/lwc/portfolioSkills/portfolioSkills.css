@@ -56,7 +56,7 @@
 
 @media only screen and (min-width: 768px) {
     .skills-section {
-        padding: var(--slds-g-spacing-8, 3rem) var(--slds-g-spacing-6, 2rem);
+        padding: var(--slds-g-spacing-7, 3rem) var(--slds-g-spacing-6, 2rem);
     }
 
     .cards-grid {
