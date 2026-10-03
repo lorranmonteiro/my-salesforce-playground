@@ -41,6 +41,11 @@
               "definition" : "c:portfolioClouds",
               "id" : "e3e50a53-24aa-40e0-9d53-9f6063a4767a",
               "type" : "component"
+            }, {
+              "attributes" : { },
+              "definition" : "c:portfolioSocialLinks",
+              "id" : "286db587-8e11-481f-b8b9-55ded92ff6b5",
+              "type" : "component"
             } ],
             "id" : "d711819f-dccf-4f22-8f52-380c49ce3774",
             "name" : "col1",

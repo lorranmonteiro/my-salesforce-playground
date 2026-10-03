@@ -78,7 +78,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio CI/CD</shortDescription>
-        <value>Implemented CI/CD pipelines with Gitlab and GitHub for automated testing, deployment, and version control, ensuring consistent and reliable software delivery</value>
+        <value>Implemented CI/CD pipelines within Gitlab and GitHub for automated testing, deployment, and version control, ensuring consistent and reliable software delivery</value>
     </labels>
     <labels>
         <fullName>PortfolioSalesCloud</fullName>
@@ -103,5 +103,29 @@
         <protected>false</protected>
         <shortDescription>Portfolio Experience Cloud</shortDescription>
         <value>Implemented private and public communities to enhance customer engagement and support</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioGmail</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gmail description</shortDescription>
+        <value>Reach out to me via Gmail for any inquiries or opportunities: lorrandec@gmail.com</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioLinkedIn</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LinkedIn description</shortDescription>
+        <value>Connect with me on LinkedIn and explore my professional journey, certifications, and career highlights</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioGitHub</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GitHub description</shortDescription>
+        <value>Explore the source code behind this portfolio — everything is public, including Apex, LWCs, and integrations</value>
     </labels>
 </CustomLabels>

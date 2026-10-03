@@ -22,13 +22,13 @@ export default class PortfolioSkills extends LightningElement {
         },
         {
             id: 'lwc',
-            iconName: 'standard:lightning_component',
+            iconName: 'custom:custom9',
             title: 'Lightning Web Components',
             description: LwcLabel
         },
         {
             id: 'platform-events',
-            iconName: 'standard:events',
+            iconName: 'custom:custom30',
             title: 'Platform Events & CDC',
             description: PlatformEventsLabel
         },
@@ -41,7 +41,7 @@ export default class PortfolioSkills extends LightningElement {
         {
             id: 'cicd',
             iconName: 'standard:dx_pipeline',
-            title: 'CI/CD Pipelines & Salesforce DX',
+            title: 'CI/CD Pipelines with SFDX',
             description: CiCdLabel
         }
     ];
