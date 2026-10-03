@@ -1,0 +1,10 @@
+{
+  "type" : "sfdc_cms__themeLayout",
+  "title" : "Scoped Header and Footer",
+  "contentBody" : {
+    "component" : {
+      "children" : [ ]
+    }
+  },
+  "urlName" : "scoped-header-and-footer"
+}

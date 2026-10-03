@@ -1,0 +1,31 @@
+<template>
+    <section class="social-section" aria-labelledby="social-heading">
+        <h2 id="social-heading" class="section-title">{titleLabel}</h2>
+
+        <div class="links-grid">
+            <template for:each={links} for:item="link">
+                <a
+                    key={link.id}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-card"
+                    aria-label={link.description}
+                >
+                    <template if:true={link.imgSrc}>
+                        <img src={link.imgSrc} alt={link.title} class="custom-icon" />
+                    </template>
+                    <template if:false={link.imgSrc}>
+                        <lightning-icon
+                            icon-name={link.iconName}
+                            size="large"
+                            alternative-text={link.title}
+                        ></lightning-icon>
+                    </template>
+                    <h3>{link.title}</h3>
+                    <p>{link.description}</p>
+                </a>
+            </template>
+        </div>
+    </section>
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <section class="skills-section" aria-labelledby="skills-heading">
+
+        <h2 id="skills-heading" class="section-title">{titleLabel}</h2>
+        <div class="cards-grid">
+
+            <template for:each={skills} for:item="skill">
+
+                <div key={skill.id} class="skill-card" role="article">
+                    <lightning-icon
+                        icon-name={skill.iconName}
+                        size="large"
+                        alternative-text={skill.title}
+                    ></lightning-icon>
+
+                    <h3>{skill.title}</h3>
+                    <p>{skill.description}</p>
+                </div>
+
+            </template>
+        </div>
+    </section>
+</template>
