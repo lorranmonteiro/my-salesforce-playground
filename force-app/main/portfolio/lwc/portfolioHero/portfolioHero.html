@@ -2,12 +2,22 @@
     <div class="hero-grid">
 
         <div class="hero-text">
-            <h1>Welcome to my Portfolio!</h1>
+
+            <h1>{labels.Title}</h1>
             <p class="hero-bio">{labels.Summary}</p>
+
             <ul class="hero-highlights">
                 <template for:each={highlights} for:item="item">
                     <li key={item.text} class="highlight-item">
-                        <lightning-icon icon-name={item.icon} size="small"></lightning-icon>
+                        
+                        
+                        <template if:true={item.imgSrc}>
+                            <img src={item.imgSrc} alt={item.title} class="custom-icon" />
+                        </template>
+                        <template if:false={item.imgSrc}>
+                            <lightning-icon icon-name={item.icon} size="small"></lightning-icon>
+                        </template>
+
                         <span>{item.text}</span>
                     </li>
                 </template>

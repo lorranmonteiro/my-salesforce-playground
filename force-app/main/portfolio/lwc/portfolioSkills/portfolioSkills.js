@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import SkillsTitleLabel from "@salesforce/label/c.PortfolioSkillsSectionTitle";
 import ApexLabel from "@salesforce/label/c.PortfolioApex";
 import RestApiLabel from "@salesforce/label/c.PortfolioRestApi";
 import LwcLabel from "@salesforce/label/c.PortfolioLwc";
@@ -7,6 +8,9 @@ import LowCodeLabel from "@salesforce/label/c.PortfolioLowCode";
 import CiCdLabel from "@salesforce/label/c.PortfolioCiCd";
 
 export default class PortfolioSkills extends LightningElement {
+
+    titleLabel = SkillsTitleLabel;
+
     skills = [
         {
             id: 'apex',
@@ -15,16 +19,16 @@ export default class PortfolioSkills extends LightningElement {
             description: ApexLabel
         },
         {
-            id: 'rest-api',
-            iconName: 'standard:data_transforms',
-            title: 'REST APIs',
-            description: RestApiLabel
-        },
-        {
             id: 'lwc',
             iconName: 'custom:custom9',
             title: 'Lightning Web Components',
             description: LwcLabel
+        },
+        {
+            id: 'rest-api',
+            iconName: 'standard:data_transforms',
+            title: 'REST APIs',
+            description: RestApiLabel
         },
         {
             id: 'platform-events',

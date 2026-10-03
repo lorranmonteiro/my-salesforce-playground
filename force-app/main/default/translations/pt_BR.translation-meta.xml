@@ -33,7 +33,7 @@
         <name>PortfolioLowCode</name>
     </customLabels>
     <customLabels>
-        <label>Crie componentes reutilizáveis ​​com padrões web modernos, aproveitando o framework LWC da Salesforce para um desenvolvimento de interface eficiente e escalável</label>
+        <label>Crio componentes reutilizáveis ​​com padrões web modernos, aproveitando o framework LWC da Salesforce para um desenvolvimento de interface eficiente e escalável</label>
         <name>PortfolioLwc</name>
     </customLabels>
     <customLabels>
@@ -63,7 +63,7 @@ Apex, LWC, Flows, SFDX</label>
         <name>PortfolioServiceCloud</name>
     </customLabels>
     <customLabels>
-        <label>Sou um Engenheiro de Software Sênior com mais de 8 anos de experiência no desenvolvimento de aplicações escaláveis, integrações complexas de REST APIs e pipelines de CI/CD. Com 4 anos dedicados ao ecossistema Salesforce e 5 certificações, combino sólidos conhecimentos de engenharia de software com práticas modernas de desenvolvimento impulsionado por IA. Estou totalmente adaptado ao trabalho com equipes globais em fusos horários da América do Norte (EST, CST e MST).</label>
+        <label>Me chamo Lorran Monteiro, sou Engenheiro de Software Sênior com mais de 8 anos de experiência no desenvolvimento de aplicações escaláveis, integrações complexas de REST APIs e pipelines de CI/CD. Com 4 anos dedicados ao ecossistema Salesforce e 5 certificações, combino sólidos conhecimentos de engenharia de software com práticas modernas de desenvolvimento impulsionado por IA. Estou totalmente adaptado ao trabalho com equipes globais em fusos horários da América do Norte (EST, CST e MST).</label>
         <name>PortfolioSummary</name>
     </customLabels>
     <customLabels>
@@ -73,5 +73,21 @@ Apex, LWC, Flows, SFDX</label>
     <customLabels>
         <label>Confira meu perfil no Trailblazer para ver minhas conquistas e contribuições para a comunidade Salesforce</label>
         <name>PortfolioTrailblazer</name>
+    </customLabels>
+    <customLabels>
+        <label>Bem-vindo!</label>
+        <name>PortfolioTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>🚀 Minhas habilidades</label>
+        <name>PortfolioSkillsSectionTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>☁️ Experiência em Nuvens Salesforce</label>
+        <name>PortfolioCloudsSectionTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>🔗 Contatos &amp; Recursos</label>
+        <name>PortfolioSocialSectionTitle</name>
     </customLabels>
 </Translations>

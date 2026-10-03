@@ -1,6 +1,6 @@
 <template>
     <section class="clouds-section" aria-labelledby="clouds-heading">
-        <h2 id="clouds-heading" class="section-title">☁️ Salesforce Products Experience</h2>
+        <h2 id="clouds-heading" class="section-title">{titleLabel}</h2>
         <div class="cards-grid">
             <template for:each={clouds} for:item="cloud">
                 <div key={cloud.id} class="cloud-card" role="article">

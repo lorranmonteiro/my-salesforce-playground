@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Summary</shortDescription>
-        <value>I&apos;m a Senior Software Engineer with 8+ years of total experience developing scalable enterprise applications, complex REST API integrations, and CI/CD pipelines. With 4 years dedicated to the Salesforce ecosystem and 5x Salesforce Certified, I combine deep core engineering skills with modern AI-driven development. Fully adapted to working with global teams across North American time zones (EST, CST, and MST).</value>
+        <value>I&apos;m Lorran Monteiro, a Senior Software Engineer with 8+ years of total experience developing scalable enterprise applications, complex REST API integrations, and CI/CD pipelines. With 4 years dedicated to the Salesforce ecosystem and 5x Salesforce Certified, I combine deep core engineering skills with modern AI-driven development. Fully adapted to working with global teams across North American time zones (EST, CST, and MST).</value>
     </labels>
     <labels>
         <fullName>PortfolioSalesforceCore</fullName>
@@ -145,5 +145,37 @@ Apex, LWC, Flows, SFDX</value>
         <protected>false</protected>
         <shortDescription>Trailblazer description</shortDescription>
         <value>Take a look at my Trailblazer profile to see my achievements and contributions to the Salesforce community</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Title</shortDescription>
+        <value>Welcome!</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSkillsSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Skills Section Title</shortDescription>
+        <value>🚀 My Skills</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioCloudsSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Clouds Section Title</shortDescription>
+        <value>☁️ Salesforce Clouds Experience</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSocialSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Social Section Title</shortDescription>
+        <value>🔗 Contacts &amp; Resources</value>
     </labels>
 </CustomLabels>

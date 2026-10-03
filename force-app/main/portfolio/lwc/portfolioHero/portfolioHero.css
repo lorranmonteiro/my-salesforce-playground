@@ -56,14 +56,20 @@ h1 {
 .hero-image {
     display: flex;
     justify-content: center;
+
+    img {
+        width: 100%;
+        max-width: 400px;
+        border: 2px solid var(#76beda);
+        border-radius: 100%;
+        box-shadow: 0 0  3px 3px #76beda;
+    }
 }
 
-img {
-    width: 100%;
-    max-width: 400px;
-    border: 2px solid var(--dxp-g-brand, #004989);
-    border-radius: 100%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+.custom-icon {
+    width: 1.5rem;
+    height: 2.0rem;
+    object-fit: contain;
 }
 
 @media only screen and (min-width: 768px) {

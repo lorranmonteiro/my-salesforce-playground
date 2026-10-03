@@ -1,23 +1,23 @@
 import { LightningElement } from 'lwc';
 import portfolioImagesURL from '@salesforce/resourceUrl/PortfolioImages';
+import TitleLabel from "@salesforce/label/c.PortfolioTitle";
 import Summary from "@salesforce/label/c.PortfolioSummary";
 import SalesforceCoreLabel from "@salesforce/label/c.PortfolioSalesforceCore";
 import SoftwareBackgroundLabel from "@salesforce/label/c.PortfolioTechnicalBackground";
 import AiDrivenLabel from "@salesforce/label/c.PortfolioAiDriven";
 
-const PROFILE_IMAGE_URL = portfolioImagesURL + '/Profile.png';
-
 export default class PortfolioHero extends LightningElement {
 
-    profileImage = PROFILE_IMAGE_URL;
+    profileImage = portfolioImagesURL + '/profile.png';
 
     labels = {
-        Summary
+        Title: TitleLabel,
+        Summary: Summary
     };
 
     highlights = [
         {
-            icon: 'utility:salesforce1',
+            imgSrc: portfolioImagesURL + '/salesforce.svg',
             text: SalesforceCoreLabel
         },
         {
