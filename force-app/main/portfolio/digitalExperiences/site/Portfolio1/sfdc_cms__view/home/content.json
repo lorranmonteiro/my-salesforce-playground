@@ -1,6 +1,6 @@
 {
   "type" : "sfdc_cms__view",
-  "title" : "Home",
+  "title" : "Portfolio - Lorran Monteiro",
   "contentBody" : {
     "component" : {
       "children" : [ {
@@ -42,7 +42,9 @@
               "id" : "e3e50a53-24aa-40e0-9d53-9f6063a4767a",
               "type" : "component"
             }, {
-              "attributes" : { },
+              "attributes" : {
+                "dxpStyle" : { }
+              },
               "definition" : "c:portfolioSocialLinks",
               "id" : "286db587-8e11-481f-b8b9-55ded92ff6b5",
               "type" : "component"
@@ -64,9 +66,9 @@
         "children" : [ {
           "attributes" : {
             "customHeadTags" : "",
-            "description" : "",
+            "description" : "This page displays the profile of Lorran Monteiro, a Senior Salesforce Developer, with many details and useful contact links",
             "dxpStyle" : { },
-            "pageTitle" : "Home",
+            "pageTitle" : "Portfolio - Lorran Monteiro",
             "recordId" : "{!recordId}"
           },
           "definition" : "community_builder:seoAssistant",

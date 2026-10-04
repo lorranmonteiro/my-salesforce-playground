@@ -33,6 +33,7 @@
             "children" : [ {
               "attributes" : {
                 "alignment" : "left",
+                "dxpStyle" : { },
                 "imageInfo" : "",
                 "imageInfoMobile" : "",
                 "logoWidth" : 250
@@ -124,6 +125,7 @@
             "children" : [ {
               "attributes" : {
                 "buttonStyle" : "primary",
+                "dxpStyle" : { },
                 "menuAlignment" : "center",
                 "menuBorderRadius" : 19,
                 "showGlobeIcon" : true
