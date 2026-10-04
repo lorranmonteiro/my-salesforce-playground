@@ -26,6 +26,10 @@
         "knowledgeSettings": {
             "enableKnowledge": true,
             "enableLightningKnowledge": true
+        },
+        "languageSettings": {
+            "enableTranslationWorkbench": true,
+            "enableEndUserLanguages": true
         }
     }
 }

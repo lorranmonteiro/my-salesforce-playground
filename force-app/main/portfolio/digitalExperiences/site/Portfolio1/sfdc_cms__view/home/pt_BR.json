@@ -1,0 +1,16 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Home",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "attributes" : {
+          "pageTitle" : "Portfólio - Lorran Monteiro",
+          "description" : "Esta página exibe o perfil de Lorran Monteiro, Desenvolvedor Salesforce Sênior, com diversos detalhes e links de contato úteis"
+        },
+        "id" : "2f293e69-174b-46ac-aab3-505031e1dab0"
+      } ]
+    }
+  },
+  "urlName" : "home"
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Fluxo acelerado por IA: uso diário de agentes autônomos de codificação para aumentar produtividade, qualidade de código e velocidade de entrega</label>
+        <name>PortfolioAiDriven</name>
+    </customLabels>
+    <customLabels>
+        <label>Triggers, Queueable, Batch e testes unitários com alta cobertura — código limpo e bulkificado que respeita os governor limits</label>
+        <name>PortfolioApex</name>
+    </customLabels>
+    <customLabels>
+        <label>Pipelines de CI/CD no GitLab e GitHub — testes automatizados, análise de código e deploys delta-based com sfdx-git-delta</label>
+        <name>PortfolioCiCd</name>
+    </customLabels>
+    <customLabels>
+        <label>Comunidades públicas e privadas com autenticação — LWCs customizados, temas personalizados e suporte multi-idioma via Custom Labels</label>
+        <name>PortfolioExperienceCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Explore o código-fonte por trás deste portfólio — tudo é público, incluindo Apex, LWCs e integrações</label>
+        <name>PortfolioGitHub</name>
+    </customLabels>
+    <customLabels>
+        <label>Entre em contato comigo pelo Gmail para dúvidas ou oportunidades: lorrandec@gmail.com</label>
+        <name>PortfolioGmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Conecte-se comigo no LinkedIn e conheça minha trajetória profissional, certificações e destaques de carreira</label>
+        <name>PortfolioLinkedIn</name>
+    </customLabels>
+    <customLabels>
+        <label>Trigger, Screen e Scheduled Flows, Approval Processes, Permission Set Groups e Profiles — automação com o mínimo de código</label>
+        <name>PortfolioDeclarative</name>
+    </customLabels>
+    <customLabels>
+        <label>Componentes reutilizáveis com layouts responsivos, SLDS styling hooks e Lightning Data Service — este portfólio é inteiramente construído com LWCs</label>
+        <name>PortfolioLwc</name>
+    </customLabels>
+    <customLabels>
+        <label>Automação orientada a eventos com Platform Events e Change Data Capture para integrações desacopladas em tempo real</label>
+        <name>PortfolioPlatformEvents</name>
+    </customLabels>
+    <customLabels>
+        <label>Integrações REST API utilizando Named Credentials e External Client Apps. Experiência também com Salesforce Bulk API e Streaming API</label>
+        <name>PortfolioRestApi</name>
+    </customLabels>
+    <customLabels>
+        <label>Baixe meu currículo em formato PDF para saber mais sobre minha experiência e qualificações</label>
+        <name>PortfolioResume</name>
+    </customLabels>
+    <customLabels>
+        <label>Lead Management — regras de atribuição de leads, conversão e follow-ups automatizados para otimizar o pipeline de vendas</label>
+        <name>PortfolioSalesCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Salesforce Core: Sales Cloud, Service Cloud e Experience Cloud — Lead Management, Case Management, Knowledge Management, além de comunidades públicas e privadas com autenticação. Apex, LWC, Flows, SFDX</label>
+        <name>PortfolioSalesforceCore</name>
+    </customLabels>
+    <customLabels>
+        <label>Case Management e Knowledge Management — roteamento automatizado de casos, regras de escalação e base de conhecimento estruturada</label>
+        <name>PortfolioServiceCloud</name>
+    </customLabels>
+    <customLabels>
+        <label>Me chamo Lorran Monteiro, sou Engenheiro de Software Sênior com mais de 8 anos de experiência no desenvolvimento de aplicações escaláveis, integrações complexas de REST APIs e pipelines de CI/CD. Com 4 anos dedicados ao ecossistema Salesforce e 5 certificações, combino sólidos conhecimentos de engenharia de software com práticas modernas de desenvolvimento impulsionado por IA. Estou totalmente adaptado ao trabalho com equipes globais em fusos horários da América do Norte (EST, CST e MST).</label>
+        <name>PortfolioSummary</name>
+    </customLabels>
+    <customLabels>
+        <label>Base full-stack: ex-Tech Lead com experiência em Ruby on Rails, especializado em code reviews, integrações REST API e tradução de requisitos de negócio em arquitetura limpa e de fácil manutenção</label>
+        <name>PortfolioTechnicalBackground</name>
+    </customLabels>
+    <customLabels>
+        <label>Confira meu perfil no Trailblazer para ver conquistas e contribuições para a comunidade Salesforce</label>
+        <name>PortfolioTrailblazer</name>
+    </customLabels>
+    <customLabels>
+        <label>Bem-vindo!</label>
+        <name>PortfolioTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>🚀 Minhas Skills</label>
+        <name>PortfolioSkillsSectionTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>☁️ Experiência com Nuvens Salesforce</label>
+        <name>PortfolioCloudsSectionTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>🔗 Contatos &amp; Recursos</label>
+        <name>PortfolioSocialSectionTitle</name>
+    </customLabels>
+</Translations>

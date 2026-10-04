@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>PortfolioSummary</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Summary</shortDescription>
+        <value>I&apos;m Lorran Monteiro, a Senior Software Engineer with 8+ years of total experience developing scalable enterprise applications, complex REST API integrations, and CI/CD pipelines. With 4 years dedicated to the Salesforce ecosystem and 5x Salesforce Certified, I combine deep core engineering skills with modern AI-driven development. Fully adapted to working with global teams across North American time zones (EST, CST, and MST).</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSalesforceCore</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Salesforce Core</shortDescription>
+        <value>Salesforce Core: Sales, Service and Experience Clouds;
+Lead, Case and Knowledge Management;
+Apex, LWC, Flows, SFDX</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioTechnicalBackground</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Technical Background</shortDescription>
+        <value>Full-stack foundation: former Tech Lead with Ruby on Rails experience, specialized in code reviews, REST API integrations, and translating business requirements into clean, maintainable architecture</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioAiDriven</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio AI-Driven</shortDescription>
+        <value>AI-accelerated workflow: daily use of autonomous coding agents to boost productivity, code quality, and delivery speed</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioApex</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Apex</shortDescription>
+        <value>Triggers, Queueable, Batch, and high-coverage unit tests — clean, bulkified code that respects governor limits</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioRestApi</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio REST APIs</shortDescription>
+        <value>REST API integrations secured with Named Credentials and External Client Apps. Also experienced with Salesforce Bulk API and Streaming API</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioLwc</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio LWC</shortDescription>
+        <value>Large, reusable Lightning Web Components with responsive layouts, SLDS styling hooks, and Lightning Data Service — this portfolio is built entirely with LWCs</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioPlatformEvents</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Platform Events</shortDescription>
+        <value>Event-driven automation with Platform Events and Change Data Capture for real-time, decoupled system integrations</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioDeclarative</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Declarative Automation</shortDescription>
+        <value>Trigger, Screen, and Scheduled Flows, Approval Processes, Permission Set Groups, and Profiles — automation with minimal code</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioCiCd</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio CI/CD</shortDescription>
+        <value>CI/CD pipelines on GitLab and GitHub — automated tests, code analysis, and delta-based deployments with sfdx-git-delta</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSalesCloud</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Sales Cloud</shortDescription>
+        <value>Lead Management — lead assignment rules, conversion, and automated follow-ups to streamline the sales pipeline</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioServiceCloud</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Service Cloud</shortDescription>
+        <value>Case Management and Knowledge Management — automated case routing, escalation rules, and a structured knowledge base</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioExperienceCloud</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Experience Cloud</shortDescription>
+        <value>Public and private communities with authentication — custom LWCs, branded themes, and multi-language support via Custom Labels</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioGmail</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gmail description</shortDescription>
+        <value>Reach out to me via Gmail for any inquiries or opportunities: lorrandec@gmail.com</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioLinkedIn</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LinkedIn description</shortDescription>
+        <value>Connect with me on LinkedIn and explore my professional journey, certifications, and career highlights</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioGitHub</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GitHub description</shortDescription>
+        <value>Explore the source code behind this portfolio — everything is public, including Apex, LWCs, and integrations</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioResume</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resume description</shortDescription>
+        <value>Download my resume in PDF format to learn more about my experience and qualifications</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioTrailblazer</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trailblazer description</shortDescription>
+        <value>Take a look at my Trailblazer profile to see my achievements and contributions to the Salesforce community</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Title</shortDescription>
+        <value>Welcome!</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSkillsSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Skills Section Title</shortDescription>
+        <value>🚀 My Skills</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioCloudsSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Clouds Section Title</shortDescription>
+        <value>☁️ Salesforce Clouds Experience</value>
+    </labels>
+    <labels>
+        <fullName>PortfolioSocialSectionTitle</fullName>
+        <categories>portfolio</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portfolio Social Section Title</shortDescription>
+        <value>🔗 Contacts &amp; Resources</value>
+    </labels>
+</CustomLabels>
