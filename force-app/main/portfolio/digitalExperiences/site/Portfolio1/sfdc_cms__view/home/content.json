@@ -17,7 +17,7 @@
             "sectionColumnGutterWidth" : "",
             "sectionConfig" : "{\"UUID\":\"ca82fe70-19ca-4d47-8b55-7e0168fd15bc\",\"columns\":[{\"UUID\":\"d711819f-dccf-4f22-8f52-380c49ce3774\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
             "sectionMinHeight" : "",
-            "sectionVerticalAlign" : "flex-start"
+            "sectionVerticalAlign" : "center"
           },
           "children" : [ {
             "children" : [ {
