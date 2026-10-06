@@ -1,0 +1,15 @@
+{
+  "type" : "sfdc_cms__themeLayout",
+  "title" : "Scoped Header and Footer",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "attributes" : {
+          "richTextValue" : "<p style='text-align:center;font-size:0.875rem;color:var(--dxp-g-neutral-contrast);padding:1.5rem 0;font-weight: 600;'>\n    © 2026  Lorran Monteiro ‎ | ‎ Senior Salesforce Developer ‎ | ‎ contact@lorranmonteiro.dev\n</p>"
+        },
+        "id" : "d667dec7-a2f3-46ed-94c5-c6f913585688"
+      } ]
+    }
+  },
+  "urlName" : "scoped-header-and-footer"
+}

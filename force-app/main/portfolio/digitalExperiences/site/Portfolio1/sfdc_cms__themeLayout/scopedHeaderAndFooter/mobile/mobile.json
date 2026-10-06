@@ -3,7 +3,33 @@
   "title" : "Scoped Header and Footer",
   "contentBody" : {
     "component" : {
-      "children" : [ ]
+      "children" : [ {
+        "id" : "d71fa43c-9143-4375-8f7d-d1403c2136ac",
+        "attributes" : {
+          "dxpStyle" : {
+            "isVisible" : false
+          }
+        }
+      }, {
+        "id" : "d667dec7-a2f3-46ed-94c5-c6f913585688",
+        "attributes" : {
+          "dxpStyle" : {
+            "padding" : {
+              "bottom" : "",
+              "left" : "25%",
+              "right" : "",
+              "top" : ""
+            },
+            "margin" : {
+              "bottom" : "",
+              "left" : "",
+              "right" : "",
+              "top" : ""
+            },
+            "isVisible" : false
+          }
+        }
+      } ]
     }
   },
   "urlName" : "scoped-header-and-footer"
