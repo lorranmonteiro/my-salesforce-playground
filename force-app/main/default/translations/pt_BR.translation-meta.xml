@@ -17,11 +17,11 @@
         <name>PortfolioExperienceCloud</name>
     </customLabels>
     <customLabels>
-        <label>Explore o código-fonte por trás deste portfólio — tudo é público, incluindo Apex, LWCs e integrações</label>
+        <label>Explore o código-fonte por trás deste portfólio, incluindo Apex, LWCs, Integrações, Design Patterns, CI/CD pipelines e muito mais</label>
         <name>PortfolioGitHub</name>
     </customLabels>
     <customLabels>
-        <label>Entre em contato comigo pelo Gmail para dúvidas ou oportunidades: lorrandec@gmail.com</label>
+        <label>Entre em contato comigo por email para dúvidas ou oportunidades: contact@lorranmonteiro.dev</label>
         <name>PortfolioGmail</name>
     </customLabels>
     <customLabels>

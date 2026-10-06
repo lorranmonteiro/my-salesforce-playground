@@ -112,7 +112,7 @@ Apex, LWC, Flows, SFDX</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Gmail description</shortDescription>
-        <value>Reach out to me via Gmail for any inquiries or opportunities: lorrandec@gmail.com</value>
+        <value>Reach out to me via email for any inquiries or opportunities: contact@lorranmonteiro.dev</value>
     </labels>
     <labels>
         <fullName>PortfolioLinkedIn</fullName>
@@ -128,7 +128,7 @@ Apex, LWC, Flows, SFDX</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>GitHub description</shortDescription>
-        <value>Explore the source code behind this portfolio — everything is public, including Apex, LWCs, and integrations</value>
+        <value>Explore the source code behind this portfolio, including Apex, LWCs, Integrations, Design Patterns, CI/CD pipelines, and much more</value>
     </labels>
     <labels>
         <fullName>PortfolioResume</fullName>

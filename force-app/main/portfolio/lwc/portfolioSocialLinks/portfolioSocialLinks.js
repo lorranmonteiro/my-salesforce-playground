@@ -16,10 +16,10 @@ export default class PortfolioSocialLinks extends LightningElement {
     links = [
         {
             id: 'gmail',
-            title: 'Gmail',
+            title: 'Email',
             description: GmailLabel,
-            url: 'mailto:lorrandec@gmail.com',
-            imgSrc: IMAGES + 'gmail.svg'
+            url: 'mailto:contact@lorranmonteiro.dev',
+            iconName: 'standard:email_chatter'
         },
         {
             id: 'linkedin',
