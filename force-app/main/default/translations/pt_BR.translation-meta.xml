@@ -53,7 +53,7 @@
         <name>PortfolioSalesCloud</name>
     </customLabels>
     <customLabels>
-        <label>Salesforce Core: Sales Cloud, Service Cloud e Experience Cloud — Lead Management, Case Management, Knowledge Management, além de comunidades públicas e privadas com autenticação. Apex, LWC, Flows, SFDX</label>
+        <label>Salesforce Core: Nuvens de Sales, Service e Experience — Lead Management, Case Management, Knowledge Management, além de comunidades públicas e privadas com autenticação. Apex, LWC, Flows, SFDX</label>
         <name>PortfolioSalesforceCore</name>
     </customLabels>
     <customLabels>
@@ -81,7 +81,7 @@
         <name>PortfolioSkillsSectionTitle</name>
     </customLabels>
     <customLabels>
-        <label>☁️ Experiência com Nuvens Salesforce</label>
+        <label>☁️ Nuvens Salesforce</label>
         <name>PortfolioCloudsSectionTitle</name>
     </customLabels>
     <customLabels>

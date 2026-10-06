@@ -4,7 +4,7 @@
 }
 
 .section-title {
-    font-size: var(--slds-g-font-scale-7, 1.75rem);;
+    font-size: var(--slds-g-font-scale-5, 1.75rem);;
     font-weight: var(--slds-g-font-weight-7, 700);
     text-align: left;
     margin: 0 0 var(--slds-g-spacing-6, 2rem);
@@ -49,6 +49,10 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .section-title {
+        font-size: var(--slds-g-font-scale-7, 1.75rem);;
+    }
+
     .clouds-section {
         padding: var(--slds-g-spacing-8, 3rem) var(--slds-g-spacing-6, 2rem);
     }

@@ -17,7 +17,7 @@ export default class PortfolioHero extends LightningElement {
 
     highlights = [
         {
-            imgSrc: portfolioImagesURL + '/salesforce.svg',
+            icon: 'custom:custom11',
             text: SalesforceCoreLabel
         },
         {

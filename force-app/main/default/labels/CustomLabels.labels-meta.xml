@@ -168,7 +168,7 @@ Apex, LWC, Flows, SFDX</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Portfolio Clouds Section Title</shortDescription>
-        <value>☁️ Salesforce Clouds Experience</value>
+        <value>☁️ Salesforce Clouds</value>
     </labels>
     <labels>
         <fullName>PortfolioSocialSectionTitle</fullName>
