@@ -20,7 +20,7 @@ num_thinking_tasks = 2
 
 # Comprehensive Salesforce-specific review instructions based on project AGENTS.md
 extra_instructions = """
-You are reviewing code for a Salesforce DX project (API v67.0). Apply the following rules strictly:
+You are reviewing code for a Salesforce DX project (API v68.0). Apply the following rules strictly:
 
 ## Apex Best Practices
 1. **Bulkification**: Never perform SOQL queries or DML statements inside loops (for, while). Always use collections (Lists, Sets, Maps) to operate on data in bulk.
