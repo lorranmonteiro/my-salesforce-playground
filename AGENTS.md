@@ -1,5 +1,9 @@
 # Salesforce Development Guidelines for Agents
 
+## Agent Skills & Execution (`.agents/`)
+- This repository utilizes **sf-skills** (`forcedotcom/sf-skills`) located in the `.agents/` directory. 
+- AI agents (such as Cline) must leverage the specialized instructions, templates, and validation scripts inside `.agents/` when executing Salesforce environment checks, deployments, and writing code.
+
 ## Apex Best Practices
 - Bulkification: Never perform SOQL queries or DML statements inside loops (`for`, `while`). Always use collections (Lists, Sets, Maps).
 - Triggers: There should be only one Trigger per sObject. All business logic must be delegated to Handler/Service classes (Trigger Handler Pattern).
@@ -9,13 +13,12 @@
 ## Apex Unit Testing
 - Assertions: Use modern methods from the `Assert` class (e.g., `Assert.areEqual()`, `Assert.isTrue()`) instead of `System.assertEquals()`.
 - Limits: Use `Test.startTest()` and `Test.stopTest()` to reset governor limits for the execution of the primary code. Code between `startTest()` and `stopTest()` must be indented by one tab.
-- Test Coverage: Always aim for close to 100% coverage and ensure all exception scenarios are tested. Never use org data. Aim to use `@TestSetup` to create test data and `@IsTest` for test methods.
+- Test Coverage: Aim for close to 100% coverage and ensure all exception scenarios are tested. Never use org data. Aim to use `@TestSetup` to create test data and `@IsTest` for test methods.
 
 ## Lightning Web Components (LWC)
 - Security and LDS: Always prioritize the Lightning Data Service (such as `lightning-record-form` or wire adapters from `lightning/uiRecordApi`) before resorting to imperative Apex methods.
 - Styling: Use SLDS utility classes as much as possible. Avoid inline CSS or global CSS selectors that break Shadow DOM encapsulation. Use SLDS Global Styling Hooks for style customizations.
 - Accessibility: Ensure all inputs have corresponding associated `<label>` elements and use aria-* attributes where necessary.
-- Jest Tests: When creating complex LWC components, require Cline to also generate the corresponding Jest tests in the `__tests__` folder.
 
 ## Architecture
 
@@ -44,9 +47,6 @@ All SOQL lives in dedicated `*Selector` classes (e.g., `AccountSelector`). Queri
 
 ### Service Factory Pattern (for integrations)
 External service classes (e.g., `GitlabService`, `OpenAIService`) are accessed through a `*ServiceFactory` implementing `IServiceFactory`. In tests, factories auto-return a mock success class if no mock is explicitly set; use `XxxServiceFactory.setMock(new MyMock())` to inject a specific mock.
-
-### Logging Framework
-- ToDo
 
 ### REST API Layer
 REST endpoints live in `force-app/main/<domain>/api/`. Each `@RestResource` class delegates validation to a companion `*APIHelper` class (guards: CRUD permission check, ID/body validation, existence check) and uses `AccountSelector` for data access. Errors are serialized as `APIErrorResponse { message }`.

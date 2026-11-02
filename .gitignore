@@ -61,5 +61,5 @@ package/
 destructiveChanges/
 manifest/
 
-# Claude Code
-.claude/
+# AI Agents
+.agents/
