@@ -6,7 +6,7 @@
     <communityRoles/>
     <disablePvtPagesForPwdResetInLWR>false</disablePvtPagesForPwdResetInLWR>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
-    <emailSenderAddress>lorrandec@gmail.com</emailSenderAddress>
+    <emailSenderAddress>noreply@portfolio.dev</emailSenderAddress>
     <emailSenderName>Forest Portal</emailSenderName>
     <embeddedLoginEnabled>false</embeddedLoginEnabled>
     <enableApexCDNCaching>true</enableApexCDNCaching>
