@@ -63,3 +63,4 @@ manifest/
 
 # AI Agents
 .agents/
+skills-lock.json
