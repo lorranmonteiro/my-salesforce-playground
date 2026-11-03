@@ -6,7 +6,7 @@
     <communityRoles/>
     <disablePvtPagesForPwdResetInLWR>false</disablePvtPagesForPwdResetInLWR>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
-    <emailSenderAddress>lorrandec@gmail.com</emailSenderAddress>
+    <emailSenderAddress>noreply@portfolio.dev</emailSenderAddress>
     <emailSenderName>Forest Help Center</emailSenderName>
     <embeddedLoginEnabled>false</embeddedLoginEnabled>
     <enableApexCDNCaching>true</enableApexCDNCaching>
@@ -51,7 +51,7 @@
     <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Forest_Help_Center</site>
     <siteArchiveStatus>NotArchived</siteArchiveStatus>
-    <status>Live</status>
+    <status>UnderConstruction</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>

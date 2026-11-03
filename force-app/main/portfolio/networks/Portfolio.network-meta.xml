@@ -6,7 +6,7 @@
     <communityRoles/>
     <disablePvtPagesForPwdResetInLWR>false</disablePvtPagesForPwdResetInLWR>
     <disableReputationRecordConversations>false</disableReputationRecordConversations>
-    <emailSenderAddress>lorrandec@gmail.com</emailSenderAddress>
+    <emailSenderAddress>noreply@portfolio.dev</emailSenderAddress>
     <emailSenderName>Portfolio</emailSenderName>
     <embeddedLoginEnabled>false</embeddedLoginEnabled>
     <enableApexCDNCaching>true</enableApexCDNCaching>
