@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
-    <doesIncludeBosses>true</doesIncludeBosses>
+    <doesIncludeBosses>false</doesIncludeBosses>
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
-    <name>Service Case</name>
+    <name>Case Queue</name>
+    <queueRoutingConfig>CaseRoutingConfiguration</queueRoutingConfig>
     <queueSobject>
         <sobjectType>Case</sobjectType>
     </queueSobject>
