@@ -137,6 +137,19 @@
           "definition" : "community_layout:section",
           "id" : "995c352e-2fee-4d74-a12a-23b6cc73b6f3",
           "type" : "component"
+        }, {
+          "attributes" : {
+            "clientVersion" : "WebV1",
+            "deploymentName" : "PortfolioChat_1",
+            "hideChatButtonOnLoad" : "Visible",
+            "isExpSiteAuthMode" : false,
+            "mobileDeploymentName" : "",
+            "scrtUrl" : "https://resourceful-unicorn-b8x1qb-dev-ed.trailblaze.my.salesforce-scrt.com",
+            "siteEndpoint" : "https://resourceful-unicorn-b8x1qb-dev-ed.trailblaze.my.site.com/ESWPortfolioChat1794952634274"
+          },
+          "definition" : "experience_messaging:embeddedMessaging",
+          "id" : "0119d1d2-f7de-4920-89b3-4a6eda702403",
+          "type" : "component"
         } ],
         "id" : "eaa2b2c6-83f1-4604-b566-9d2dbbddad83",
         "name" : "footer",
