@@ -140,7 +140,8 @@
         }, {
           "attributes" : {
             "clientVersion" : "WebV1",
-            "deploymentName" : "PortfolioChat_1",
+            "deploymentName" : "PortfolioChat",
+            "dxpStyle" : { },
             "hideChatButtonOnLoad" : "Visible",
             "isExpSiteAuthMode" : false,
             "mobileDeploymentName" : "",

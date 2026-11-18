@@ -8,6 +8,12 @@
     </automatedResponses>
     <automatedResponses>
         <autoResponseContentType>TextResponse</autoResponseContentType>
+        <language>pt_BR</language>
+        <response>A conversa terminou.</response>
+        <type>OptOutConfirmation</type>
+    </automatedResponses>
+    <automatedResponses>
+        <autoResponseContentType>TextResponse</autoResponseContentType>
         <language>en_US</language>
         <response>Text STOP to opt out of further messages.</response>
         <type>HelpResponse</type>
@@ -22,6 +28,13 @@
         <isSaveTranscriptEnabled>false</isSaveTranscriptEnabled>
         <maxFileSize>5</maxFileSize>
     </embeddedConfig>
+    <isAgentMessageResetInactivityEnabled>false</isAgentMessageResetInactivityEnabled>
+    <isEndUserDataCaptured>false</isEndUserDataCaptured>
+    <isEstimatedWaitTimeEnabled>false</isEstimatedWaitTimeEnabled>
+    <isFeedbackEnabled>false</isFeedbackEnabled>
+    <isQueuePositionEnabled>false</isQueuePositionEnabled>
+    <isSynchronousChatEnabled>false</isSynchronousChatEnabled>
+    <isVoiceModeEnabled>false</isVoiceModeEnabled>
     <masterLabel>Portfolio Chat</masterLabel>
     <messagingChannelType>EmbeddedMessaging</messagingChannelType>
     <messagingKeywords>
@@ -33,6 +46,11 @@
         <keyword>unsubscribe</keyword>
         <keywordType>OptOut</keywordType>
         <language>en_US</language>
+    </messagingKeywords>
+    <messagingKeywords>
+        <keyword>sair</keyword>
+        <keywordType>OptOut</keywordType>
+        <language>pt_BR</language>
     </messagingKeywords>
     <messagingKeywords>
         <keyword>help</keyword>
