@@ -11,6 +11,11 @@ This project follows a domain-driven, layered architecture with clear separation
 
 It follows Salesforce best practices for Apex, LWC, and REST APIs, with a focus on maintainability, testability, and security. Inspired by the [Apex Well-Architected Framework](https://www.awaf.dev).
 
+## Salesforce Clouds
+- **Sales Cloud** — Lead Capture & Management, Account, Contact, Opportunity customizations.
+- **Service Cloud** — Case Capture & Management, Omni-channel routing, Knowledge Management, and Service Console customizations.
+- **Experience Cloud** — Public portfolio site with LWR template, i18n-first design, and custom labels, and help center portals.
+
 ## Design patterns
 
 | Pattern | Implementation |

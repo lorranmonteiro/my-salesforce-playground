@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CaseSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aiCaseCommentRefine>false</aiCaseCommentRefine>
     <caseAssignNotificationTemplate>unfiled$public/SupportCaseAssignmentNotification</caseAssignNotificationTemplate>
+    <caseAssignRuleCommunity>false</caseAssignRuleCommunity>
     <caseAutoProcUser>false</caseAutoProcUser>
     <caseCreateNotificationTemplate>unfiled$public/SupportCaseCreatedPhoneInquiries</caseCreateNotificationTemplate>
+    <caseDescAttachments>false</caseDescAttachments>
     <caseFeedItemSettings>
         <characterLimit>400</characterLimit>
         <displayFormat>Default</displayFormat>
@@ -16,6 +19,7 @@
     <defaultCaseOwnerType>User</defaultCaseOwnerType>
     <defaultCaseUser>lorrandec@resourceful-unicorn-b8x1qb.com</defaultCaseUser>
     <emailToCase>
+        <enableE2CAdvancedSecurity>false</enableE2CAdvancedSecurity>
         <enableE2CAttachmentAsFile>true</enableE2CAttachmentAsFile>
         <enableE2CDeduplicateAttachments>false</enableE2CDeduplicateAttachments>
         <enableE2CExternalServer>false</enableE2CExternalServer>
@@ -35,16 +39,16 @@
         <routingAddresses>
             <addressType>EmailToCase</addressType>
             <caseOrigin>Email</caseOrigin>
-            <caseOwner>Service_Case</caseOwner>
+            <caseOwner>CaseQueue</caseOwner>
             <caseOwnerType>Queue</caseOwnerType>
             <casePriority>Medium</casePriority>
             <createTask>true</createTask>
-            <emailAddress>lorrandec@hotmail.com</emailAddress>
-            <emailServicesAddress>lorrandec@1w8efuguj1ky5ckm5umimeu017w8lbwr9ee7ztvfe31p4k4hkf.aj-r8swxear.usa838.case.salesforce.com</emailServicesAddress>
+            <emailAddress>contact@lorranmonteiro.dev</emailAddress>
+            <emailServicesAddress>contact@l-285vefh0dfruin7x9ta9y7ca7acx2kgaub982phqg12tx2n62n.aj-r8swxear.usa838.case.salesforce.com</emailServicesAddress>
             <isPermsetControlled>false</isPermsetControlled>
             <isVerified>true</isVerified>
-            <routingName>Forest Customer Support Team</routingName>
-            <saveEmailHeaders>true</saveEmailHeaders>
+            <routingName>Default Routing Address</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
             <taskStatus>Not Started</taskStatus>
         </routingAddresses>
         <unauthorizedSenderAction>Discard</unauthorizedSenderAction>
@@ -68,13 +72,17 @@
     <enableSuggestedArticlesCustomerPortal>false</enableSuggestedArticlesCustomerPortal>
     <enableSuggestedArticlesPartnerPortal>false</enableSuggestedArticlesPartnerPortal>
     <enableSuggestedSolutions>true</enableSuggestedSolutions>
+    <enhancedCaseMerge>false</enhancedCaseMerge>
     <escalateCaseBefore>false</escalateCaseBefore>
+    <hidePublicInCaseComment>false</hidePublicInCaseComment>
     <keepCaseMergeRecords>true</keepCaseMergeRecords>
     <notifyContactOnCaseComment>false</notifyContactOnCaseComment>
     <notifyDefaultCaseOwner>false</notifyDefaultCaseOwner>
     <notifyOwnerOnCaseComment>true</notifyOwnerOnCaseComment>
     <notifyOwnerOnCaseOwnerChange>false</notifyOwnerOnCaseOwnerChange>
+    <omniChnlCaseMrgFix>false</omniChnlCaseMrgFix>
     <rtaCaseComment>false</rtaCaseComment>
+    <rtaCaseDescFieldAccess>false</rtaCaseDescFieldAccess>
     <showEmailAttachmentsInCaseAttachmentsRL>true</showEmailAttachmentsInCaseAttachmentsRL>
     <systemUserEmail>lorrandec@gmail.com</systemUserEmail>
     <useSystemEmailAddress>true</useSystemEmailAddress>

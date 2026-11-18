@@ -3,7 +3,7 @@
     "edition": "Developer",
     "language": "en_US",
     "country": "US",
-    "features": ["Communities", "Knowledge", "RecordTypes", "EnableSetPasswordInApi"],
+    "features": ["ServiceCloud", "Communities", "Knowledge", "RecordTypes", "EnableSetPasswordInApi"],
     "description": "Scratch org for Playground project for validation and testing on CI/CD Pipeline.",
     "settings": {
         "lightningExperienceSettings": {
@@ -26,6 +26,14 @@
         "knowledgeSettings": {
             "enableKnowledge": true,
             "enableLightningKnowledge": true
+        },
+        "omniChannelSettings": {
+            "enableOmniChannel": true,
+            "enableOmniAutoLoginPrompt": true,
+            "enableOmniSecondaryRoutingPriority": false,
+            "enableOmniSkillsRouting": true,
+            "enableOmniStatusCapModel": false,
+            "omniAutoLoginOption": "RemainLoggedIn"
         },
         "languageSettings": {
             "enableTranslationWorkbench": true,
